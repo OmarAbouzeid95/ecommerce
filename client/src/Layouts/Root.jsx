@@ -1,9 +1,13 @@
-
+import Header from './Header'
+import Footer from './Footer'
+import {Outlet} from 'react-router-dom'
 
 function Root() {
     return ( 
         <div className="home">
-            <h1>HomePage</h1>
+            <Header />
+            <Outlet />
+            <Footer />
         </div>
     );
 }

@@ -4,6 +4,8 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 // layouts
 import ErrorPage from './Layouts/ErrorPage'
 import Root from './Layouts/Root'
+import Contact from './Layouts/Contact'
+import Cart from './Layouts/Cart'
 
 function App() {
 
@@ -13,7 +15,17 @@ function App() {
       // homepage
       path: '/',
       element: <Root />,
-      errorElement: <ErrorPage />
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          path: 'contact',
+          element: <Contact />
+        },
+        {
+          path: 'cart',
+          element: <Cart />
+        }
+      ]
     }
   ])
 

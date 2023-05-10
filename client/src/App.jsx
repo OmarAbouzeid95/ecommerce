@@ -6,6 +6,7 @@ import ErrorPage from './Layouts/ErrorPage'
 import Root from './Layouts/Root'
 import Contact from './Layouts/Contact'
 import Cart from './Layouts/Cart'
+import Profile from './Layouts/Profile'
 
 function App() {
 
@@ -24,6 +25,10 @@ function App() {
         {
           path: 'cart',
           element: <Cart />
+        },
+        {
+          path: 'profile',
+          element: <Profile />
         }
       ]
     }

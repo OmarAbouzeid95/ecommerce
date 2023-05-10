@@ -62,7 +62,7 @@ function Header() {
                                     <img src={searchIcon} alt="search icon" className="searchIcon navIcon"/>
                                     <input type="text" placeholder="Search store..." className="searchInput"/>
                                 </div>
-                                <NavLink to="cart">Cart</NavLink>
+                                <NavLink to='cart'><img src={shoppingBag} alt="shopping bag icon" className="shoppingIcon navIcon"/></NavLink>
                                 <NavLink to="profile">Profile</NavLink>
                             </nav>)
         }

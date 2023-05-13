@@ -1,6 +1,15 @@
-const imgPaths = {
-    img1: '../media/winterJacket/CGwinterJ_11.webp',
-    img2: '../media/winterJacket/CGwinterJ_21.webp'
+
+const db = {
+    a: [1,2,3],
+    b: [5,6,7]
 }
 
-export default imgPaths
+const keys = Object.keys(db)
+console.log(keys)
+
+for(let i = 0; i < keys.length; i++){
+    const currentKey = db[keys[i]]
+    for(let j = 0; j < currentKey.length; j++){
+        console.log(currentKey[j])
+    }
+}

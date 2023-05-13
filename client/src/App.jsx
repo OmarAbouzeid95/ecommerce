@@ -7,6 +7,10 @@ import Root from './Layouts/Root'
 import Contact from './Layouts/Contact'
 import Cart from './Layouts/Cart'
 import Profile from './Layouts/Profile'
+import ProductDetails from './Layouts/ProductDetails'
+
+// loader functions
+import loadProductDetails from './loaderFunctions'
 
 function App() {
 
@@ -29,6 +33,13 @@ function App() {
         {
           path: 'profile',
           element: <Profile />
+        },
+        {
+          path: 'product/details/:id',
+          loader: ({params}) => {
+            return loadProductDetails(params.id)
+          },
+          element: <ProductDetails />
         }
       ]
     }

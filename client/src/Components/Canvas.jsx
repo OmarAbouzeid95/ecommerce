@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+// import {useState, useEffect} from 'react'
 
 // canvas images
 import canvas1 from '../media/canvas1.png'
@@ -8,35 +8,33 @@ import canvas4 from '../media/canvas4.png'
 
 function Canvas() {
 
-    console.log('rendered')
-
     // array for canvas banner slideshow
     const canvasImgs = [canvas1, canvas2, canvas3, canvas4]
     // index of the current image
-    const [index, setIndex] = useState(0)
+    // const [index, setIndex] = useState(0)
 
-    function updateBanner() {
-        // updating Index of the current image
-        setIndex(index => (index+1) % (canvasImgs.length))
-    }
+    // function updateBanner() {
+    //     // updating Index of the current image
+    //     // setIndex(index => (index+1) % (canvasImgs.length))
+    // }
 
-    useEffect(() => {
+    // useEffect(() => {
  
-        // preloading the images.
-        canvasImgs.forEach(img => {
-            const image = new Image()
-            image.src = img
-        })
+    //     // preloading the images.
+    //     canvasImgs.forEach(img => {
+    //         const image = new Image()
+    //         image.src = img
+    //     })
 
-        // updating the banner each 3 secs
-        setInterval(updateBanner, 3000)
+    //     updating the banner each 3 secs
+    //     setInterval(updateBanner, 3000)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    // }, [])
 
     return (
         <div className="canvasContainer">
             {/* adding the key attribute so react rerenders the component each time to perform the animation */}
-            <img key={index} src={canvasImgs[index]} alt="canvas banner" id="canvasImg" className="animate"/>
+            <img key={0} src={canvasImgs[0]} alt="canvas banner" id="canvasImg" className="animate"/>
         </div>
       )
 }

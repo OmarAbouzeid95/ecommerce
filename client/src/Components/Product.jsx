@@ -1,12 +1,13 @@
-
+import {useState} from 'react'
 
 function Product({props}) {
 
-    console.log(props)
+    const [key, setKey] = useState(props.id)
+
     return ( 
-        <div className="productContainer">
+        <div className="productContainer" onMouseEnter={() => setKey(props.id * 999)} onMouseLeave={() => setKey(props.id)}>
             <div className="productImgContainer">
-                <img src={props.img} alt={props.alt}/>
+                <img className="productImg fastAnimate" key={key} src={(key === props.id) ? props.img : props.imgArray[0]} alt={props.alt}/>
             </div>
             <div className="productInfo">
                 <h5>{props.name}</h5>

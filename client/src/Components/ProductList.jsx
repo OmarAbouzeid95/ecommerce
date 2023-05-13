@@ -28,11 +28,9 @@ function ProductList({list, title}) {
 
     const allProducts = list.map(product => {
         return (
-            <Product props={product}/>
+            <Product props={product} key={product.id}/>
         )
     })
-
-    console.log(allProducts)
 
     return ( 
         <div>

@@ -41,15 +41,19 @@ img {
 /* animations */
 @keyframes pop {
   0%{
-    opacity: 0;
+    opacity: 0.5;
   }
   100% {
-    opacity: 100%
+    opacity: 1;
   }
 }
 
 .animate{
   animation: pop 1.5s;
+}
+
+.fastAnimate{
+  animation: pop .05s;
 }
 
 /* Error page */
@@ -362,6 +366,10 @@ img {
 /* product component */
 .productContainer{
   max-width: 290px;
+}
+
+.productContainer:hover {
+  cursor: pointer;
 }
 
 .productImgContainer {

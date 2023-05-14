@@ -1,10 +1,10 @@
 import db from './db'
 
 
+// traversing over the DB looking for the corresponding ID
 function loadProductDetails(id) {
-
+    
     const parsedId = parseInt(id)
-    // traversing over the DB looking for the corresponding ID
     // getting db Keys to traverse
     const keys = Object.keys(db)
 

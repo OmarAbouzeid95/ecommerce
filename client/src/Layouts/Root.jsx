@@ -20,7 +20,7 @@ function Root() {
             {/* Conditional rendering of the canvas ads if you're on the homepage */}
             {(loc.pathname === '/') && <Canvas />}
             <div className="outletWrapper">
-                <ProductList list={winterJackets} title='Winter Jackets'/>
+                {(loc.pathname === '/') && <ProductList list={winterJackets} title='Winter Jackets'/>}
                 <Outlet />
             </div>
             <Footer />

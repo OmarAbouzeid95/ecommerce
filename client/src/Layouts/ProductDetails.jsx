@@ -1,13 +1,13 @@
 import { useLoaderData } from "react-router-dom";
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useRef} from 'react'
 
 function ProductDetails() {
 
     const data = useLoaderData()
-    console.log(data)
     const [currentImg, setCurrentImg] = useState(data.img)
     const [size, setSize] = useState('')
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+    const key = useRef(0)
 
     useEffect(() => {
         window.addEventListener('resize', () => {
@@ -16,13 +16,13 @@ function ProductDetails() {
     })
 
     const imgsArray = data.imgArray.map(img => {
-        return (<img className={`otherProductImg ${(currentImg === img) ? 'selectedImg' : ''}`} src={img} alt="other product img"
+        return (<img key={key.current++} className={`otherProductImg ${(currentImg === img) ? 'selectedImg' : ''}`} src={img} alt="other product img"
                  onClick={() => setCurrentImg(img)}
                  onMouseOver={() => setCurrentImg(img)}/>)
     })
 
     // inserting main img at the beginning of the array
-    imgsArray.unshift(<img className={`otherProductImg ${(currentImg === data.img) ? 'selectedImg' : ''}`} src={data.img} alt="other product img"
+    imgsArray.unshift(<img key={key.current++} className={`otherProductImg ${(currentImg === data.img) ? 'selectedImg' : ''}`} src={data.img} alt="other product img"
                         onClick={() => setCurrentImg(data.img)}
                         onMouseOver={() => setCurrentImg(data.img)}/>)
 

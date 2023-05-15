@@ -8,9 +8,10 @@ import Contact from './Layouts/Contact'
 import Cart from './Layouts/Cart'
 import Profile from './Layouts/Profile'
 import ProductDetails from './Layouts/ProductDetails'
+import ShopCategory from './Layouts/ShopCategory'
 
 // loader functions
-import loadProductDetails from './loaderFunctions'
+import { loadProductDetails, loadShopCategory } from './loaderFunctions'
 
 function App() {
 
@@ -40,6 +41,13 @@ function App() {
             return loadProductDetails(params.id)
           },
           element: <ProductDetails />
+        },
+        {
+          path: 'shop/:category',
+          loader: ({params}) => {
+            return loadShopCategory(params.category)
+          },
+          element: <ShopCategory />
         }
       ]
     }

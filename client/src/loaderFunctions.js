@@ -18,4 +18,31 @@ function loadProductDetails(id) {
     }
 }
 
-export default loadProductDetails
+function getWinterJackets(category) {
+
+    const winterJackets = db.winterJakcets
+    const result = winterJackets.filter(jacket => (jacket.gender === category))
+    return result
+}
+
+// fetching required data for the corresponding Shop Category (Men/ Women/ Kids)
+function loadShopCategory(category) {
+
+    // making sure category is in lowercase
+    category = category.toLowerCase()
+    switch(category) {
+        case('men'):
+            const winterJackets =  getWinterJackets('men')
+            return {
+                winterJackets: winterJackets
+            }
+        case('women'):
+            return 'women'
+        case('kids'):
+            return 'kids'
+        default:
+            break
+    }
+}
+
+export {loadProductDetails, loadShopCategory}

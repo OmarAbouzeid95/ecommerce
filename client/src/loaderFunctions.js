@@ -30,14 +30,19 @@ function loadShopCategory(category) {
 
     // making sure category is in lowercase
     category = category.toLowerCase()
+    let winterJackets
+
     switch(category) {
         case('men'):
-            const winterJackets =  getWinterJackets('men')
+            winterJackets =  getWinterJackets('men')
             return {
                 winterJackets: winterJackets
             }
         case('women'):
-            return 'women'
+            winterJackets =  getWinterJackets('women')
+            return {
+                winterJackets: winterJackets
+            }
         case('kids'):
             return 'kids'
         default:
@@ -45,4 +50,13 @@ function loadShopCategory(category) {
     }
 }
 
-export {loadProductDetails, loadShopCategory}
+// loading bag items
+function loadBagItems() {
+
+    // if user is not logged in load from localStorage
+    const result = JSON.parse(localStorage.getItem('bagItems'))
+
+    return result
+}
+
+export {loadProductDetails, loadShopCategory, loadBagItems}

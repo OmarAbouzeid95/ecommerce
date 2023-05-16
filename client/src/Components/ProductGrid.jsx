@@ -23,8 +23,11 @@ function ProductGrid({list, title}) {
     })
 
     return ( 
-        <div className="productsGrid">
-            {allProducts}
+        <div className="productsGridWrapper">
+            <h2 className="productGridTitle">{title}</h2>
+            <div className="productsGrid">
+                {allProducts}
+            </div>
         </div>
     );
 }

@@ -9,10 +9,11 @@ function ShopCategory() {
     const data = useLoaderData()
 
     return ( 
-        <div className="shopCategory"> 
-            <ProductGrid list={data.winterJackets} title="Winter Jackets"/>
-        </div>
-    );
+            <div className="shopCategory"> 
+                <h2>{data.title}</h2>
+                <ProductGrid list={data.winterJackets} title="Winter Jackets"/>
+            </div>
+           );
 }
 
 export default ShopCategory;

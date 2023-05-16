@@ -1,11 +1,15 @@
 import { useLoaderData } from "react-router-dom";
 import {useState, useEffect, useRef} from 'react'
 
+// add to bag function
+import { addToBag } from "../functions";
+
 function ProductDetails() {
 
     const data = useLoaderData()
     const [currentImg, setCurrentImg] = useState(data.img)
     const [size, setSize] = useState('')
+    const [error, setError] = useState(false)
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const key = useRef(0)
 
@@ -41,14 +45,21 @@ function ProductDetails() {
             <div className="productDetailsInfo">
                 {(windowWidth > 630) &&<h3>{data.name}</h3>}
                 {(windowWidth > 630) && <p>${data.price}</p>}
-                <h4>Select size</h4>
+                <h4>Select size {error && <span className="errorMsg">* You need to select a size first</span>}</h4>
                 <div className="productSizes">
                     <button className={`sizeBox ${(size === 's') ? 'selectedBtn' : ''}`} onClick={() => setSize('s')}>S</button>
                     <button className={`sizeBox ${(size === 'm') ? 'selectedBtn' : ''}`} onClick={() => setSize('m')}>M</button>
                     <button className={`sizeBox ${(size === 'l') ? 'selectedBtn' : ''}`} onClick={() => setSize('l')}>L</button>
                     <button className={`sizeBox ${(size === 'xl') ? 'selectedBtn' : ''}`} onClick={() => setSize('xl')}>XL</button>
                 </div>
-                <button className="addToBagBtn">Add to bag</button>
+                <button className="addToBagBtn" onClick={() => {
+                    // toggle error flag if no size is selected
+                    if(size === ''){
+                        setError(true)
+                    }else {
+                        addToBag(data.id, size)
+                    }
+                }}>Add to bag</button>
                 <p>{data.description}</p>
             </div>
         </div>

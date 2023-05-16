@@ -41,7 +41,7 @@ function Header() {
                                     <img src={searchIcon} alt="search icon" className="searchIcon navIcon"/>
                                     <input type="text" placeholder="Search store..." className="searchInput"/>
                                 </div>
-                                <NavLink to='cart' onClick={() => {
+                                <NavLink to='bag' onClick={() => {
                                     if(navStatus === 'showNav'){
                                     toggleNavIcon()
                                     toggleNav()
@@ -62,7 +62,7 @@ function Header() {
                                     <img src={searchIcon} alt="search icon" className="searchIcon navIcon"/>
                                     <input type="text" placeholder="Search store..." className="searchInput"/>
                                 </div>
-                                <NavLink to='cart' className="navLink" ><img src={shoppingBag} alt="shopping bag icon" className="shoppingIcon navIcon"/></NavLink>
+                                <NavLink to='bag' className="navLink" ><img src={shoppingBag} alt="shopping bag icon" className="shoppingIcon navIcon"/></NavLink>
                                 <NavLink to="profile" className="navLink" >Profile</NavLink>
                             </nav>)
         }
@@ -84,9 +84,18 @@ function Header() {
                             toggleNavIcon()
                             toggleNav()
                         }}>Profile</NavLink>
-                        <NavLink to="shop/men" className="navLink navCategory">men</NavLink>
-                        <NavLink to="shop/women" className="navLink navCategory">women</NavLink>
-                        <NavLink to="shop/kids" className="navLink navCategory">kids</NavLink>
+                        <NavLink to="shop/men" className="navLink navCategory" onClick={() => {
+                            toggleNavIcon()
+                            toggleNav()
+                        }}>men</NavLink>
+                        <NavLink to="shop/women" className="navLink navCategory" onClick={() => {
+                            toggleNavIcon()
+                            toggleNav()
+                        }}>women</NavLink>
+                        <NavLink to="shop/kids" className="navLink navCategory" onClick={() => {
+                            toggleNavIcon()
+                            toggleNav()
+                        }}>kids</NavLink>
                     </nav>}
                 </div>
                 {navContent}

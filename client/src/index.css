@@ -21,8 +21,6 @@ img {
 
 /* App component */
 .App {
-  display: flex;
-  flex-direction: column;
   height: 100vh;
   margin-top: 109px;
 }
@@ -40,9 +38,16 @@ img {
   padding: 1.5em 1.5em;
 }
 
+
 /* base classes */
 .hidden {
   display: none;
+}
+
+.errorMsg {
+  color: #F51111;
+  font-weight: normal;
+  font-size: 0.85rem;
 }
 
 /* animations */
@@ -651,6 +656,15 @@ img {
   justify-items: center;
 }
 
+.productsGridWrapper {
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.productGridTitle {
+  margin-left: 1em;
+}
+
 .productsGrid .productContainer{
   max-width: 300px;
 }
@@ -660,12 +674,21 @@ img {
     max-width: 1000px;
     grid-template-columns: 1fr 1fr 1fr;
   }
+
+  .productsGridWrapper {
+    max-width: 1000px
+  }
+
 }
 
 @media (max-width: 970px){
   .productsGrid {
     max-width: 700px;
     grid-template-columns: 1fr 1fr;
+  }
+
+  .productsGridWrapper {
+    max-width: 700px
   }
 }
 
@@ -685,6 +708,134 @@ img {
     margin-bottom: 1em;
   }
 }
+
+/* wallpaper */
+.wallpaper{
+  position: relative;
+}
+
+.wallpaperContent {
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+}
+
+.wallpaperContentMsg {
+  font-size: 1.5rem;
+  margin-bottom: 1em;
+}
+
+.wallpaperContentBtn {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 1.5em;
+  font-size: 1rem;
+  padding: 0.5em 0.5em;
+  width: 200px;
+  border: none;
+}
+
+.wallpaperContentTitle {
+  font-size: 2.5rem;
+}
+
+@media (max-width: 915px){
+  .wallpaperContentTitle {
+    font-size: 2rem;
+  }
+
+  .wallpaperContentMsg {
+    font-size: 1rem;
+  }
+
+  .wallpaperContentBtn {
+    font-size: 0.85rem;
+    width: 150px;
+  }
+
+}
+
+/* bag component */
+.bagProductContainer {
+  display: flex;
+  padding: 1.5em 0;
+  border-bottom: 0.75px solid lightgray;
+}
+
+.bagProductImg {
+  object-fit: cover;
+  max-width: 200px;
+  margin-right: 1.5em;
+  align-self: flex-start;
+}
+
+.bagProductInfo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start
+}
+
+.bagProductInfo p span {
+  text-transform: uppercase;
+  padding-left: 0.35em;
+}
+
+.removeFromBag {
+  width: 30px;
+  margin: 0;
+  align-self: flex-end;
+}
+
+.removeFromBag:hover{ 
+  cursor:pointer;
+}
+
+@media (max-width: 410px){
+  .bagProductContainer {
+    flex-direction: column;
+  }
+
+  .bagProductImg {
+    max-width: 360px;
+    margin-right: 0;
+    margin-bottom: 1em;
+    align-self: center;
+  }
+
+  .bagProductInfo {
+    align-items: unset;
+  }
+
+  .bagProductInfo div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+}
+
+/* bag layout */
+.bagItemsContainer {
+  max-width: 500px;
+  margin: 1.5em auto;
+}
+
+.bagItemsCost-br {
+  padding-bottom: 0.5em;
+  border-bottom: 0.75px solid lightgray;
+}
+
+.bagItemsCost div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bagItemsCost button {
+  align-self: center;
+}
+
+
 
 
 

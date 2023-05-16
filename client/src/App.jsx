@@ -5,13 +5,13 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import ErrorPage from './Layouts/ErrorPage'
 import Root from './Layouts/Root'
 import Contact from './Layouts/Contact'
-import Cart from './Layouts/Cart'
+import Bag from './Layouts/Bag'
 import Profile from './Layouts/Profile'
 import ProductDetails from './Layouts/ProductDetails'
 import ShopCategory from './Layouts/ShopCategory'
 
 // loader functions
-import { loadProductDetails, loadShopCategory } from './loaderFunctions'
+import { loadProductDetails, loadShopCategory, loadBagItems } from './loaderFunctions'
 
 function App() {
 
@@ -28,8 +28,11 @@ function App() {
           element: <Contact />
         },
         {
-          path: 'cart',
-          element: <Cart />
+          path: 'bag',
+          loader: ({params}) => {
+            return loadBagItems()
+          },
+          element: <Bag />
         },
         {
           path: 'profile',

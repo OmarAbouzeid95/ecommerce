@@ -42,7 +42,12 @@ function Root() {
         })
     })
 
-    const winterJackets = db.winterJakcets
+    // const winterJackets = db.winterJakcets
+    const summerWear = db.summerWear
+
+    const wpStyle = {
+        color: 'white' 
+    }
 
     // location of the current page
     const loc = useLocation()
@@ -54,12 +59,22 @@ function Root() {
             {/* {(loc.pathname === '/') && <Canvas />} */}
             {/* Conditional rendering for home wallpaper */}
             {(loc.pathname === '/') && <div className="wallpaper">
+                <div className="wallpaperContent">
+                    <h1 className="wallpaperContentTitle" style={wpStyle}>Summer is here!</h1>
+                    <p className="wallpaperContentMsg" style={wpStyle}>Check out our new arrivals.</p>
+                    <button className="wallpaperContentBtn">Shop Men's</button>
+                    <button className="wallpaperContentBtn">Shop Women's</button>
+                </div>
                 {(windowWidth > 768) && <img src={homeWallpaperFull} alt="home wallpaper"/>}
                 {(windowWidth > 595 && windowWidth <= 768) && <img src={homeWallpaperLarge} alt="home wallpaper"/>}
                 {(windowWidth <= 595) && <img src={homeWallpaperSmall} alt="home wallpaper"/>}
             </div>}
             {/* Conditional rendering for men's wallpaper */}
             {(loc.pathname === '/shop/men') && <div className="wallpaper">
+                <div className="wallpaperContent">
+                    <h1 className="wallpaperContentTitle">SHOP<span style={{display: 'block'}}>Men's</span></h1>
+                    <p className="wallpaperContentMsg">Check out our new arrivals.</p>
+                </div>
                 {(windowWidth > 1220) && <img src={mensFull} alt="home wallpaper"/>}
                 {(windowWidth > 720 && windowWidth <= 1220) && <img src={mensLarge} alt="home wallpaper"/>}
                 {(windowWidth <= 720) && <img src={mensSmall} alt="home wallpaper"/>}
@@ -78,7 +93,7 @@ function Root() {
             </div>}
 
             <div className="outletWrapper">
-                {(loc.pathname === '/') && <ProductList list={winterJackets} title='Winter Jackets'/>}
+                {(loc.pathname === '/') && <ProductList list={summerWear} title='New Arrivals'/>}
                 <Outlet />
             </div>
             <Footer />

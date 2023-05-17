@@ -9,6 +9,7 @@ function ProductDetails() {
     const data = useLoaderData()
     const [currentImg, setCurrentImg] = useState(data.img)
     const [size, setSize] = useState('')
+    const [quantity, setQuantity] = useState(1)
     const [error, setError] = useState(false)
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const key = useRef(0)
@@ -52,12 +53,18 @@ function ProductDetails() {
                     <button className={`sizeBox ${(size === 'l') ? 'selectedBtn' : ''}`} onClick={() => setSize('l')}>L</button>
                     <button className={`sizeBox ${(size === 'xl') ? 'selectedBtn' : ''}`} onClick={() => setSize('xl')}>XL</button>
                 </div>
+                <div className="productQuantity">
+                    <h4>Quantity</h4>
+                    <p className="quantityContainer"><button onClick={() => (quantity > 1) ? setQuantity(quantity-1) : ''}>-</button>
+                                                    {quantity}
+                                                    <button onClick={() => setQuantity(quantity+1)}>+</button></p>
+                </div>
                 <button className="addToBagBtn" onClick={() => {
                     // toggle error flag if no size is selected
                     if(size === ''){
                         setError(true)
                     }else {
-                        addToBag(data.id, size)
+                        addToBag(data.id, size, quantity)
                     }
                 }}>Add to bag</button>
                 <p>{data.description}</p>

@@ -2,7 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import {useState, useEffect, useRef} from 'react'
 
 // add to bag function
-import { addToBag } from "../functions";
+import { addToBag } from "../bagFunctions";
 
 function ProductDetails() {
 

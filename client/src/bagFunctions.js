@@ -3,6 +3,8 @@ import { loadProductDetails } from "./loaderFunctions"
 
 function addToBag(id, size, quantity) {
 
+    let existing = false
+
     // searches for the item with the passed ID and adds to the bag
     let product = loadProductDetails(id)
 
@@ -16,7 +18,16 @@ function addToBag(id, size, quantity) {
     if(!bagItems){
         bagItems = [product]
     }else{
-        bagItems.push(product)
+        // check if product and size already exists in the localStorage
+        bagItems.forEach(product => {
+            if((product.id === id) && (product.size === size)){
+                existing = true
+                product.quantity += quantity
+            }
+        })
+
+        if(!existing)
+            bagItems.push(product)
     }
 
     // setting the localStorage attribute to the array
@@ -45,4 +56,21 @@ function updateBagQuantity(id, size, quantity) {
     localStorage.setItem('bagItems', JSON.stringify(result))
 }
 
-export {addToBag, updateBagQuantity}
+// function to remove an item from the bag
+function removeFromBag(id, size) {
+
+    // if no user is logged in update the local Storage
+    const bagItems = JSON.parse(localStorage.getItem('bagItems'))
+    const result = []
+
+    bagItems.forEach(product => {
+        if(!((product.id === id) && (product.size === size))){
+            result.push(product)
+        }
+    })
+
+    // updating the localStorage
+    localStorage.setItem('bagItems', JSON.stringify(result))
+}
+
+export {addToBag, updateBagQuantity, removeFromBag}

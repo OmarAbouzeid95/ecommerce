@@ -52,7 +52,7 @@ function BagItem({props, updateQuantity, removeProduct}) {
                     </div>
                     {(windowWidth > 410) && <div className="flex-sb">
                                                 <p>Size</p>
-                                                <p style={{textTransform: 'uppercase'}}>{props.size}</p>
+                                                <p style={{textTransform: 'uppercase', paddingRight: '9px'}}>{props.size}</p>
                                             </div>}
                     {(windowWidth > 410) && <div className="productQuantity">
                         <p>Quantity</p>
@@ -61,13 +61,16 @@ function BagItem({props, updateQuantity, removeProduct}) {
                                                         <button onClick={() => setQuantity(quantity+1)}>+</button></p>
                     </div>}
                 </div>
-                    {(windowWidth <= 410) && <p>Size<span>{props.size}</span></p>}
+                    {(windowWidth <= 410) && <div className="flex-sb">
+                                                <p>Size</p>
+                                                <p style={{textTransform: 'uppercase', paddingRight: '9px'}}>{props.size}</p>
+                                            </div>}
                     {(windowWidth <= 410) && <div className="productQuantity">
-                        <p>Quantity</p>
-                        <p className="quantityContainer"><button onClick={() => (quantity > 1) ? setQuantity(quantity-1) : ''}>-</button>
+                                                <p>Quantity</p>
+                                                <p className="quantityContainer"><button onClick={() => (quantity > 1) ? setQuantity(quantity-1) : ''}>-</button>
                                                         {quantity}
                                                         <button onClick={() => setQuantity(quantity+1)}>+</button></p>
-                    </div>}
+                                            </div>}
                 <img className="removeFromBag" src={deleteIcon} alt="delete icon" onClick={() => setRemoved(true)}/>
             </div>
         </div>

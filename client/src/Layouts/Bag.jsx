@@ -52,9 +52,9 @@ function Bag() {
 
     }, [products])
     
-    const bagItems = !(products && (products.length > 0)) ? '' : products.map(product => {
+    const bagItems = (products && (products.length > 0)) ? products.map(product => {
                                         return (<BagItem props={product} key={product.id} updateQuantity={updateQuantity} removeProduct={removeProduct}/>)
-                                    })
+                                    }) : ''
 
     return ( 
         <div className="bagItemsContainer">

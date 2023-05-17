@@ -1,8 +1,10 @@
 import { useLoaderData } from "react-router-dom";
-import {useState, useEffect, useRef} from 'react'
+import {useState, useEffect, useRef, useContext} from 'react'
+import countContext from "../context";
+
 
 // add to bag function
-import { addToBag } from "../bagFunctions";
+import { addToBag, bagCount } from "../bagFunctions";
 
 function ProductDetails() {
 
@@ -13,6 +15,7 @@ function ProductDetails() {
     const [error, setError] = useState(false)
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const key = useRef(0)
+    const {setCount} = useContext(countContext)
 
     useEffect(() => {
         window.addEventListener('resize', () => {
@@ -65,6 +68,7 @@ function ProductDetails() {
                         setError(true)
                     }else {
                         addToBag(data.id, size, quantity)
+                        setCount(bagCount())
                     }
                 }}>Add to bag</button>
                 <p>{data.description}</p>

@@ -2,6 +2,8 @@ import {NavLink, Link} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import shoppingBag from '../media/icons/shoppingBag.png'
 import searchIcon from '../media/icons/searchIcon.png'
+import countContext from '../context'
+import { useContext } from 'react'
 
 function Header() {
 
@@ -9,6 +11,7 @@ function Header() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const [navStatus, setNavStatus] = useState('hideNav')
     const [navContent, setNavContent] = useState('')
+    const {count} = useContext(countContext)
 
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -41,11 +44,14 @@ function Header() {
                                     <img src={searchIcon} alt="search icon" className="searchIcon navIcon"/>
                                     <input type="text" placeholder="Search store..." className="searchInput"/>
                                 </div>
-                                <NavLink to='bag' onClick={() => {
-                                    if(navStatus === 'showNav'){
-                                    toggleNavIcon()
-                                    toggleNav()
-                                }}}><img src={shoppingBag} alt="shopping bag icon" className="shoppingIcon navIcon"/></NavLink>
+                                <div className="bagIconContainer">
+                                    {(count > 0) && <span className="bagItemCount">{count}</span>}
+                                    <NavLink to='bag' onClick={() => {
+                                        if(navStatus === 'showNav'){
+                                        toggleNavIcon()
+                                        toggleNav()
+                                    }}}><img src={shoppingBag} alt="shopping bag icon" className="shoppingIcon navIcon"/></NavLink>
+                                </div>
                                 <div className="hamburgerIcon navIcon" onClick={() => toggleNav()}>
                                     <input type="checkbox" id="checkbox"></input>
                                     <label htmlFor="checkbox" className="toggle">
@@ -62,7 +68,14 @@ function Header() {
                                     <img src={searchIcon} alt="search icon" className="searchIcon navIcon"/>
                                     <input type="text" placeholder="Search store..." className="searchInput"/>
                                 </div>
-                                <NavLink to='bag' className="navLink" ><img src={shoppingBag} alt="shopping bag icon" className="shoppingIcon navIcon"/></NavLink>
+                                <div className="bagIconContainer">
+                                    {(count > 0) && <span className="bagItemCount">{count}</span>}
+                                    <NavLink to='bag' onClick={() => {
+                                        if(navStatus === 'showNav'){
+                                        toggleNavIcon()
+                                        toggleNav()
+                                    }}}><img src={shoppingBag} alt="shopping bag icon" className="shoppingIcon navIcon"/></NavLink>
+                                </div>
                                 <NavLink to="profile" className="navLink" >Profile</NavLink>
                             </nav>)
         }

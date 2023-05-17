@@ -1,10 +1,9 @@
-
 import { loadProductDetails } from "./loaderFunctions"
+
 
 function addToBag(id, size, quantity) {
 
     let existing = false
-
     // searches for the item with the passed ID and adds to the bag
     let product = loadProductDetails(id)
 
@@ -73,4 +72,20 @@ function removeFromBag(id, size) {
     localStorage.setItem('bagItems', JSON.stringify(result))
 }
 
-export {addToBag, updateBagQuantity, removeFromBag}
+// function that returns the number of items in the bag
+function bagCount() {
+    
+    // if user is not signed in check localStorage
+    const bagItems = JSON.parse(localStorage.getItem('bagItems'))
+    let count = 0
+
+    if(bagItems){
+        bagItems.forEach(product => {
+            count += product.quantity
+        })
+    }
+
+    return count
+}
+
+export {addToBag, updateBagQuantity, removeFromBag, bagCount}

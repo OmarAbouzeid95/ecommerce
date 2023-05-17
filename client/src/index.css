@@ -180,6 +180,25 @@ img {
   animation: pop .6s;
 }
 
+/* bag icon */
+.bagIconContainer {
+  width: fit-content;
+  position: relative;
+}
+
+.bagItemCount {
+  width: 20px;
+  text-align: center;
+  margin: 0.05em 0.15em;
+  font-size: 0.7rem;
+  border-radius: 50%;
+  color: white;
+  background-color: #da3f3f;
+  position: absolute;
+  top: 3px;
+  right: -8px;
+}
+
 
 @media (max-width: 560px) {
   .headerNav {

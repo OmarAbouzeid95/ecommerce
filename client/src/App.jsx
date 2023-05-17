@@ -1,5 +1,7 @@
 import './index.css'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
+import countContext from './context'
+import {useState} from 'react'
 
 // layouts
 import ErrorPage from './Layouts/ErrorPage'
@@ -56,9 +58,14 @@ function App() {
     }
   ])
 
+
+  const [count, setCount] = useState(0)
+
   return (
     <div className="App">
-      <RouterProvider router={router} />
+      <countContext.Provider value={{count, setCount}}>
+        <RouterProvider router={router} />
+      </countContext.Provider>
     </div>
   );
 }

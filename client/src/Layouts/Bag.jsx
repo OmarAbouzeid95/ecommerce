@@ -1,6 +1,7 @@
 import { useLoaderData, Link } from 'react-router-dom';
 import BagItem from '../Components/BagItem'
-import {useState, useEffect} from 'react'
+import countContext from '../context';
+import {useState, useEffect, useContext} from 'react'
 
 function Bag() {
 
@@ -9,6 +10,8 @@ function Bag() {
     const [products, setProducts] = useState(data)
     const [deliveryFee, setDeliveryFee] = useState(4.99)
     const [total, setTotal] = useState(0)
+    const {setCount} = useContext(countContext)
+
 
     // function to update the products
     function updateQuantity(id, size, quantity) {
@@ -45,11 +48,20 @@ function Bag() {
             const prices = products.map(product => (product.price * product.quantity))
             // calculating total using reduce
             setTotal(prices.reduce((accumulator, currentValue) => accumulator + currentValue))
+            
+            let count = 0
+            products.forEach(product => {
+                count += product.quantity
+            })
+
+            setCount(count)
         }else{
             setTotal(0)
             setDeliveryFee(0)
+            setCount(0)
         }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [products])
     
     const bagItems = (products && (products.length > 0)) ? products.map(product => {

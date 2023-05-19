@@ -1,16 +1,5 @@
 import db from './db'
 
-// const db = {
-//     winterJackets: [
-//         'WJ1', 'WJ2', 'WJ3'
-//     ], 
-//     summerWear: [
-//         'SW1', 'SW2', 'SW3'
-//     ],
-//     kids: [
-//         'KD1', 'KD2', 'KD3'
-//     ]
-// } 
 
 // traversing over the DB looking for the corresponding ID
 function loadProductDetails(id) {
@@ -33,7 +22,6 @@ function getCategory(category, gender) {
 
     const cat = db[category]
     const result = cat.filter(jacket => (jacket.gender === gender))
-    console.log(result)
     return result
 }
 
@@ -73,5 +61,29 @@ function loadBagItems() {
     return result
 }
 
+// loading searched items
+function loadSearchedKey(keyword){
 
-export {loadProductDetails, loadShopCategory, loadBagItems}
+    //transform keyword to lowercase
+    keyword = keyword.toLowerCase()
+    console.log(keyword)
+    // traverse the whole db and checking if key is matching the keyword
+    let result = []
+    for (const category in db) {
+        console.log(category)
+        // filtering the category array if product name contains the keyword and concatinating to the result array
+        const filtered = db[category].filter(product => (product.name.toLowerCase().includes(keyword)))
+        result = result.concat(filtered)
+    }
+
+    return {result, keyword}
+}
+
+// function to redirect the user
+function redirect(loc) {
+
+    window.location.href = loc
+}
+
+
+export {loadProductDetails, loadShopCategory, loadBagItems, loadSearchedKey, redirect}

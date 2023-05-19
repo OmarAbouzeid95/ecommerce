@@ -4,6 +4,7 @@ import shoppingBag from '../media/icons/shoppingBag.png'
 import searchIcon from '../media/icons/searchIcon.png'
 import countContext from '../context'
 import { useContext } from 'react'
+import {redirect} from '../loaderFunctions'
 
 function Header() {
 
@@ -11,6 +12,7 @@ function Header() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const [navStatus, setNavStatus] = useState('hideNav')
     const [navContent, setNavContent] = useState('')
+    const [searchBar, setSearchBar] = useState('')
     const {count} = useContext(countContext)
 
 
@@ -41,8 +43,8 @@ function Header() {
             // adding navIcon when screen is < 561
             setNavContent(  <div className="navIcons">
                                 <div className="searchContainer">
-                                    <img src={searchIcon} alt="search icon" className="searchIcon navIcon"/>
-                                    <input type="text" placeholder="Search store..." className="searchInput"/>
+                                    <img key={searchBar} src={searchIcon} alt="search icon" className="searchIcon navIcon" onClick={() => redirect(`/search/${searchBar}`)}/>
+                                    <input type="text" placeholder="Search store..." className="searchInput" onChange={(e) => setSearchBar(e.target.value)}/>
                                 </div>
                                 <div className="bagIconContainer">
                                     {(count > 0) && <span className="bagItemCount">{count}</span>}
@@ -65,8 +67,8 @@ function Header() {
             // Navlinks if screen > 561
             setNavContent(  <nav className="navbar">
                                 <div className="searchContainer">
-                                    <img src={searchIcon} alt="search icon" className="searchIcon navIcon"/>
-                                    <input type="text" placeholder="Search store..." className="searchInput"/>
+                                <img key={searchBar} src={searchIcon} alt="search icon" className="searchIcon navIcon" onClick={() => redirect(`/search/${searchBar}`)}/>
+                                    <input type="text" placeholder="Search store..." className="searchInput" onChange={(e) => setSearchBar(e.target.value)}/>
                                 </div>
                                 <div className="bagIconContainer">
                                     {(count > 0) && <span className="bagItemCount">{count}</span>}
@@ -81,7 +83,7 @@ function Header() {
         }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [windowWidth, navStatus])
+    }, [windowWidth, navStatus, searchBar])
 
     return (
         <div className="headerWrapper">

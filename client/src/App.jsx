@@ -11,9 +11,10 @@ import Bag from './Layouts/Bag'
 import Profile from './Layouts/Profile'
 import ProductDetails from './Layouts/ProductDetails'
 import ShopCategory from './Layouts/ShopCategory'
+import Search from './Layouts/Search'
 
 // loader functions
-import { loadProductDetails, loadShopCategory, loadBagItems } from './loaderFunctions'
+import { loadProductDetails, loadShopCategory, loadBagItems, loadSearchedKey } from './loaderFunctions'
 
 function App() {
 
@@ -52,7 +53,14 @@ function App() {
           loader: ({params}) => {
             return loadShopCategory(params.category)
           },
-          element: <ShopCategory />
+          element: <ShopCategory/>
+        },
+        {
+          path: 'search/:keyword',
+          loader: ({params}) => {
+            return loadSearchedKey(params.keyword)
+          },
+          element: <Search />
         }
       ]
     }

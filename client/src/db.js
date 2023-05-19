@@ -1,6 +1,6 @@
 const db = 
 {
-    winterJakcets: [
+    winterJackets: [
         {
             id: 1,
             name: "Canada Goose Jacket",
@@ -159,6 +159,47 @@ const db =
             description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quas veniam quaerat voluptate, illo iste rerum, aspernatur molestiae cum libero deserunt eaque ab obcaecati similique saepe quam, sint nam voluptates!",
             imgArray: [require("./media/summer/CKsummer_82.jpeg"), require("./media/summer/CKsummer_83.jpeg"), require("./media/summer/CKsummer_84.jpeg")]
         }
+    ],
+    kids: [
+		{
+			id: 17,
+			name: "Summer top",
+			gender: "kids",
+			img: require("./media/kids/CG_kids11.webp"),
+			price: 59,
+			description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quas veniam quaerat voluptate, illo iste rerum, aspernatur molestiae cum libero deserunt eaque ab obcaecati similique saepe quam, sint nam voluptates!",
+			imgArray: [require("./media/kids/CG_kids12.webp"), require("./media/kids/CG_kids13.webp"), require("./media/kids/CG_kids14.webp")]
+		}
+,
+		{
+			id: 18,
+			name: "Summer top",
+			gender: "kids",
+			img: require("./media/kids/CG_kids21.webp"),
+			price: 59,
+			description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quas veniam quaerat voluptate, illo iste rerum, aspernatur molestiae cum libero deserunt eaque ab obcaecati similique saepe quam, sint nam voluptates!",
+			imgArray: [require("./media/kids/CG_kids22.webp"), require("./media/kids/CG_kids23.webp"), require("./media/kids/CG_kids24.webp")]
+		}
+,
+		{
+			id: 19,
+			name: "Summer top",
+			gender: "kids",
+			img: require("./media/kids/CG_kids31.webp"),
+			price: 59,
+			description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quas veniam quaerat voluptate, illo iste rerum, aspernatur molestiae cum libero deserunt eaque ab obcaecati similique saepe quam, sint nam voluptates!",
+			imgArray: [require("./media/kids/CG_kids32.webp"), require("./media/kids/CG_kids33.webp"), require("./media/kids/CG_kids34.webp")]
+		}
+,
+		{
+			id: 20,
+			name: "Summer top",
+			gender: "kids",
+			img: require("./media/kids/CG_kids41.webp"),
+			price: 59,
+			description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quas veniam quaerat voluptate, illo iste rerum, aspernatur molestiae cum libero deserunt eaque ab obcaecati similique saepe quam, sint nam voluptates!",
+			imgArray: [require("./media/kids/CG_kids42.webp"), require("./media/kids/CG_kids43.webp"), require("./media/kids/CG_kids44.webp")]
+		}
 
     ]
 }

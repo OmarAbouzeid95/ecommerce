@@ -1,5 +1,16 @@
 import db from './db'
 
+// const db = {
+//     winterJackets: [
+//         'WJ1', 'WJ2', 'WJ3'
+//     ], 
+//     summerWear: [
+//         'SW1', 'SW2', 'SW3'
+//     ],
+//     kids: [
+//         'KD1', 'KD2', 'KD3'
+//     ]
+// } 
 
 // traversing over the DB looking for the corresponding ID
 function loadProductDetails(id) {
@@ -18,10 +29,11 @@ function loadProductDetails(id) {
     }
 }
 
-function getWinterJackets(category) {
+function getCategory(category, gender) {
 
-    const winterJackets = db.winterJakcets
-    const result = winterJackets.filter(jacket => (jacket.gender === category))
+    const cat = db[category]
+    const result = cat.filter(jacket => (jacket.gender === gender))
+    console.log(result)
     return result
 }
 
@@ -30,21 +42,23 @@ function loadShopCategory(category) {
 
     // making sure category is in lowercase
     category = category.toLowerCase()
-    let winterJackets
 
     switch(category) {
-        case('men'):
-            winterJackets =  getWinterJackets('men')
+        case('men'): 
             return {
-                winterJackets: winterJackets
+                winterJackets: getCategory('winterJackets', 'men'),
+                summerWear: getCategory('summerWear', 'men')
             }
         case('women'):
-            winterJackets =  getWinterJackets('women')
+
             return {
-                winterJackets: winterJackets
+                winterJackets:  getCategory('winterJackets', 'women'),
+                summerWear: getCategory('summerWear', 'women')
             }
         case('kids'):
-            return 'kids'
+            return {
+                kids: db.kids
+            }
         default:
             break
     }
@@ -58,5 +72,6 @@ function loadBagItems() {
 
     return result
 }
+
 
 export {loadProductDetails, loadShopCategory, loadBagItems}

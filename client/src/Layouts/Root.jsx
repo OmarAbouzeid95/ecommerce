@@ -3,7 +3,7 @@ import Footer from './Footer'
 // import Canvas from '../Components/Canvas'
 import ProductList from '../Components/ProductList'
 
-import {Outlet, useLocation} from 'react-router-dom'
+import {Outlet, useLocation, Link} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 
 import db from '../db'
@@ -62,8 +62,8 @@ function Root() {
                 <div className="wallpaperContent">
                     <h1 className="wallpaperContentTitle" style={wpStyle}>Summer is here!</h1>
                     <p className="wallpaperContentMsg" style={wpStyle}>Check out our new arrivals.</p>
-                    <button className="wallpaperContentBtn">Shop Men's</button>
-                    <button className="wallpaperContentBtn">Shop Women's</button>
+                    <Link to='shop/men' className="wallpaperContentBtn">Shop Men's</Link>
+                    <Link to='shop/women' className="wallpaperContentBtn">Shop Women's</Link>
                 </div>
                 {(windowWidth > 768) && <img src={homeWallpaperFull} alt="home wallpaper"/>}
                 {(windowWidth > 595 && windowWidth <= 768) && <img src={homeWallpaperLarge} alt="home wallpaper"/>}
@@ -72,8 +72,7 @@ function Root() {
             {/* Conditional rendering for men's wallpaper */}
             {(loc.pathname === '/shop/men') && <div className="wallpaper">
                 <div className="wallpaperContent">
-                    <h1 className="wallpaperContentTitle">SHOP<span style={{display: 'block'}}>Men's</span></h1>
-                    <p className="wallpaperContentMsg">Check out our new arrivals.</p>
+                    <h1 className="wallpaperContentTitle">SHOP<span style={{display: 'block'}}>Men</span></h1>
                 </div>
                 {(windowWidth > 1220) && <img src={mensFull} alt="home wallpaper"/>}
                 {(windowWidth > 720 && windowWidth <= 1220) && <img src={mensLarge} alt="home wallpaper"/>}
@@ -81,12 +80,18 @@ function Root() {
             </div>}
             {/* Conditional rendering for women's wallpaper */}
             {(loc.pathname === '/shop/women') && <div className="wallpaper">
+                <div className="wallpaperContent">
+                    <h1 className="wallpaperContentTitle">SHOP<span style={{display: 'block'}}>Women</span></h1>
+                </div>
                 {(windowWidth > 1220) && <img src={womensFull} alt="home wallpaper"/>}
                 {(windowWidth > 720 && windowWidth <= 1220) && <img src={womensLarge} alt="home wallpaper"/>}
                 {(windowWidth <= 720) && <img src={womensSmall} alt="home wallpaper"/>}
             </div>}
             {/* Conditional rendering for kids wallpaper */}
             {(loc.pathname === '/shop/kids') && <div className="wallpaper">
+                <div className="wallpaperContent">
+                    <h1 className="wallpaperContentTitle">SHOP<span style={{display: 'block'}}>Kids</span></h1>
+                </div>
                 {(windowWidth > 1220) && <img src={kidsFull} alt="home wallpaper"/>}
                 {(windowWidth > 720 && windowWidth <= 1220) && <img src={kidsLarge} alt="home wallpaper"/>}
                 {(windowWidth <= 720) && <img src={kidsSmall} alt="home wallpaper"/>}

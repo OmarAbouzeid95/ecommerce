@@ -24,7 +24,10 @@ function ProductGrid({list, title}) {
 
     return ( 
         <div className="productsGridWrapper">
-            <h2 className="productGridTitle">{title}</h2>
+            <div className="filtersContainer flex-sb">
+                <h2 className="productGridTitle">{title}</h2>
+                <button>Filters</button>
+            </div>
             <div className="productsGrid">
                 {allProducts}
             </div>

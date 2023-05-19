@@ -35,17 +35,20 @@ function loadShopCategory(category) {
         case('men'): 
             return {
                 winterJackets: getCategory('winterJackets', 'men'),
-                summerWear: getCategory('summerWear', 'men')
+                summerWear: getCategory('summerWear', 'men'),
+                category: "Men's"
             }
         case('women'):
 
             return {
                 winterJackets:  getCategory('winterJackets', 'women'),
-                summerWear: getCategory('summerWear', 'women')
+                summerWear: getCategory('summerWear', 'women'),
+                category: "Women's"
             }
         case('kids'):
             return {
-                kids: db.kids
+                kids: db.kids,
+                category: "Kids"
             }
         default:
             break
@@ -66,11 +69,9 @@ function loadSearchedKey(keyword){
 
     //transform keyword to lowercase
     keyword = keyword.toLowerCase()
-    console.log(keyword)
     // traverse the whole db and checking if key is matching the keyword
     let result = []
     for (const category in db) {
-        console.log(category)
         // filtering the category array if product name contains the keyword and concatinating to the result array
         const filtered = db[category].filter(product => (product.name.toLowerCase().includes(keyword)))
         result = result.concat(filtered)

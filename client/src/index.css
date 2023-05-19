@@ -709,8 +709,8 @@ img {
   margin: 0 auto;
 }
 
-.productGridTitle {
-  margin-left: 1em;
+.filtersContainer {
+  margin: 0 1em;
 }
 
 .productsGrid .productContainer{
@@ -735,7 +735,7 @@ img {
 
 }
 
-@media (max-width: 970px){
+@media (max-width: 955px){
   .productsGrid {
     max-width: 700px;
     grid-template-columns: 1fr 1fr;
@@ -744,11 +744,21 @@ img {
   .productsGridWrapper {
     max-width: 700px
   }
+
+  .productsGrid .productContainer img {
+    width: 360px;
+  }
 }
 
 @media (max-width: 645px){
   .productsGrid .productContainer {
     max-width: 260px;
+  }
+}
+
+@media (max-width: 665px){
+  .filtersContainer {
+    margin: 0;
   }
 }
 

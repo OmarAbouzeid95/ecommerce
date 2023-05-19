@@ -10,15 +10,17 @@ function ShopCategory() {
 
     // adding all category products
     for (const property in data) {
-        data[property].forEach(product => {
-            allProducts.push(product)
-        })
+        // check if property is an array
+        if (Array.isArray(data[property])){
+            data[property].forEach(product => {
+                allProducts.push(product)
+            })
+        }
     }
 
     return ( 
             <div className="shopCategory"> 
-                <h2>{data.title}</h2>
-                <ProductGrid list={allProducts} title="Men's"/>
+                <ProductGrid list={allProducts} title={data.category}/>
             </div>
            );
 }

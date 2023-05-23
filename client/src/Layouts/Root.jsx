@@ -21,6 +21,10 @@ import womensSmall from '../media/wallpapers/womens_small.webp'
 import kidsFull from '../media/wallpapers/kids_full.webp'
 import kidsLarge from '../media/wallpapers/kids_large.webp'
 import kidsSmall from '../media/wallpapers/kids_small.jpeg'
+import summerAdFull from '../media/wallpapers/summer_ad_full.jpeg'
+import summerAdLarge from '../media/wallpapers/summer_ad_large.webp'
+import summerAdSmall from '../media/wallpapers/summer_ad_small.webp'
+
 
 function Root() {
 
@@ -44,6 +48,7 @@ function Root() {
 
     // const winterJackets = db.winterJakcets
     const summerWear = db.summerWear
+    const trending = db.trending
 
     const wpStyle = {
         color: 'white' 
@@ -99,6 +104,20 @@ function Root() {
 
             <div className="outletWrapper">
                 {(loc.pathname === '/') && <ProductList list={summerWear} title='New Arrivals'/>}
+                {/* Conditional rendering for kids wallpaper */}
+                {(loc.pathname === '/') && <div className="wallpaper">
+                <div className="wallpaperContent">
+                    <h1 className="wallpaperContentTitle" style={wpStyle}>Checkout the summer collection</h1>
+                    <Link className="wallpaperContentBtn">Shop Collection</Link>
+                </div>
+                {(windowWidth > 768) && <img src={summerAdFull} alt="home wallpaper"/>}
+                {(windowWidth > 720 && windowWidth <= 768) && <img src={summerAdLarge} alt="home wallpaper"/>}
+                {(windowWidth <= 720) && <img src={summerAdSmall} alt="home wallpaper"/>}
+            </div>}
+            {(loc.pathname === '/') && <ProductList list={trending} title='Trending'/>}
+            <div className="allProductsWrapper">
+                {(loc.pathname === '/') && <Link to='search/all' className="allProductsBtn">All products</Link>}
+            </div>
                 <Outlet />
             </div>
             <Footer />

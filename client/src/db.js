@@ -170,7 +170,7 @@ const db =
 			description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quas veniam quaerat voluptate, illo iste rerum, aspernatur molestiae cum libero deserunt eaque ab obcaecati similique saepe quam, sint nam voluptates!",
 			imgArray: [require("./media/kids/CG_kids12.webp"), require("./media/kids/CG_kids13.webp"), require("./media/kids/CG_kids14.webp")]
 		}
-,
+        ,
 		{
 			id: 18,
 			name: "Summer top",
@@ -180,7 +180,7 @@ const db =
 			description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quas veniam quaerat voluptate, illo iste rerum, aspernatur molestiae cum libero deserunt eaque ab obcaecati similique saepe quam, sint nam voluptates!",
 			imgArray: [require("./media/kids/CG_kids22.webp"), require("./media/kids/CG_kids23.webp"), require("./media/kids/CG_kids24.webp")]
 		}
-,
+        ,
 		{
 			id: 19,
 			name: "Summer top",
@@ -190,7 +190,7 @@ const db =
 			description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quas veniam quaerat voluptate, illo iste rerum, aspernatur molestiae cum libero deserunt eaque ab obcaecati similique saepe quam, sint nam voluptates!",
 			imgArray: [require("./media/kids/CG_kids32.webp"), require("./media/kids/CG_kids33.webp"), require("./media/kids/CG_kids34.webp")]
 		}
-,
+        ,
 		{
 			id: 20,
 			name: "Summer top",
@@ -199,6 +199,87 @@ const db =
 			price: 59,
 			description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quas veniam quaerat voluptate, illo iste rerum, aspernatur molestiae cum libero deserunt eaque ab obcaecati similique saepe quam, sint nam voluptates!",
 			imgArray: [require("./media/kids/CG_kids42.webp"), require("./media/kids/CG_kids43.webp"), require("./media/kids/CG_kids44.webp")]
+		}
+    ],
+    trending: [
+		{
+			id: 21,
+			name: "Trending item",
+			gender: "men",
+			img: require("./media/trending/CK_TR_11.jpeg"),
+			price: 59,
+			description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quas veniam quaerat voluptate, illo iste rerum, aspernatur molestiae cum libero deserunt eaque ab obcaecati similique saepe quam, sint nam voluptates!",
+			imgArray: [require("./media/trending/CK_TR_12.jpeg"), require("./media/trending/CK_TR_13.jpeg"), require("./media/trending/CK_TR_14.jpeg")]
+		}
+		,
+		{
+			id: 22,
+			name: "Trending item",
+			gender: "women",
+			img: require("./media/trending/CK_TR_21.jpeg"),
+			price: 59,
+			description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quas veniam quaerat voluptate, illo iste rerum, aspernatur molestiae cum libero deserunt eaque ab obcaecati similique saepe quam, sint nam voluptates!",
+			imgArray: [require("./media/trending/CK_TR_22.jpeg"), require("./media/trending/CK_TR_23.jpeg"), require("./media/trending/CK_TR_24.jpeg")]
+		}
+		,
+		{
+			id: 23,
+			name: "Trending item",
+			gender: "men",
+			img: require("./media/trending/CK_TR_31.jpeg"),
+			price: 59,
+			description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quas veniam quaerat voluptate, illo iste rerum, aspernatur molestiae cum libero deserunt eaque ab obcaecati similique saepe quam, sint nam voluptates!",
+			imgArray: [require("./media/trending/CK_TR_32.jpeg"), require("./media/trending/CK_TR_33.jpeg"), require("./media/trending/CK_TR_34.jpeg")]
+		}
+		,
+		{
+			id: 24,
+			name: "Trending item",
+			gender: "women",
+			img: require("./media/trending/CK_TR_41.jpeg"),
+			price: 59,
+			description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quas veniam quaerat voluptate, illo iste rerum, aspernatur molestiae cum libero deserunt eaque ab obcaecati similique saepe quam, sint nam voluptates!",
+			imgArray: [require("./media/trending/CK_TR_42.jpeg"), require("./media/trending/CK_TR_43.jpeg"), require("./media/trending/CK_TR_44.jpeg")]
+		}
+		,
+		{
+			id: 25,
+			name: "Trending item",
+			gender: "men",
+			img: require("./media/trending/CK_TR_51.jpeg"),
+			price: 59,
+			description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quas veniam quaerat voluptate, illo iste rerum, aspernatur molestiae cum libero deserunt eaque ab obcaecati similique saepe quam, sint nam voluptates!",
+			imgArray: [require("./media/trending/CK_TR_52.jpeg"), require("./media/trending/CK_TR_53.jpeg"), require("./media/trending/CK_TR_54.jpeg")]
+		}
+		,
+		{
+			id: 26,
+			name: "Trending item",
+			gender: "women",
+			img: require("./media/trending/CK_TR_61.jpeg"),
+			price: 59,
+			description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quas veniam quaerat voluptate, illo iste rerum, aspernatur molestiae cum libero deserunt eaque ab obcaecati similique saepe quam, sint nam voluptates!",
+			imgArray: [require("./media/trending/CK_TR_62.jpeg"), require("./media/trending/CK_TR_63.jpeg"), require("./media/trending/CK_TR_64.jpeg")]
+		}
+		,
+		{
+			id: 27,
+			name: "Trending item",
+			gender: "men",
+			img: require("./media/trending/CK_TR_71.jpeg"),
+			price: 59,
+			description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quas veniam quaerat voluptate, illo iste rerum, aspernatur molestiae cum libero deserunt eaque ab obcaecati similique saepe quam, sint nam voluptates!",
+			imgArray: [require("./media/trending/CK_TR_72.jpeg"), require("./media/trending/CK_TR_73.jpeg"), require("./media/trending/CK_TR_74.jpeg")]
+		}
+		,
+		{
+			id: 28,
+			name: "Trending item",
+			gender: "women",
+			img: require("./media/trending/CK_TR_81.jpeg"),
+			price: 59,
+			description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quas veniam quaerat voluptate, illo iste rerum, aspernatur molestiae cum libero deserunt eaque ab obcaecati similique saepe quam, sint nam voluptates!",
+			imgArray: [require("./media/trending/CK_TR_82.jpeg"), require("./media/trending/CK_TR_83.jpeg"), require("./media/trending/CK_TR_84.jpeg")]
 		}
 
     ]

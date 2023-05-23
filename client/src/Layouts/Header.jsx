@@ -38,13 +38,16 @@ function Header() {
             setWindowWidth(window.innerWidth)
         })
 
-
         if(windowWidth < 561){
             // adding navIcon when screen is < 561
             setNavContent(  <div className="navIcons">
                                 <div className="searchContainer">
                                     <img key={searchBar} src={searchIcon} alt="search icon" className="searchIcon navIcon" onClick={() => redirect(`/search/${searchBar}`)}/>
-                                    <input type="text" placeholder="Search store..." className="searchInput" onChange={(e) => setSearchBar(e.target.value)}/>
+                                    <input type="text" placeholder="Search store..." className="searchInput" onChange={(e) => setSearchBar(e.target.value)}
+                                                                                                              onKeyDown={(e) => {
+                                                                                                                if(e.key === 'Enter')
+                                                                                                                    redirect(`/search/${searchBar}`)
+                                                                                                             }}/>
                                 </div>
                                 <div className="bagIconContainer">
                                     {(count > 0) && <span className="bagItemCount">{count}</span>}
@@ -68,7 +71,11 @@ function Header() {
             setNavContent(  <nav className="navbar">
                                 <div className="searchContainer">
                                 <img key={searchBar} src={searchIcon} alt="search icon" className="searchIcon navIcon" onClick={() => redirect(`/search/${searchBar}`)}/>
-                                    <input type="text" placeholder="Search store..." className="searchInput" onChange={(e) => setSearchBar(e.target.value)}/>
+                                    <input type="text" placeholder="Search store..." className="searchInput" onChange={(e) => setSearchBar(e.target.value)}
+                                                                                                             onKeyDown={(e) => {
+                                                                                                                if(e.key === 'Enter')
+                                                                                                                    redirect(`/search/${searchBar}`)
+                                                                                                             }}/>
                                 </div>
                                 <div className="bagIconContainer">
                                     {(count > 0) && <span className="bagItemCount">{count}</span>}

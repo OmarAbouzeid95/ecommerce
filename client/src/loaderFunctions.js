@@ -36,6 +36,7 @@ function loadShopCategory(category) {
             return {
                 winterJackets: getCategory('winterJackets', 'men'),
                 summerWear: getCategory('summerWear', 'men'),
+                trending: getCategory('trending', 'men'),
                 category: "Men's"
             }
         case('women'):
@@ -43,6 +44,7 @@ function loadShopCategory(category) {
             return {
                 winterJackets:  getCategory('winterJackets', 'women'),
                 summerWear: getCategory('summerWear', 'women'),
+                trending: getCategory('trending', 'women'),
                 category: "Women's"
             }
         case('kids'):
@@ -68,7 +70,8 @@ function loadBagItems() {
 function loadSearchedKey(keyword){
 
     //transform keyword to lowercase
-    keyword = keyword.toLowerCase()
+    keyword = (keyword !== 'all') ? keyword.toLowerCase() : ''
+    console.log(keyword)
     // traverse the whole db and checking if key is matching the keyword
     let result = []
     for (const category in db) {

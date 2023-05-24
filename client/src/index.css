@@ -455,12 +455,13 @@ img {
 
 /* Products list */
 .productListTitle {
-  margin: 1em 0;
+  font-size: 1.3rem;
+  margin: 1em 0 0.5em 0;
 }
 
 .productListContainer {
   width: 100%;
-  margin: 3em 0;
+  margin-bottom: 3em;
 }
 
 @media (max-width: 1560px) {
@@ -572,7 +573,7 @@ img {
 }
 
 .mainProductImg {
-  max-width: 400px;
+  max-width: 350px;
 }
 
 .otherProductImg {
@@ -696,6 +697,11 @@ img {
   border: none;
   border-radius: 1.5em;
   margin-bottom: 3em;
+}
+
+.addToBagBtn {
+  align-self: center;
+  width: 70%;
 }
 
 .addToBagBtn:hover {

@@ -1,6 +1,6 @@
 import './index.css'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
-import countContext from './context'
+import {countContext, currentLoc} from './context'
 import {useState} from 'react'
 
 // layouts
@@ -13,8 +13,9 @@ import ProductDetails from './Layouts/ProductDetails'
 import ShopCategory from './Layouts/ShopCategory'
 import Search from './Layouts/Search'
 
+
 // loader functions
-import { loadProductDetails, loadShopCategory, loadBagItems, loadSearchedKey } from './loaderFunctions'
+import { loadProductDetails, loadShopCategory, loadBagItems, loadSearchedKey, getCategory } from './loaderFunctions'
 
 function App() {
 
@@ -61,19 +62,29 @@ function App() {
             return loadSearchedKey(params.keyword)
           },
           element: <Search />
-        }
+        },
+        {
+          path: 'shop/collection/:category',
+          loader: ({params}) => {
+            return getCategory(params.category)
+          },
+          element: <ShopCategory/>
+        },
       ]
     }
   ])
 
-
-  const [count, setCount] = useState(0)
+  // fix count * quantity
+  const [count, setCount] = useState(JSON.parse(localStorage.getItem('bagItems') ? (JSON.parse(localStorage.getItem('bagItems')).length) : 0))
+  const [loc, setLoc] = useState('/')
 
   return (
     <div className="App">
-      <countContext.Provider value={{count, setCount}}>
-        <RouterProvider router={router} />
-      </countContext.Provider>
+      <currentLoc.Provider value={{loc, setLoc}}>
+        <countContext.Provider value={{count, setCount}}>
+          <RouterProvider router={router} />
+        </countContext.Provider>
+      </currentLoc.Provider>
     </div>
   );
 }

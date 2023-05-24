@@ -7,7 +7,7 @@ function Search() {
     console.log(data)
     return ( 
         <div className="shopCategory"> 
-                <h2 style={{textAlign:'center'}}>{data.result.length > 0 ? data.result.length : 'No'} results found for "{data.keyword}"</h2>
+                <h2 style={{textAlign:'center'}}>{(data.keyword === '') ? 'All products' : ((data.result.length > 0) ? data.result.length : 'No') + ` results found for "${data.keyword}"`}</h2>
                 <ProductGrid list={data.result}/>
             </div>
     );

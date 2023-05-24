@@ -1,5 +1,6 @@
 import {createContext} from 'react'
 
 const countContext = createContext()
+const currentLoc = createContext()
 
-export default countContext
+export {countContext, currentLoc}

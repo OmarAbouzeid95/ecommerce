@@ -1,5 +1,6 @@
 import Header from './Header'
 import Footer from './Footer'
+
 // import Canvas from '../Components/Canvas'
 import ProductList from '../Components/ProductList'
 
@@ -25,6 +26,7 @@ import summerAdFull from '../media/wallpapers/summer_ad_full.jpeg'
 import summerAdLarge from '../media/wallpapers/summer_ad_large.webp'
 import summerAdSmall from '../media/wallpapers/summer_ad_small.webp'
 
+import ScrollToTop from '../Components/ScrollToTop'
 
 function Root() {
 
@@ -108,7 +110,7 @@ function Root() {
                 {(loc.pathname === '/') && <div className="wallpaper">
                 <div className="wallpaperContent">
                     <h1 className="wallpaperContentTitle" style={wpStyle}>Checkout the summer collection</h1>
-                    <Link className="wallpaperContentBtn">Shop Collection</Link>
+                    <Link to='shop/collection/summerWear' className="wallpaperContentBtn">Shop Collection</Link>
                 </div>
                 {(windowWidth > 768) && <img src={summerAdFull} alt="home wallpaper"/>}
                 {(windowWidth > 720 && windowWidth <= 768) && <img src={summerAdLarge} alt="home wallpaper"/>}
@@ -116,8 +118,10 @@ function Root() {
             </div>}
             {(loc.pathname === '/') && <ProductList list={trending} title='Trending'/>}
             <div className="allProductsWrapper">
-                {(loc.pathname === '/') && <Link to='search/all' className="allProductsBtn">All products</Link>}
+                {(loc.pathname === '/') && <Link to='search/all-products' className="allProductsBtn">All products</Link>}
             </div>
+            
+                <ScrollToTop />
                 <Outlet />
             </div>
             <Footer />

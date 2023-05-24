@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import {useState, useEffect, useRef, useContext} from 'react'
-import countContext from "../context";
+import {countContext} from "../context";
 
 
 // add to bag function

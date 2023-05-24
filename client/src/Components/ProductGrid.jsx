@@ -26,7 +26,7 @@ function ProductGrid({list, title}) {
         <div className="productsGridWrapper">
             <div className="filtersContainer flex-sb">
                 <h2 className="productGridTitle">{title}</h2>
-                <button>Filters</button>
+                {(list.length > 0) && <button>Filters</button>}
             </div>
             <div className="productsGrid">
                 {allProducts}

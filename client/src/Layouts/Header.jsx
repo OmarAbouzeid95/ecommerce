@@ -2,7 +2,7 @@ import {NavLink, Link} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import shoppingBag from '../media/icons/shoppingBag.png'
 import searchIcon from '../media/icons/searchIcon.png'
-import countContext from '../context'
+import {countContext} from '../context'
 import { useContext } from 'react'
 import {redirect} from '../loaderFunctions'
 

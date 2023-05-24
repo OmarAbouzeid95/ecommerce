@@ -1,6 +1,6 @@
 import { useLoaderData, Link } from 'react-router-dom';
 import BagItem from '../Components/BagItem'
-import countContext from '../context';
+import {countContext, currentLoc} from '../context';
 import {useState, useEffect, useContext} from 'react'
 
 function Bag() {
@@ -11,6 +11,7 @@ function Bag() {
     const [deliveryFee, setDeliveryFee] = useState(4.99)
     const [total, setTotal] = useState(0)
     const {setCount} = useContext(countContext)
+    const { loc } = useContext(currentLoc)
 
 
     // function to update the products
@@ -42,6 +43,11 @@ function Bag() {
 
     // calculating total price whenever the products state changes
     useEffect(() => {
+
+        // scroll to top on first render
+        if(!loc.includes('/bag')){
+            window.scrollTo(0,0)
+        }
 
         if(products && (products.length > 0)){
             // creating array of product prices

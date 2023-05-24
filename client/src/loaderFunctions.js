@@ -18,11 +18,15 @@ function loadProductDetails(id) {
     }
 }
 
-function getCategory(category, gender) {
+function getCategory(collection, gender) {
 
-    const cat = db[category]
-    const result = cat.filter(jacket => (jacket.gender === gender))
-    return result
+    const cat = db[collection]
+    // if a gender is passed filter by gender, else return all category
+    const result = gender ? cat.filter(jacket => (jacket.gender === gender)) : cat
+
+    const category = (collection === 'summerWear') ? 'Summer Collection' : collection
+
+    return {result, category}
 }
 
 // fetching required data for the corresponding Shop Category (Men/ Women/ Kids)
@@ -34,17 +38,17 @@ function loadShopCategory(category) {
     switch(category) {
         case('men'): 
             return {
-                winterJackets: getCategory('winterJackets', 'men'),
-                summerWear: getCategory('summerWear', 'men'),
-                trending: getCategory('trending', 'men'),
+                winterJackets: getCategory('winterJackets', 'men').result,
+                summerWear: getCategory('summerWear', 'men').result,
+                trending: getCategory('trending', 'men').result,
                 category: "Men's"
             }
         case('women'):
 
             return {
-                winterJackets:  getCategory('winterJackets', 'women'),
-                summerWear: getCategory('summerWear', 'women'),
-                trending: getCategory('trending', 'women'),
+                winterJackets:  getCategory('winterJackets', 'women').result,
+                summerWear: getCategory('summerWear', 'women').result,
+                trending: getCategory('trending', 'women').result,
                 category: "Women's"
             }
         case('kids'):
@@ -70,8 +74,7 @@ function loadBagItems() {
 function loadSearchedKey(keyword){
 
     //transform keyword to lowercase
-    keyword = (keyword !== 'all') ? keyword.toLowerCase() : ''
-    console.log(keyword)
+    keyword = (keyword !== 'all-products') ? keyword.toLowerCase() : ''
     // traverse the whole db and checking if key is matching the keyword
     let result = []
     for (const category in db) {
@@ -79,6 +82,7 @@ function loadSearchedKey(keyword){
         const filtered = db[category].filter(product => (product.name.toLowerCase().includes(keyword)))
         result = result.concat(filtered)
     }
+
 
     return {result, keyword}
 }
@@ -90,4 +94,4 @@ function redirect(loc) {
 }
 
 
-export {loadProductDetails, loadShopCategory, loadBagItems, loadSearchedKey, redirect}
+export {loadProductDetails, loadShopCategory, loadBagItems, loadSearchedKey, redirect, getCategory}

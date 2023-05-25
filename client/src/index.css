@@ -875,6 +875,22 @@ img {
 }
 
 @media (max-width: 470px){
+  
+
+  .bagProductImg {
+    max-width: 180px;
+  }
+
+  .bagProductInfo{
+    font-size: 0.9rem;
+  }
+
+  .quantityContainer {
+    width: 45%;
+  }
+  
+
+@media (max-width: 411px){
   .bagProductContainer {
     flex-direction: column;
   }
@@ -887,10 +903,17 @@ img {
   }
 
   .bagProductInfo {
+    font-size: 1rem;
+  }
+
+  .bagProductInfo {
     align-items: unset;
   }
 
-
+  .quantityContainer {
+    width: 25%;
+  }
+}
 }
 
 /* bag layout */
@@ -929,6 +952,25 @@ img {
   width: 50%;
   align-self: center;
 }
+
+/* filters */
+
+.productGridFilters {
+  display: flex;
+  justify-content: flex-end;
+}
+
+select {
+  border-radius: 3em;
+  width: 32%;
+  padding: 0.15em;
+}
+
+select:first-child {
+  margin-right: 1em;
+}
+
+
 
 
 

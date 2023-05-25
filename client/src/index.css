@@ -975,6 +975,10 @@ select:last-child {
   align-self: center;
 }
 
+.checkoutBtn:disabled {
+  background: darkgray;
+}
+
 
 
 

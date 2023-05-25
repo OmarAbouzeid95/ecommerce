@@ -100,7 +100,7 @@ function Bag() {
                         <p>Total</p>
                         <p>${((total * 1.13) + deliveryFee).toFixed(2)}</p>
                     </div>
-                    <button className="checkoutBtn">Checkout</button>
+                    <button className="checkoutBtn" disabled={(products.length > 0) ? false : true }>Checkout</button>
                 </div>
             </div>
         </div>

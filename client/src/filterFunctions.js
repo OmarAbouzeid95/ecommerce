@@ -26,5 +26,18 @@ function filterCategory(list, collection) {
 
 }
 
+// filtering passed list by category
+function filterGender(list, gender) {
 
-export {sortAscending, sortDescending, filterCategory}
+    // no gender is selected
+    if(gender !== 'men' && gender !== 'women'){
+        return list
+    }else{
+        const result = list.filter(product => (product.gender === gender))
+        return result
+    }
+
+}
+
+
+export {sortAscending, sortDescending, filterCategory, filterGender}

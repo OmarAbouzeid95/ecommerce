@@ -2,7 +2,8 @@ import Product from './Product'
 import {useEffect, useState, useRef} from 'react'
 
 // importing filter functions
-import { sortAscending, sortDescending, filterCategory } from '../filterFunctions'
+import { sortAscending, sortDescending, filterCategory, filterGender } from '../filterFunctions'
+import { useLocation } from 'react-router-dom'
 
 
 function ProductGrid({list, title}) {
@@ -14,7 +15,9 @@ function ProductGrid({list, title}) {
             <Product props={product} key={product.id}/>
         )
     }))
+    const [sortFilter, setSortFilter] = useState(false)
     const initialRender = useRef(true)
+    const loc = useLocation()
 
     /**
      * preloading all main images and first img of the array (the one shown when component is hovered)
@@ -50,30 +53,56 @@ function ProductGrid({list, title}) {
                 <h2 className="productGridTitle">{title}</h2>
                 {/* Filters container */}
                 {(list.length > 0) && <div className="productGridFilters">
-                    <select name="sort" id="sortPrice" onChange={(e) => {
+                    <select name="sort" id="sortPrice" style={{width: '90px'}} onChange={(e) => {
                         if(e.target.value === 'ascending'){
                             const sortedProducts = sortAscending(products)
+                            setSortFilter('ascending')
                             setProducts([...sortedProducts])
                         }else if(e.target.value === 'descending'){
                             const sortedProducts = sortDescending(products)
+                            setSortFilter('descending')
                             setProducts([...sortedProducts])
+                        }else{
+                            setSortFilter(false)
                         }
                     }}>
-                        <option value="sort">Sort</option>
-                        <option value="ascending">Price: Low to High</option>
-                        <option value="descending">Price: High to Low</option>
+                        <option value="sort">Sort By</option>
+                        <option value="ascending">Price: Low-High</option>
+                        <option value="descending">Price: High-Low</option>
                     </select>
-                    <select name="category" id="filterCategory" onChange={(e) => setProducts([...filterCategory(list, e.target.value)])}>
+                    {/* category selection is not available in the search page (except for all products page)*/}
+                    {(loc.pathname.includes('/shop/men') || loc.pathname.includes('/shop/men')) && <select name="category" id="filterCategory" style={{width: '92px'}}
+                        onChange={(e) => {
+                            // filtering category and checking if sorting filter is applied
+                            let result = [...filterCategory(list, e.target.value)]
+                            if(sortFilter){
+                                result = (sortFilter === 'ascending') ? sortAscending(result) : sortDescending(result)
+                            }
+                            setProducts(result)
+                        }}> 
                         <option value="select">Category</option>
                         <option value="winterJackets">Winter clothing</option>
                         <option value="summerWear">Summer wear</option>
                         <option value="trending">Trending</option>
-                    </select>
+                    </select>}
+                    {/* Gender selection only available in search webpage */}
+                    {loc.pathname.includes('/search') && <select name="gender" id="genderFilter" style={{width: '75px'}} 
+                        onChange={(e) => {
+                            // filtering gender and checking if sorting filter is applied
+                            let result = [...filterGender(list, e.target.value)]
+                            if(sortFilter){
+                                result = (sortFilter === 'ascending') ? sortAscending(result) : sortDescending(result)
+                            }
+                            setProducts(result)
+                        }}>               
+                        <option value="gender">Gender</option>
+                        <option value="men">Men</option>
+                        <option value="women">Women</option>
+                    </select>}
                 </div>}
                 
             </div>
             <div className="productsGrid">
-                {(allProducts.length === 0) && <h2>No results found</h2>}
                 {allProducts}
             </div>
         </div>

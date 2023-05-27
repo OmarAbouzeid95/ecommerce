@@ -1,4 +1,4 @@
-import db from './db'
+import db from '../db'
 
 
 // traversing over the DB looking for the corresponding ID

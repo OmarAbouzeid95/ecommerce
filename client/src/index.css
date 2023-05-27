@@ -3,6 +3,7 @@
 
 :root {
   --primaryColor: #111111;
+  --red-color: #da3f3f;
 }
 
 * {
@@ -199,7 +200,7 @@ img {
   font-size: 0.7rem;
   border-radius: 50%;
   color: white;
-  background-color: #da3f3f;
+  background-color: var(--red-color);
   position: absolute;
   top: 3px;
   right: -8px;
@@ -978,6 +979,37 @@ select:last-child {
 .checkoutBtn:disabled {
   background: darkgray;
 }
+
+/* Sign in form */
+
+.formContainer {
+  max-width: 250px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.formContainer h4 {
+  margin-bottom: 1em;
+}
+
+.formInputContainer {
+  margin-bottom: 0.5em;
+}
+
+.formInputContainer input{
+  width: 100%;
+  border: none;
+  margin-bottom: 0.25em;
+  padding: 0.15em;
+  text-indent: 5px;
+}
+
+.formInputContainer input:focus {
+  outline: none;
+}
+
+
 
 
 

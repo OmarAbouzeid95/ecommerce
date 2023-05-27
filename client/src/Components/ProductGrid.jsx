@@ -2,7 +2,7 @@ import Product from './Product'
 import {useEffect, useState, useRef} from 'react'
 
 // importing filter functions
-import { sortAscending, sortDescending, filterCategory, filterGender } from '../filterFunctions'
+import { sortAscending, sortDescending, filterCategory, filterGender } from '../scripts/filterFunctions'
 import { useLocation } from 'react-router-dom'
 
 

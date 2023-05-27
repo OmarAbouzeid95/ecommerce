@@ -4,7 +4,7 @@ import {countContext} from "../context";
 
 
 // add to bag function
-import { addToBag, bagCount } from "../bagFunctions";
+import { addToBag, bagCount } from "../scripts/bagFunctions";
 
 function ProductDetails() {
 

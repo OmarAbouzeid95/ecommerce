@@ -1,6 +1,6 @@
 import deleteIcon from '../media/icons/delete.svg'
 import {useState, useEffect, useRef} from 'react'
-import { updateBagQuantity, removeFromBag } from '../bagFunctions'
+import { updateBagQuantity, removeFromBag } from '../scripts/bagFunctions'
 
 function BagItem({props, updateQuantity, removeProduct}) {
 

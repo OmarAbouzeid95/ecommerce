@@ -12,10 +12,11 @@ import Profile from './Layouts/Profile'
 import ProductDetails from './Layouts/ProductDetails'
 import ShopCategory from './Layouts/ShopCategory'
 import Search from './Layouts/Search'
+import SignIn from './Layouts/SignIn'
 
 
 // loader functions
-import { loadProductDetails, loadShopCategory, loadBagItems, loadSearchedKey, getCategory } from './loaderFunctions'
+import { loadProductDetails, loadShopCategory, loadBagItems, loadSearchedKey, getCategory } from './scripts/loaderFunctions'
 
 function App() {
 
@@ -69,6 +70,10 @@ function App() {
             return getCategory(params.category)
           },
           element: <ShopCategory/>
+        },
+        {
+          path: 'signIn',
+          element: <SignIn />
         },
       ]
     }

@@ -6,6 +6,8 @@ require('dotenv').config()
 const app = express()
 const PORT = process.env.PORT || 3300
 
+// parsing incoming requests and puts json data in req.body
+app.use(express.json())
 // configuring cors to allow requests from the front-end URL
 app.use(cors({
     origin: process.env.FRONTEND_URL
@@ -29,6 +31,18 @@ async function run() {
 }
 
 run()
+
+// sign in
+app.post('/signIn', (req,res) => {
+    const {email, password} = req.body
+    users.findOne({email: email, password: password})
+    .then(user => {
+        res.status(200).json(user)
+    })
+    .catch(error => {
+        res.status(500).json({error: error})
+    })
+})
 
 app.get('/user/:name', (req,res) => {
     console.log(req.params)

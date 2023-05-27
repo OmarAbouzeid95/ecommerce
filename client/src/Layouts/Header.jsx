@@ -4,7 +4,7 @@ import shoppingBag from '../media/icons/shoppingBag.png'
 import searchIcon from '../media/icons/searchIcon.png'
 import {countContext} from '../context'
 import { useContext } from 'react'
-import {redirect} from '../loaderFunctions'
+import {redirect} from '../scripts/loaderFunctions'
 
 function Header() {
 

@@ -1,4 +1,7 @@
 
-const a = [1,2,3]
+const obj = {
+    a : 'ewower',
+    b: 'adasd'
+}
 
-console.log(a.includes(1))
+console.log({...obj, c: '12423'})

@@ -1,7 +1,4 @@
 
-const obj = {
-    a : 'ewower',
-    b: 'adasd'
-}
+const name = 'omar'
 
-console.log({...obj, c: '12423'})
+console.log(name.charAt(0).toUpperCase() + name.slice(1))

@@ -1,5 +1,5 @@
 import {useState, useContext} from 'react'
-import { validateSignIn } from '../scripts/crudFunctions';
+import { userSignOperation } from '../scripts/crudFunctions';
 import {Link, useLocation} from 'react-router-dom'
 import {loggedUser} from '../context'
 
@@ -58,9 +58,9 @@ function SignIn() {
                         errorStatus.passwordMsg = 'Please enter a password.'
                     }
                     
-                    // if email and password are valid call validateSignIn
+                    // if email and password are valid call userSignOperation
                     if (errorStatus.emailMsg === '' && errorStatus.passwordMsg === ''){
-                        validateSignIn(`${process.env.REACT_APP_SERVER_URL}/signIn`, {email:email.toLowerCase(), password: password})
+                        userSignOperation(`${process.env.REACT_APP_SERVER_URL}/signIn`, {email:email.toLowerCase(), password: password})
                         .then(result => {
                             // user found
                             if(result){

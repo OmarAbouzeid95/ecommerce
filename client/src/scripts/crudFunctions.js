@@ -1,6 +1,6 @@
 
-// signing in validation
-async function validateSignIn(url, user) {
+// signing in function
+async function userSignOperation(url, user) {
     // get request using the email and password
     const res = await fetch(url, {
         method: 'POST',
@@ -13,4 +13,4 @@ async function validateSignIn(url, user) {
 
 
 
-export {validateSignIn}
+export {userSignOperation}

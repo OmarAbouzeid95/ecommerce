@@ -44,6 +44,18 @@ app.post('/signIn', (req,res) => {
     })
 })
 
+// sign up
+app.post('/signUp', (req,res) => {
+  const {email, password, firstName, lastName} = req.body
+  users.insertOne({email: email, password: password, firstName: firstName, lastName: lastName})
+  .then(result => {
+    res.status(200).json(result)
+  })
+  .catch(error => {
+    res.status(500).json({error: error})
+  })
+})
+
 app.get('/user/:name', (req,res) => {
     console.log(req.params)
     res.send(req.params.name)

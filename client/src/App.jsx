@@ -13,6 +13,7 @@ import ProductDetails from './Layouts/ProductDetails'
 import ShopCategory from './Layouts/ShopCategory'
 import Search from './Layouts/Search'
 import SignIn from './Layouts/SignIn'
+import SignUp from './Layouts/SignUp'
 
 
 // loader functions
@@ -74,6 +75,10 @@ function App() {
         {
           path: 'signIn',
           element: <SignIn />
+        },
+        {
+          path: 'signUp',
+          element: <SignUp />
         },
       ]
     }

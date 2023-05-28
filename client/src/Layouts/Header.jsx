@@ -86,7 +86,7 @@ function Header() {
                                         toggleNav()
                                     }}}><img src={shoppingBag} alt="shopping bag icon" className="shoppingIcon navIcon"/></NavLink>
                                 </div>
-                                <NavLink to={user ? 'profile' : 'signIn'} className="navLink" >{user ? 'Profile' : 'Sign in'}</NavLink>
+                                <NavLink to={user ? `Hi, ${user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)}` : 'signIn'} className="navLink" >{user ? `Hi, ${user.firstName}` : 'Sign in'}</NavLink>
                             </nav>)
         }
 
@@ -103,7 +103,7 @@ function Header() {
                             toggleNavIcon()
                             toggleNav()
                         }}>Contact us</NavLink>
-                        <NavLink to={user ? 'profile' : 'signIn'} className="navLink" onClick={() => {
+                        <NavLink to={user ? user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1) : 'signIn'} className="navLink" onClick={() => {
                             toggleNavIcon()
                             toggleNav()
                         }}>{user ? 'Profile' : 'Sign in'}</NavLink>

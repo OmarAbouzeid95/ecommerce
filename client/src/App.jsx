@@ -1,6 +1,6 @@
 import './index.css'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
-import {countContext, currentLoc} from './context'
+import {countContext, currentLoc, loggedUser} from './context'
 import {useState} from 'react'
 
 // layouts
@@ -79,17 +79,19 @@ function App() {
     }
   ])
 
-  // fix count * quantity
   const [count, setCount] = useState(JSON.parse(localStorage.getItem('bagItems') ? (JSON.parse(localStorage.getItem('bagItems')).length) : 0))
   const [loc, setLoc] = useState('/')
+  const [user, setUser] = useState(null)
 
   return (
     <div className="App">
-      <currentLoc.Provider value={{loc, setLoc}}>
-        <countContext.Provider value={{count, setCount}}>
-          <RouterProvider router={router} />
-        </countContext.Provider>
-      </currentLoc.Provider>
+      <loggedUser.Provider value={{user, setUser}}>
+        <currentLoc.Provider value={{loc, setLoc}}>
+          <countContext.Provider value={{count, setCount}}>
+            <RouterProvider router={router} />
+          </countContext.Provider>
+        </currentLoc.Provider>
+      </loggedUser.Provider>
     </div>
   );
 }

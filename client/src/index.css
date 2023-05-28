@@ -690,7 +690,7 @@ img {
 
 }
 
-.addToBagBtn, .checkoutBtn, .allProductsBtn {
+.addToBagBtn, .checkoutBtn, .allProductsBtn, .formSubmitBtn {
   background: var(--primaryColor);
   color: white;
   text-decoration: none;
@@ -1009,6 +1009,14 @@ select:last-child {
   outline: none;
 }
 
+.formSubmitBtn {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.formContainer p a {
+  color: var(--primaryColor)
+}
 
 
 

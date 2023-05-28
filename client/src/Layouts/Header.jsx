@@ -2,9 +2,10 @@ import {NavLink, Link} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import shoppingBag from '../media/icons/shoppingBag.png'
 import searchIcon from '../media/icons/searchIcon.png'
-import {countContext} from '../context'
+import {countContext, loggedUser} from '../context'
 import { useContext } from 'react'
 import {redirect} from '../scripts/loaderFunctions'
+
 
 function Header() {
 
@@ -14,7 +15,7 @@ function Header() {
     const [navContent, setNavContent] = useState('')
     const [searchBar, setSearchBar] = useState('')
     const {count} = useContext(countContext)
-
+    const {user} = useContext(loggedUser)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     function toggleNav() {
@@ -85,12 +86,12 @@ function Header() {
                                         toggleNav()
                                     }}}><img src={shoppingBag} alt="shopping bag icon" className="shoppingIcon navIcon"/></NavLink>
                                 </div>
-                                <NavLink to="profile" className="navLink" >Profile</NavLink>
+                                <NavLink to={user ? 'profile' : 'signIn'} className="navLink" >{user ? 'Profile' : 'Sign in'}</NavLink>
                             </nav>)
         }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [windowWidth, navStatus, searchBar])
+    }, [windowWidth, navStatus, searchBar, user])
 
     return (
         <div className="headerWrapper">
@@ -102,10 +103,10 @@ function Header() {
                             toggleNavIcon()
                             toggleNav()
                         }}>Contact us</NavLink>
-                        <NavLink to="profile" className="navLink" onClick={() => {
+                        <NavLink to={user ? 'profile' : 'signIn'} className="navLink" onClick={() => {
                             toggleNavIcon()
                             toggleNav()
-                        }}>Profile</NavLink>
+                        }}>{user ? 'Profile' : 'Sign in'}</NavLink>
                         <NavLink to="shop/men" className="navLink navCategory" onClick={() => {
                             toggleNavIcon()
                             toggleNav()

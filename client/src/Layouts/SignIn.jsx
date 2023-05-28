@@ -1,5 +1,8 @@
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import { validateSignIn } from '../scripts/crudFunctions';
+import {Link, useLocation} from 'react-router-dom'
+import {loggedUser} from '../context'
+
 
 function SignIn() {
 
@@ -10,8 +13,8 @@ function SignIn() {
                                                         emailMsg: '',
                                                         passwordMsg: ''
                                                     })
-    // const [signInStatus, setSignInStatus] = useState('')
-    // set user info context
+    const {setUser} = useContext(loggedUser)    
+    const loc = useLocation()                                                
 
     // input border styles
     const normalStyle = {
@@ -61,7 +64,19 @@ function SignIn() {
                         .then(result => {
                             // user found
                             if(result){
-                                console.log('user found')
+                                // update loggedUser context
+                                const {firstName, lastName, _id, email} = result
+                                const user = {
+                                    name: firstName + ' ' + lastName,
+                                    id: _id,
+                                    email: email
+                                }
+                                setUser(user)
+                                /**
+                                 * redirect user to homepage ('/')
+                                 * using loc.pathname to avoid losing the loggedUser data by using the redirect function
+                                 */
+                                loc.pathname = '/'
                             }else{
                             // user not found
                             errorStatus.generalMsg = 'Incorrect email or password.'
@@ -77,6 +92,7 @@ function SignIn() {
                     }
 
                 }}>Sign in</button>
+                <p style={{textAlign: 'center', fontSize: '0.9rem'}}>Not a member? <Link to='signUp'>Sign up</Link></p>
             </form>
         </div>
     );

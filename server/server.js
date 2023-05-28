@@ -56,6 +56,18 @@ app.post('/signUp', (req,res) => {
   })
 })
 
+// find user by email
+app.get('/user/:email', (req,res) => {
+  const email = req.params.email
+  users.findOne({email: email})
+  .then(user => {
+    res.status(200).json(user)
+  })
+  .catch(error => {
+    res.status(500).json({error: error})
+  })
+})
+
 app.get('/user/:name', (req,res) => {
     console.log(req.params)
     res.send(req.params.name)

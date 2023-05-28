@@ -1,5 +1,5 @@
 import {useState, useContext} from 'react'
-import { userSignOperation } from '../scripts/crudFunctions'
+import { userSignOperation, findUser } from '../scripts/crudFunctions'
 import {Link, useLocation} from 'react-router-dom'
 import { loggedUser } from '../context'
 
@@ -102,31 +102,45 @@ function SignUp() {
                     
                     // if firstname, lastname, email and password are valid call userSignOperation
                     if (errorStatus.emailMsg === '' && errorStatus.passwordMsg === '' && errorStatus.firstNameMsg === '' && errorStatus.lastNameMsg === ''){
-                        userSignOperation(`${process.env.REACT_APP_SERVER_URL}/signUp`, {email:email.toLowerCase(), password: password, firstName: firstName, lastName: lastName})
-                        .then(result => {
-                            // user added
-                            const id = result.insertedId
-                            const user = {
-                                id: id,
-                                firstName: firstName,
-                                lastName: lastName,
-                                email: email
-                            }
-                            // set user context
-                            setUser(user)
-                            // redirect user to homepage
-                            loc.pathname = '/'
-                        })
-                        .catch(error => {
-                            errorStatus.generalMsg = 'There was a problem signing up, please try again.'
-                            setErrorMessage(errorStatus)
-                        })
-                    }else {
-                        setErrorMessage(errorStatus)
-                    }
+
+                        // check if email exists in the database
+                        findUser(`${process.env.REACT_APP_SERVER_URL}/user/${email}`)
+                        .then(user => {
+                            if(user) {
+                                errorStatus.emailMsg = 'This email is already in use.'
+                                setErrorMessage(errorStatus)
+                            }else {
+                                userSignOperation(`${process.env.REACT_APP_SERVER_URL}/signUp`, {email:email.toLowerCase(), password: password, firstName: firstName, lastName: lastName})
+                                .then(result => {
+                                    // user added
+                                    const id = result.insertedId
+                                    const user = {
+                                        id: id,
+                                        firstName: firstName,
+                                        lastName: lastName,
+                                        email: email
+                                    }
+                                    // set user context
+                                    setUser(user)
+                                    // redirect user to homepage
+                                    loc.pathname = '/'
+                                })
+                                .catch(error => {
+                                    errorStatus.generalMsg = 'There was a problem signing up, please try again.'
+                                    setErrorMessage(errorStatus)
+                                })
+                                    }
+                                })
+                                .catch(error => {
+                                    errorStatus.generalMsg = 'There was a problem signing up, please try again.'
+                                    setErrorMessage(errorStatus)
+                                })
+                                }else {
+                                    setErrorMessage(errorStatus)
+                                }
 
                 }}>Sign Up</button>
-                <p style={{textAlign: 'center', fontSize: '0.9rem'}}>Already a member? <Link to='signIn'>Sign in</Link></p>
+                <p style={{textAlign: 'center', fontSize: '0.9rem'}}>Already a member? <Link to='/signIn'>Sign in</Link></p>
             </form>
         </div>
     );

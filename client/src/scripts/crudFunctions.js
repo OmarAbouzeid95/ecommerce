@@ -11,6 +11,12 @@ async function userSignOperation(url, user) {
     return data
 }
 
+// find user function
+async function findUser(url) {
+    const res = await fetch(url)
+    const data = await res.json()
+    return data
+}
 
 
-export {userSignOperation}
+export {userSignOperation, findUser}

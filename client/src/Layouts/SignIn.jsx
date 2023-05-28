@@ -92,7 +92,7 @@ function SignIn() {
                     }
 
                 }}>Sign in</button>
-                <p style={{textAlign: 'center', fontSize: '0.9rem'}}>Not a member? <Link to='signUp'>Sign up</Link></p>
+                <p style={{textAlign: 'center', fontSize: '0.9rem'}}>Not a member? <Link to='/signUp'>Sign up</Link></p>
             </form>
         </div>
     );

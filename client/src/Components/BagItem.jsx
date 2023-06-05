@@ -1,6 +1,7 @@
 import deleteIcon from '../media/icons/delete.svg'
-import {useState, useEffect, useRef} from 'react'
+import {useState, useEffect, useRef, useContext} from 'react'
 import { updateBagQuantity, removeFromBag } from '../scripts/bagFunctions'
+import { loggedUser } from '../context'
 
 function BagItem({props, updateQuantity, removeProduct}) {
 
@@ -9,6 +10,18 @@ function BagItem({props, updateQuantity, removeProduct}) {
     const [removed, setRemoved] = useState(false)
     const initialRenderE1 = useRef(true)
     const initialRenderE2 = useRef(true)
+    const { user, setUser } = useContext(loggedUser)
+    const url = `${process.env.REACT_APP_SERVER_URL}/updateBag`
+
+    async function updateUserBag() {
+        const updatedUser = await updateBagQuantity(props.id, props.size, quantity, user, url)
+        setUser(updatedUser)
+    }
+
+    async function removeFromUserBag(){
+        const updatedUser = await removeFromBag(props.id, props.size, user, url)
+        setUser(updatedUser)
+    }
 
     // window resize listener and quantity effect
     useEffect(() => {
@@ -18,8 +31,8 @@ function BagItem({props, updateQuantity, removeProduct}) {
 
         if(!initialRenderE1.current){
             // whenever the quantity changes -> call updateBagQuantity to update the localStorage/DB
-            updateBagQuantity(props.id, props.size, quantity)
             updateQuantity(props.id, props.size, quantity)
+            updateUserBag()
         }else {
             initialRenderE1.current = false
         }
@@ -32,8 +45,8 @@ function BagItem({props, updateQuantity, removeProduct}) {
 
         if(!initialRenderE2.current){
             // when removed flag is trigged call the update products function
-            removeFromBag(props.id, props.size)
             removeProduct(props.id, props.size)
+            removeFromUserBag()
         }else {
             initialRenderE2.current = false
         }

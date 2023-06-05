@@ -1,7 +1,8 @@
 import { loadProductDetails } from "./loaderFunctions"
+import { updateBagItems } from "./crudFunctions"
 
 
-function addToBag(id, size, quantity) {
+function addToBag(id, size, quantity, user, url) {
 
     let existing = false
     // searches for the item with the passed ID and adds to the bag
@@ -10,11 +11,11 @@ function addToBag(id, size, quantity) {
     // adding the size of the product to the object
     product = {...product, size: size, quantity: quantity}
 
-    // if user is not logged in save to local storage
-    let bagItems = JSON.parse(localStorage.getItem('bagItems'))
+    // if no user is logged in fetch from local storage
+    let bagItems = user ? user.bagItems : JSON.parse(localStorage.getItem('bagItems'))
 
     // no data is present in the localStorage
-    if(!bagItems){
+    if(!bagItems || bagItems.length === 0){
         bagItems = [product]
     }else{
         // check if product and size already exists in the localStorage
@@ -29,17 +30,23 @@ function addToBag(id, size, quantity) {
             bagItems.push(product)
     }
 
-    // setting the localStorage attribute to the array
-    localStorage.setItem('bagItems', JSON.stringify(bagItems))
+    if(!user){
+        // setting the localStorage attribute to the array
+        localStorage.setItem('bagItems', JSON.stringify(bagItems))
+        return null
+    }else{
+        user = {...user, bagItems: bagItems}
+        updateBagItems(url, user).then(() => user)
+    }
 
     
 }
 
 // function to update the products quantity in the bag 
-function updateBagQuantity(id, size, quantity) {
+async function updateBagQuantity(id, size, quantity, user, url) {
 
-    // if user is not logged in, update localStorage
-    const bagItems = JSON.parse(localStorage.getItem('bagItems'))
+    // if no user is logged in fetch from local storage
+    const bagItems = user ? user.bagItems : JSON.parse(localStorage.getItem('bagItems'))
     const result = []
 
     bagItems.forEach(product => {
@@ -51,15 +58,22 @@ function updateBagQuantity(id, size, quantity) {
         }
     })
 
-    // updating localStorage
-    localStorage.setItem('bagItems', JSON.stringify(result))
+    if(!user){
+        // updating localStorage
+        localStorage.setItem('bagItems', JSON.stringify(result))
+        return null
+    }else{
+        user = {...user, bagItems: result}
+        const updatedUser = await updateBagItems(url, user)
+        return updatedUser
+    }
 }
 
 // function to remove an item from the bag
-function removeFromBag(id, size) {
+async function removeFromBag(id, size, user, url) {
 
-    // if no user is logged in update the local Storage
-    const bagItems = JSON.parse(localStorage.getItem('bagItems'))
+    // if no user is logged in fetch from local storage
+    const bagItems = user ? user.bagItems : JSON.parse(localStorage.getItem('bagItems'))
     const result = []
 
     bagItems.forEach(product => {
@@ -68,15 +82,22 @@ function removeFromBag(id, size) {
         }
     })
 
-    // updating the localStorage
-    localStorage.setItem('bagItems', JSON.stringify(result))
+    if(!user){
+        // setting the localStorage attribute to the array
+        localStorage.setItem('bagItems', JSON.stringify(bagItems))
+        return null
+    }else{
+        user = {...user, bagItems: result}
+        const updatedUser = await updateBagItems(url, user)
+        return updatedUser
+    }
 }
 
 // function that returns the number of items in the bag
-function bagCount() {
+function bagCount(user) {
     
     // if user is not signed in check localStorage
-    const bagItems = JSON.parse(localStorage.getItem('bagItems'))
+    const bagItems = user ? user.bagItems : JSON.parse(localStorage.getItem('bagItems'))
     let count = 0
 
     if(bagItems){

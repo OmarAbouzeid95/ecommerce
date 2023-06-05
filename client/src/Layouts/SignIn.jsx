@@ -1,7 +1,7 @@
 import {useState, useContext} from 'react'
 import { userSignOperation } from '../scripts/crudFunctions';
 import {Link, useLocation} from 'react-router-dom'
-import {countContext, loggedUser} from '../context'
+import {loggedUser, countContext} from '../context'
 
 
 function SignIn() {
@@ -66,7 +66,7 @@ function SignIn() {
                             // user found
                             if(result){
                                 // update loggedUser context
-                                const {firstName, lastName, _id, email, orders, bagItems} = result
+                                const {firstName, lastName, _id, email, bagItems, orders} = result
                                 const user = {
                                     firstName: firstName,
                                     lastName: lastName,

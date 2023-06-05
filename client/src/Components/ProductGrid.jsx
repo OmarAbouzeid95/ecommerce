@@ -1,6 +1,7 @@
 import Product from './Product'
 import {useEffect, useState, useRef} from 'react'
 
+
 // importing filter functions
 import { sortAscending, sortDescending, filterCategory, filterGender } from '../scripts/filterFunctions'
 import { useLocation } from 'react-router-dom'
@@ -18,6 +19,7 @@ function ProductGrid({list, title}) {
     const [sortFilter, setSortFilter] = useState(false)
     const initialRender = useRef(true)
     const loc = useLocation()
+
 
     /**
      * preloading all main images and first img of the array (the one shown when component is hovered)

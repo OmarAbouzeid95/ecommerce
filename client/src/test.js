@@ -1,4 +1,6 @@
 
-const name = 'omar'
+const user = {}
 
-console.log(name.charAt(0).toUpperCase() + name.slice(1))
+const result = user ? 'yes there is a user' : 'There is not'
+
+console.log(result)

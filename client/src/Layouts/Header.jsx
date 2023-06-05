@@ -17,6 +17,7 @@ function Header() {
     const {count} = useContext(countContext)
     const {user} = useContext(loggedUser)
 
+    console.log(user)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     function toggleNav() {
         if(navStatus === 'hideNav'){
@@ -52,7 +53,7 @@ function Header() {
                                 </div>
                                 <div className="bagIconContainer">
                                     {(count > 0) && <span className="bagItemCount">{count}</span>}
-                                    <NavLink to='bag' onClick={() => {
+                                    <NavLink to='/bag' onClick={() => {
                                         if(navStatus === 'showNav'){
                                         toggleNavIcon()
                                         toggleNav()
@@ -80,13 +81,14 @@ function Header() {
                                 </div>
                                 <div className="bagIconContainer">
                                     {(count > 0) && <span className="bagItemCount">{count}</span>}
-                                    <NavLink to='bag' onClick={() => {
+                                    <NavLink to='/bag' onClick={() => {
                                         if(navStatus === 'showNav'){
                                         toggleNavIcon()
                                         toggleNav()
                                     }}}><img src={shoppingBag} alt="shopping bag icon" className="shoppingIcon navIcon"/></NavLink>
                                 </div>
-                                <NavLink to={user ? 'profile' : 'signIn'} className="navLink" >{user ? `Hi, ${user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)}` : 'Sign in'}</NavLink>
+                                {/* <NavLink to={user ? 'profile' : 'signIn'} className="navLink" >{user ? `Hi, ${user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)}` : 'Sign in'}</NavLink> */}
+                                <NavLink to={user ? 'profile' : 'signIn'} className="navLink" >{user ? `Hi, ${user.firstName}` : 'Sign in'}</NavLink>
                             </nav>)
         }
 
@@ -106,7 +108,8 @@ function Header() {
                         <NavLink to={user ? 'profile' : 'signIn'} className="navLink" onClick={() => {
                             toggleNavIcon()
                             toggleNav()
-                        }}>{user ? user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1) : 'Sign in'}</NavLink>
+                        // }}>{user ? user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1) : 'Sign in'}</NavLink>
+                        }}>{user ? user.firstName : 'Sign in'}</NavLink>
                         <NavLink to="shop/men" className="navLink navCategory" onClick={() => {
                             toggleNavIcon()
                             toggleNav()

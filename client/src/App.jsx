@@ -18,6 +18,7 @@ import SignUp from './Layouts/SignUp'
 
 // loader functions
 import { loadProductDetails, loadShopCategory, loadSearchedKey, getCategory } from './scripts/loaderFunctions'
+import { bagCount } from '../src/scripts/bagFunctions'
 
 function App() {
 
@@ -27,7 +28,6 @@ function App() {
       // homepage
       path: '/',
       element: <Root />,
-      errorElement: <ErrorPage />,
       children: [
         {
           path: 'contact',
@@ -77,13 +77,14 @@ function App() {
           path: 'signUp',
           element: <SignUp />
         },
-      ]
+      ],
+      errorElement: <ErrorPage />
     }
   ])
 
   const [loc, setLoc] = useState('/')
   const [user, setUser] = useState(null)
-  const [count, setCount] = useState(JSON.parse(localStorage.getItem('bagItems') ? (JSON.parse(localStorage.getItem('bagItems')).length) : 0))
+  const [count, setCount] = useState(bagCount(user))
 
   return (
     <div className="App">

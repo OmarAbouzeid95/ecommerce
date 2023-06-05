@@ -22,6 +22,7 @@ function ProductDetails() {
     async function addToUserBag(){
         const updatedUser = await addToBag(data.id, size, quantity, user, url)
         setUser(updatedUser)
+        setCount(bagCount(updatedUser))
     }
 
     useEffect(() => {
@@ -75,7 +76,7 @@ function ProductDetails() {
                         setError(true)
                     }else {
                         addToUserBag()
-                        setCount(bagCount(user))
+                        
                     }
                 }}>Add to bag</button>
                 <p>{data.description}</p>

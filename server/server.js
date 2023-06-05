@@ -72,7 +72,6 @@ app.patch('/updateBag', (req,res) => {
   const user = req.body
   users.updateOne({email:email}, {$set: {bagItems: bagItems}})
   .then(result => {
-    console.log(user)
     res.status(200).json(user)
   })
   .catch(error => {

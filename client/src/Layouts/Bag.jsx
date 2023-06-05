@@ -7,7 +7,7 @@ function Bag() {
 
     const data = useLoaderData()
     // state for products and total price
-    const [products, setProducts] = useState(data)
+    const [products, setProducts] = useState(data ? data : [])
     const [deliveryFee, setDeliveryFee] = useState(4.99)
     const [total, setTotal] = useState(0)
     const {setCount} = useContext(countContext)

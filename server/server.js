@@ -69,9 +69,11 @@ app.get('/user/:email', (req,res) => {
 // updating bagItems
 app.patch('/updateBag', (req,res) => {
   const {email, bagItems} = req.body
+  const user = req.body
   users.updateOne({email:email}, {$set: {bagItems: bagItems}})
   .then(result => {
-    res.status(200).json({result: 'updated'})
+    console.log(user)
+    res.status(200).json(user)
   })
   .catch(error => {
     res.status(500).json({error: error})

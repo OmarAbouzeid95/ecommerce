@@ -61,15 +61,6 @@ function loadShopCategory(category) {
     }
 }
 
-// loading bag items
-function loadBagItems(user) {
-
-    // if user is not logged in load from localStorage
-    const result = user ? user.bagItems : JSON.parse(localStorage.getItem('bagItems'))
-
-    return result
-}
-
 // loading searched items
 function loadSearchedKey(keyword){
 
@@ -94,4 +85,4 @@ function redirect(loc) {
 }
 
 
-export {loadProductDetails, loadShopCategory, loadBagItems, loadSearchedKey, redirect, getCategory}
+export {loadProductDetails, loadShopCategory, loadSearchedKey, redirect, getCategory}

@@ -63,14 +63,14 @@ async function updateBagQuantity(id, size, quantity, user, url) {
         localStorage.setItem('bagItems', JSON.stringify(result))
         return null
     }else{
-        user = {...user, bagItems: bagItems}
+        user = {...user, bagItems: result}
         const updatedUser = await updateBagItems(url, user)
         return updatedUser
     }
 }
 
 // function to remove an item from the bag
-function removeFromBag(id, size, user, url) {
+async function removeFromBag(id, size, user, url) {
 
     // if no user is logged in fetch from local storage
     const bagItems = user ? user.bagItems : JSON.parse(localStorage.getItem('bagItems'))
@@ -87,8 +87,9 @@ function removeFromBag(id, size, user, url) {
         localStorage.setItem('bagItems', JSON.stringify(bagItems))
         return null
     }else{
-        user = {...user, bagItems: bagItems}
-        updateBagItems(url, user).then(() => user)
+        user = {...user, bagItems: result}
+        const updatedUser = await updateBagItems(url, user)
+        return updatedUser
     }
 }
 

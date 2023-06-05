@@ -35,10 +35,6 @@ function App() {
         },
         {
           path: 'bag',
-          loader: () => {
-            const result = user ? user.bagItems : JSON.parse(localStorage.getItem('bagItems'))
-            return result
-          },
           element: <Bag />
         },
         {

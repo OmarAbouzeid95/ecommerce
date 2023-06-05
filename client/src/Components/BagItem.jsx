@@ -13,6 +13,16 @@ function BagItem({props, updateQuantity, removeProduct}) {
     const { user, setUser } = useContext(loggedUser)
     const url = `${process.env.REACT_APP_SERVER_URL}/updateBag`
 
+    async function updateUserBag() {
+        const updatedUser = await updateBagQuantity(props.id, props.size, quantity, user, url)
+        setUser(updatedUser)
+    }
+
+    async function removeFromUserBag(){
+        const updatedUser = await removeFromBag(props.id, props.size, user, url)
+        setUser(updatedUser)
+    }
+
     // window resize listener and quantity effect
     useEffect(() => {
         window.addEventListener('resize', () => {
@@ -21,9 +31,8 @@ function BagItem({props, updateQuantity, removeProduct}) {
 
         if(!initialRenderE1.current){
             // whenever the quantity changes -> call updateBagQuantity to update the localStorage/DB
-            const updatedUser = updateBagQuantity(props.id, props.size, quantity, user, url)
-            setUser(updatedUser)
             updateQuantity(props.id, props.size, quantity)
+            updateUserBag()
         }else {
             initialRenderE1.current = false
         }
@@ -36,9 +45,8 @@ function BagItem({props, updateQuantity, removeProduct}) {
 
         if(!initialRenderE2.current){
             // when removed flag is trigged call the update products function
-            const updatedUser =removeFromBag(props.id, props.size, user, url)
-            setUser(updatedUser)
             removeProduct(props.id, props.size)
+            removeFromUserBag()
         }else {
             initialRenderE2.current = false
         }

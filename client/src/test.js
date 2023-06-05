@@ -1,4 +1,5 @@
 
-const name = 'omar'
+const a = undefined
 
-console.log(name.charAt(0).toUpperCase() + name.slice(1))
+const b = a ? true : false
+console.log(b)

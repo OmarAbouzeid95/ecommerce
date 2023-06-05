@@ -52,7 +52,7 @@ function Header() {
                                 </div>
                                 <div className="bagIconContainer">
                                     {(count > 0) && <span className="bagItemCount">{count}</span>}
-                                    <NavLink to='bag' onClick={() => {
+                                    <NavLink to='/bag' onClick={() => {
                                         if(navStatus === 'showNav'){
                                         toggleNavIcon()
                                         toggleNav()
@@ -80,7 +80,7 @@ function Header() {
                                 </div>
                                 <div className="bagIconContainer">
                                     {(count > 0) && <span className="bagItemCount">{count}</span>}
-                                    <NavLink to='bag' onClick={() => {
+                                    <NavLink to='/bag' onClick={() => {
                                         if(navStatus === 'showNav'){
                                         toggleNavIcon()
                                         toggleNav()

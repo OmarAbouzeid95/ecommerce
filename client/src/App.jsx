@@ -18,6 +18,7 @@ import SignUp from './Layouts/SignUp'
 
 // loader functions
 import { loadProductDetails, loadShopCategory, loadBagItems, loadSearchedKey, getCategory } from './scripts/loaderFunctions'
+import { bagCount } from '../src/scripts/bagFunctions'
 
 function App() {
 
@@ -35,8 +36,9 @@ function App() {
         },
         {
           path: 'bag',
-          loader: ({params}) => {
-            return loadBagItems()
+          loader: () => {
+            console.log(user)
+            return loadBagItems(user)
           },
           element: <Bag />
         },
@@ -84,9 +86,9 @@ function App() {
     }
   ])
 
-  const [count, setCount] = useState(JSON.parse(localStorage.getItem('bagItems') ? (JSON.parse(localStorage.getItem('bagItems')).length) : 0))
   const [loc, setLoc] = useState('/')
   const [user, setUser] = useState(null)
+  const [count, setCount] = useState(bagCount(user))
 
   return (
     <div className="App">

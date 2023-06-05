@@ -30,8 +30,6 @@ async function run() {
   }
 }
 
-run()
-
 // sign in
 app.post('/signIn', (req,res) => {
     const {email, password} = req.body
@@ -68,12 +66,19 @@ app.get('/user/:email', (req,res) => {
   })
 })
 
-app.get('/user/:name', (req,res) => {
-    console.log(req.params)
-    res.send(req.params.name)
+// updating bagItems
+app.patch('/updateBag', (req,res) => {
+  const {email, bagItems} = req.body
+  users.updateOne({email:email}, {$set: {bagItems: bagItems}})
+  .then(result => {
+    res.status(200).json({result: 'updated'})
+  })
+  .catch(error => {
+    res.status(500).json({error: error})
+  })
 })
 
-app.listen(PORT, () => console.log(`listening to port ${PORT}`))
+run().then(app.listen(PORT, () => console.log(`listening to port ${PORT}`)))
 
 
 

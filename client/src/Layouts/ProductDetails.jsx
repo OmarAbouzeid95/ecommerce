@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import {useState, useEffect, useRef, useContext} from 'react'
-import {countContext} from "../context";
+import {countContext, loggedUser} from "../context";
 
 
 // add to bag function
@@ -16,6 +16,8 @@ function ProductDetails() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const key = useRef(0)
     const {setCount} = useContext(countContext)
+    const { user, setUser } = useContext(loggedUser)
+    const url = `${process.env.REACT_APP_SERVER_URL}/updateBag`
 
     useEffect(() => {
         window.addEventListener('resize', () => {
@@ -67,8 +69,8 @@ function ProductDetails() {
                     if(size === ''){
                         setError(true)
                     }else {
-                        addToBag(data.id, size, quantity)
-                        setCount(bagCount())
+                        setUser(addToBag(data.id, size, quantity, user, url))
+                        setCount(bagCount(user))
                     }
                 }}>Add to bag</button>
                 <p>{data.description}</p>

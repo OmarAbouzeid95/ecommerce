@@ -6,8 +6,9 @@ import {useState, useEffect, useContext} from 'react'
 function Bag() {
 
     const data = useLoaderData()
+    console.log(data)
     // state for products and total price
-    const [products, setProducts] = useState(data)
+    const [products, setProducts] = useState(data ? data : [])
     const [deliveryFee, setDeliveryFee] = useState(4.99)
     const [total, setTotal] = useState(0)
     const {setCount} = useContext(countContext)
@@ -71,7 +72,7 @@ function Bag() {
     }, [products])
     
     const bagItems = (products && (products.length > 0)) ? products.map(product => {
-                                        return (<BagItem props={product} key={product.id} updateQuantity={updateQuantity} removeProduct={removeProduct}/>)
+                                        return (<BagItem props={product} key={product.id + product.size} updateQuantity={updateQuantity} removeProduct={removeProduct}/>)
                                     }) : ''
 
     return ( 

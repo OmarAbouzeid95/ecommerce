@@ -782,9 +782,6 @@ select:last-child {
     width: 360px;
   }
 
-  .productGridFilters {
-    margin: 0 auto;
-  }
 }
 
 @media (max-width: 645px){

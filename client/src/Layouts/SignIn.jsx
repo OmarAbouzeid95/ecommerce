@@ -65,11 +65,14 @@ function SignIn() {
                             // user found
                             if(result){
                                 // update loggedUser context
-                                const {firstName, lastName, _id, email} = result
+                                const {firstName, lastName, _id, email, orders, bagItems} = result
                                 const user = {
-                                    name: firstName + ' ' + lastName,
+                                    firstName: firstName,
+                                    lastName: lastName,
                                     id: _id,
-                                    email: email
+                                    email: email,
+                                    bagItems: bagItems,
+                                    orders: orders
                                 }
                                 setUser(user)
                                 /**

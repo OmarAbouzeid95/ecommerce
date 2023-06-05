@@ -118,7 +118,9 @@ function SignUp() {
                                         id: id,
                                         firstName: firstName,
                                         lastName: lastName,
-                                        email: email
+                                        email: email,
+                                        bagItems: [],
+                                        orders: []
                                     }
                                     // set user context
                                     setUser(user)

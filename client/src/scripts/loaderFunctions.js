@@ -62,10 +62,10 @@ function loadShopCategory(category) {
 }
 
 // loading bag items
-function loadBagItems() {
+function loadBagItems(user) {
 
     // if user is not logged in load from localStorage
-    const result = JSON.parse(localStorage.getItem('bagItems'))
+    const result = user ? user.bagItems : JSON.parse(localStorage.getItem('bagItems'))
 
     return result
 }

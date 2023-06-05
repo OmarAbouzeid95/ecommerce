@@ -6,6 +6,10 @@ import {countContext, loggedUser} from "../context";
 // add to bag function
 import { addToBag, bagCount } from "../scripts/bagFunctions";
 
+// stars icons
+// import starFill from "../media/icons/star-solid.svg"
+// import starHollow from "../media/icons/star-regular.svg"
+
 function ProductDetails() {
 
     const data = useLoaderData()

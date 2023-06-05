@@ -84,9 +84,9 @@ function App() {
     }
   ])
 
-  const [count, setCount] = useState(JSON.parse(localStorage.getItem('bagItems') ? (JSON.parse(localStorage.getItem('bagItems')).length) : 0))
   const [loc, setLoc] = useState('/')
   const [user, setUser] = useState(null)
+  const [count, setCount] = useState(JSON.parse(localStorage.getItem('bagItems') ? (JSON.parse(localStorage.getItem('bagItems')).length) : 0))
 
   return (
     <div className="App">

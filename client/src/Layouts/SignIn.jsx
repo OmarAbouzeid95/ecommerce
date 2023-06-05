@@ -1,7 +1,7 @@
 import {useState, useContext} from 'react'
 import { userSignOperation } from '../scripts/crudFunctions';
 import {Link, useLocation} from 'react-router-dom'
-import {loggedUser} from '../context'
+import {countContext, loggedUser} from '../context'
 
 
 function SignIn() {
@@ -14,6 +14,7 @@ function SignIn() {
                                                         passwordMsg: ''
                                                     })
     const {setUser} = useContext(loggedUser)    
+    const {setCount} = useContext(countContext)    
     const loc = useLocation()                                                
 
     // input border styles
@@ -75,6 +76,7 @@ function SignIn() {
                                     orders: orders
                                 }
                                 setUser(user)
+                                setCount(user.bagItems.length)
                                 /**
                                  * redirect user to homepage ('/')
                                  * using loc.pathname to avoid losing the loggedUser data by using the redirect function

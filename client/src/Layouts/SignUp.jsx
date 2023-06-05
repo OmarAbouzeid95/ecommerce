@@ -1,7 +1,7 @@
 import {useState, useContext} from 'react'
 import { userSignOperation, findUser } from '../scripts/crudFunctions'
 import {Link, useLocation} from 'react-router-dom'
-import { loggedUser } from '../context'
+import { countContext, loggedUser } from '../context'
 
 
 function SignUp() {
@@ -19,6 +19,7 @@ function SignUp() {
                                                     })           
     
     const {setUser} = useContext(loggedUser)              
+    const {setCount} = useContext(countContext)              
     const loc = useLocation()                                    
     // password Regex                                                    
     const passwordRules = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/                                                    
@@ -124,6 +125,7 @@ function SignUp() {
                                     }
                                     // set user context
                                     setUser(user)
+                                    setCount(0)
                                     // redirect user to homepage
                                     loc.pathname = '/'
                                 })

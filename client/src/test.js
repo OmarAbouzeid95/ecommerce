@@ -1,5 +1,6 @@
 
-const a = undefined
+const user = {}
 
-const b = a ? true : false
-console.log(b)
+const result = user ? 'yes there is a user' : 'There is not'
+
+console.log(result)

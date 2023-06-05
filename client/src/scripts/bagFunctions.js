@@ -2,7 +2,7 @@ import { loadProductDetails } from "./loaderFunctions"
 import { updateBagItems } from "./crudFunctions"
 
 
-function addToBag(id, size, quantity, user, url) {
+async function addToBag(id, size, quantity, user, url) {
 
     let existing = false
     // searches for the item with the passed ID and adds to the bag
@@ -36,7 +36,8 @@ function addToBag(id, size, quantity, user, url) {
         return null
     }else{
         user = {...user, bagItems: bagItems}
-        updateBagItems(url, user).then(() => user)
+        const updatedUser = await updateBagItems(url, user)
+        return updatedUser
     }
 
     

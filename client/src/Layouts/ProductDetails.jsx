@@ -19,6 +19,11 @@ function ProductDetails() {
     const { user, setUser } = useContext(loggedUser)
     const url = `${process.env.REACT_APP_SERVER_URL}/updateBag`
 
+    async function addToUserBag(){
+        const updatedUser = await addToBag(data.id, size, quantity, user, url)
+        setUser(updatedUser)
+    }
+
     useEffect(() => {
         window.addEventListener('resize', () => {
             setWindowWidth(window.innerWidth)
@@ -69,7 +74,7 @@ function ProductDetails() {
                     if(size === ''){
                         setError(true)
                     }else {
-                        setUser(addToBag(data.id, size, quantity, user, url))
+                        addToUserBag()
                         setCount(bagCount(user))
                     }
                 }}>Add to bag</button>

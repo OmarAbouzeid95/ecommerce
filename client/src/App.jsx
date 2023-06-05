@@ -17,7 +17,7 @@ import SignUp from './Layouts/SignUp'
 
 
 // loader functions
-import { loadProductDetails, loadShopCategory, loadBagItems, loadSearchedKey, getCategory } from './scripts/loaderFunctions'
+import { loadProductDetails, loadShopCategory, loadSearchedKey, getCategory } from './scripts/loaderFunctions'
 
 function App() {
 
@@ -35,9 +35,6 @@ function App() {
         },
         {
           path: 'bag',
-          loader: ({params}) => {
-            return loadBagItems()
-          },
           element: <Bag />
         },
         {

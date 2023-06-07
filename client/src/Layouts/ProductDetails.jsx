@@ -1,14 +1,16 @@
 import { useLoaderData } from "react-router-dom";
 import {useState, useEffect, useRef, useContext} from 'react'
-import {countContext, loggedUser} from "../context";
+import {countContext, loggedUser} from "../context"
 
 
 // add to bag function
-import { addToBag, bagCount } from "../scripts/bagFunctions";
+import { addToBag, bagCount } from "../scripts/bagFunctions"
 
 // stars icons
-// import starFill from "../media/icons/star-solid.svg"
-// import starHollow from "../media/icons/star-regular.svg"
+import starFill from "../media/icons/star-solid.svg"
+import starHollow from "../media/icons/star-regular.svg"
+import halfStar from "../media/icons/star-half-stroke-solid.svg"
+import send from "../media/icons/paper-plane-solid.svg"
 
 function ProductDetails() {
 
@@ -33,7 +35,10 @@ function ProductDetails() {
         window.addEventListener('resize', () => {
             setWindowWidth(window.innerWidth)
         })
-    })
+
+
+
+    }, [])
 
     const imgsArray = data.imgArray.map(img => {
         return (<img key={key.current++} className={`otherProductImg ${(currentImg === img) ? 'selectedImg' : ''}`} src={img} alt="other product img"
@@ -84,6 +89,23 @@ function ProductDetails() {
                     }
                 }}>Add to bag</button>
                 <p>{data.description}</p>
+                <div className="productReviews">
+                    <div className="productReviewInfo flex-sb">
+                        <h3>Reviews(100)</h3>
+                        <div className="starsContainer">
+                            <p style={{marginRight: '0.5em'}}>4.7</p>
+                            <img src={starFill} alt="star icon" className="star-icon"/>
+                            <img src={halfStar} alt="star icon" className="star-icon"/>
+                            <img src={starHollow} alt="star icon" className="star-icon"/>
+                            <img src={starHollow} alt="star icon" className="star-icon"/>
+                            <img src={starHollow} alt="star icon" className="star-icon"/>
+                        </div>
+                    </div>
+                    <div className="inputContainer">
+                        <textarea className="reviewInput" placeholder="Write a review..."></textarea>
+                        <img src={send} alt="send icon" className="send-icon"/>
+                    </div>
+                </div>
             </div>
         </div>
     );

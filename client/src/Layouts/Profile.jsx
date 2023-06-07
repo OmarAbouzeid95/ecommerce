@@ -146,7 +146,7 @@ function Profile() {
 
             </div>
             <div className="profile-active-option">
-                <div className="user-info">
+                {(active === 'account') && <div className="user-info">
                     <h3>Account details</h3>
                     {errorMessage.generalMsg !== '' && <p style={errorMsgStyle}>{errorMessage.generalMsg}</p>}
                     <form>
@@ -188,8 +188,9 @@ function Profile() {
                         validateChanges()
                     }}>Save changes</button>
                     <p>{saveStatus}</p>
-                </div>
+                </div>}
                 {(active === 'orders') && <div className="user-orders">
+                    <h3>Orders</h3>
                     {allOrders}
                 </div>}
             </div>

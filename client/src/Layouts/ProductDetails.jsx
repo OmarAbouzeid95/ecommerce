@@ -6,6 +6,9 @@ import {countContext, loggedUser} from "../context"
 // add to bag function
 import { addToBag, bagCount } from "../scripts/bagFunctions"
 
+// crud functions
+import { findProduct, updateProduct } from "../scripts/crudFunctions"
+
 // stars icons
 import starFill from "../media/icons/star-solid.svg"
 import starHollow from "../media/icons/star-regular.svg"
@@ -20,6 +23,8 @@ function ProductDetails() {
     const [quantity, setQuantity] = useState(1)
     const [error, setError] = useState(false)
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+    const [review, setReview] = useState('')
+    const [details, setDetails] = useState({rating: 0, reviews: [], ratingCount: 0})
     const key = useRef(0)
     const {setCount} = useContext(countContext)
     const { user, setUser } = useContext(loggedUser)
@@ -36,8 +41,16 @@ function ProductDetails() {
             setWindowWidth(window.innerWidth)
         })
 
+        // get product details
+        findProduct(`${process.env.REACT_APP_SERVER_URL}/productDetails/${data.id}`)
+        .then(product => {
+            // found product
+            if(product){
+                setDetails({reviews: product.reviews, rating: product.rating, ratingCount: product.ratingCount})
+            }
+        })
 
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const imgsArray = data.imgArray.map(img => {
@@ -91,19 +104,23 @@ function ProductDetails() {
                 <p>{data.description}</p>
                 <div className="productReviews">
                     <div className="productReviewInfo flex-sb">
-                        <h3>Reviews(100)</h3>
+                        <h3>Reviews({details.reviews.length})</h3>
                         <div className="starsContainer">
-                            <p style={{marginRight: '0.5em'}}>4.7</p>
-                            <img src={starFill} alt="star icon" className="star-icon"/>
-                            <img src={halfStar} alt="star icon" className="star-icon"/>
-                            <img src={starHollow} alt="star icon" className="star-icon"/>
-                            <img src={starHollow} alt="star icon" className="star-icon"/>
-                            <img src={starHollow} alt="star icon" className="star-icon"/>
+                            <p style={{marginRight: '0.5em'}}>{details.rating}</p>
+                            <img src={details.rating >= 0.5 ? details.rating >= 1 ? starFill : halfStar : starHollow} alt="star icon" className="star-icon"/>
+                            <img src={details.rating >= 1.5 ? details.rating >= 2 ? starFill : halfStar : starHollow} alt="star icon" className="star-icon"/>
+                            <img src={details.rating >= 2.5 ? details.rating >= 3 ? starFill : halfStar : starHollow} alt="star icon" className="star-icon"/>
+                            <img src={details.rating >= 3.5 ? details.rating >= 4 ? starFill : halfStar : starHollow} alt="star icon" className="star-icon"/>
+                            <img src={details.rating >= 4.5 ? details.rating === 5 ? starFill : halfStar : starHollow} alt="star icon" className="star-icon"/>
                         </div>
                     </div>
                     <div className="inputContainer">
-                        <textarea className="reviewInput" placeholder="Write a review..."></textarea>
-                        <img src={send} alt="send icon" className="send-icon"/>
+                        <textarea className="reviewInput" placeholder="Write a review..." onChange={(e) => setReview(e.target.value)}></textarea>
+                        <img src={send} alt="send icon" className="send-icon" onClick={() => {
+                            // unshift last review
+                            details.reviews.unshift(review)
+                            updateProduct(`${process.env.REACT_APP_SERVER_URL}/updateProduct`, details, data.id)
+                        }}/>
                     </div>
                 </div>
             </div>

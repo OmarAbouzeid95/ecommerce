@@ -93,6 +93,49 @@ app.patch('/updateUser', (req, res) => {
   })
 })
 
+// find product details
+app.get('/productDetails/:id', (req, res) => {
+  const id = parseInt(req.params.id)
+  // check if product has reviews or ratings
+  products.findOne({id: id})
+  .then(product => {
+    res.status(200).json(product)
+  })
+  .catch(error => {
+    res.status(500).json({error: error})
+  })
+})
+
+app.patch('/updateProduct', (req ,res) => {
+  const {info, id} = req.body
+  // check if product exists in the db
+  products.findOne({id: id})
+  .then(product => {
+    // found product
+    if(product) {
+      products.updateOne({id: id}, {$set: {rating: info.rating, reviews: info.reviews, ratingCount: info.ratingCount}})
+      .then(() => {
+        res.status(200).json({result: 'success'})
+      })
+      .catch(error => {
+        res.status(500).json({error: error})
+      })
+    } else {
+      // no product found
+      products.insertOne({id: id, rating: info.rating, reviews: info.reviews, ratingCount: info.ratingCount})
+      .then(() => {
+        res.status(200).json({result: 'success'})
+      })
+      .catch(error => {
+        res.status(500).json({error: error})
+      })
+    }
+  })
+  .catch(error => {
+    res.status(500).json({error: error})
+  })
+})
+
 run().then(app.listen(PORT, () => console.log(`listening to port ${PORT}`)))
 
 

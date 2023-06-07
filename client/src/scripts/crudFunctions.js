@@ -41,5 +41,29 @@ async function updateUserData(url, user){
     return data
 }
 
+// find product function
+async function findProduct(url) {
+    const res = await fetch(url)
+    const data = await res.json()
+    return data
+}
 
-export {userSignOperation, findUser, updateBagItems, updateUserData}
+// updating product information
+async function updateProduct(url, info, id){
+    const sentData = {
+        info: info,
+        id: id
+    }
+    const res = await fetch(url, {
+        method: 'PATCH',
+        headers: {'Content-type' : 'application/json'},
+        body: JSON.stringify(sentData)
+    })
+
+    const data = await res.json()
+    return data
+}
+
+
+
+export {userSignOperation, findUser, updateBagItems, updateUserData, findProduct, updateProduct}

@@ -29,5 +29,17 @@ async function updateBagItems(url, user) {
     return data
 }
 
+// updating user information
+async function updateUserData(url, user){
+    const res = await fetch(url, {
+        method: 'PATCH',
+        headers: {'Content-type' : 'application/json'},
+        body: JSON.stringify(user)
+    })
 
-export {userSignOperation, findUser, updateBagItems}
+    const data = await res.json()
+    return data
+}
+
+
+export {userSignOperation, findUser, updateBagItems, updateUserData}

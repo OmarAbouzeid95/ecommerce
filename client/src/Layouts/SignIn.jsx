@@ -72,6 +72,7 @@ function SignIn() {
                                     lastName: lastName,
                                     id: _id,
                                     email: email,
+                                    password: password,
                                     bagItems: bagItems,
                                     orders: orders
                                 }

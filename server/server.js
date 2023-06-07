@@ -1,7 +1,7 @@
 
 const express = require('express')
 const cors = require('cors')
-const { MongoClient } = require('mongodb')
+const { MongoClient, ObjectId } = require('mongodb')
 require('dotenv').config()
 const app = express()
 const PORT = process.env.PORT || 3300
@@ -73,6 +73,20 @@ app.patch('/updateBag', (req,res) => {
   users.updateOne({email:email}, {$set: {bagItems: bagItems}})
   .then(result => {
     res.status(200).json(user)
+  })
+  .catch(error => {
+    res.status(500).json({error: error})
+  })
+})
+
+// updating user information
+app.patch('/updateUser', (req, res) => {
+  const {email, password, firstName, lastName, id} = req.body
+  // creating new objectId with the user id
+  const objId = new ObjectId(id)
+  users.updateOne({_id: objId}, {$set: {email: email, password: password, firstName: firstName, lastName: lastName}})
+  .then(() => {
+    res.status(200).json({result: 'success'})
   })
   .catch(error => {
     res.status(500).json({error: error})

@@ -104,7 +104,7 @@ function SignUp() {
                     if (errorStatus.emailMsg === '' && errorStatus.passwordMsg === '' && errorStatus.firstNameMsg === '' && errorStatus.lastNameMsg === ''){
 
                         // check if email exists in the database
-                        findUser(`${process.env.SERVER_URL}/user/${email}`)
+                        findUser(`${process.env.REACT_APP_SERVER_URL}/user/${email}`)
                         .then(user => {
                             if(user) {
                                 errorStatus.emailMsg = 'This email is already in use.'
@@ -119,6 +119,7 @@ function SignUp() {
                                         firstName: firstName,
                                         lastName: lastName,
                                         email: email,
+                                        password: password,
                                         bagItems: [],
                                         orders: []
                                     }

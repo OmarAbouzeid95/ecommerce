@@ -1,14 +1,16 @@
 
 import { useContext, useState } from 'react'
 import { useLocation, Link } from 'react-router-dom'
-import { loggedUser } from '../context'
+import { loggedUser, countContext } from '../context'
 
 // importing functions
 import { findUser, updateUserData } from '../scripts/crudFunctions'
+import { bagCount } from '../scripts/bagFunctions'
 
 function Profile() {
 
     const { user, setUser } = useContext(loggedUser)
+    const { setCount } = useContext(countContext)
     // state selecting active option
     const [active, setActive] = useState('account')
     const [profileData, setProfileData] = useState(user)
@@ -142,6 +144,7 @@ function Profile() {
                 <button style={(active === 'signOut') ? selected : null} className="profile-option-btn" onClick={() => {
                     loc.pathname = '/signIn'
                     setUser(null)
+                    setCount(bagCount(null))
                 }}>Sign out</button>
 
             </div>

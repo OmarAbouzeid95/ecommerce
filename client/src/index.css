@@ -67,16 +67,22 @@ img {
   width: 20px;
 }
 
-.send-icon {
+.send-icon, .del-icon {
   width: 20px;
   position: absolute;
   bottom: 13px;
   right: 10px;
 }
 
-.send-icon:hover {
+.send-icon:hover, .del-icon:hover {
   cursor: pointer;
 }
+
+.del-icon {
+  bottom: 5px;
+  right: 5px;
+}
+
 
 /* animations */
 @keyframes pop {
@@ -690,6 +696,22 @@ img {
 .reviewInput:focus {
   outline: none;
 }
+
+.reviewsContainer {
+  position: relative;
+  margin-top: 1em;
+}
+
+.reviewsContainer p {
+  font-size: 0.8rem;
+}
+
+.reviewWrapper {
+  padding: 0.35em 0;
+  border-bottom: 1px lightgray solid;
+}
+
+
 
 
 @media (max-width: 825px){

@@ -14,6 +14,7 @@ import starFill from "../media/icons/star-solid.svg"
 import starHollow from "../media/icons/star-regular.svg"
 import halfStar from "../media/icons/star-half-stroke-solid.svg"
 import send from "../media/icons/paper-plane-solid.svg"
+import del from "../media/icons/delete.svg"
 
 function ProductDetails() {
 
@@ -30,10 +31,23 @@ function ProductDetails() {
     const { user, setUser } = useContext(loggedUser)
     const url = `${process.env.REACT_APP_SERVER_URL}/updateBag`
 
+
     async function addToUserBag(){
         const updatedUser = await addToBag(data.id, size, quantity, user, url)
         setUser(updatedUser)
         setCount(bagCount(updatedUser))
+    }
+
+    function removeLocalReview(id, comment){
+
+        const result = []
+        details.reviews.forEach(review => {
+            if(!(review.review === comment && review.id === id)){
+                result.push(review)
+            }
+        })
+
+        return result
     }
 
     useEffect(() => {
@@ -63,6 +77,19 @@ function ProductDetails() {
     imgsArray.unshift(<img key={key.current++} className={`otherProductImg ${(currentImg === data.img) ? 'selectedImg' : ''}`} src={data.img} alt="other product img"
                         onClick={() => setCurrentImg(data.img)}
                         onMouseOver={() => setCurrentImg(data.img)}/>)
+
+    // reviews
+    const allReviews = details.reviews.map(review => {
+        return  <div className="reviewWrapper" key={Math.floor(Math.random()*100000)}>
+                    <h5>{review.name}</h5>
+                    <p>{review.review}</p>
+                    {(user && (review.id === user.id)) && <img src={del} alt="delete icon" className="del-icon" onClick={() => {
+                        const result = removeLocalReview(review.id, review.review)
+                        updateProduct(`${process.env.REACT_APP_SERVER_URL}/updateProduct`, {...details, reviews: result}, data.id)
+                        setDetails({...details, reviews: result})
+                        }}/>}
+                </div>
+    })
 
     return ( 
         <div className="productDetailsContainer">
@@ -115,12 +142,19 @@ function ProductDetails() {
                         </div>
                     </div>
                     <div className="inputContainer">
-                        <textarea className="reviewInput" placeholder="Write a review..." onChange={(e) => setReview(e.target.value)}></textarea>
+                        <textarea className="reviewInput" placeholder="Write a review..." value={review} onChange={(e) => setReview(e.target.value)}></textarea>
                         <img src={send} alt="send icon" className="send-icon" onClick={() => {
                             // unshift last review
-                            details.reviews.unshift(review)
-                            updateProduct(`${process.env.REACT_APP_SERVER_URL}/updateProduct`, details, data.id)
+                            const result = details.reviews
+                            console.log(result)
+                            result.unshift({name: user.firstName + ' ' + user.lastName, review: review, id: user.id})
+                            setDetails({...details, reviews: result})
+                            updateProduct(`${process.env.REACT_APP_SERVER_URL}/updateProduct`, {...details, reviews: result}, data.id)
+                            setReview('')
                         }}/>
+                    </div>
+                    <div className="reviewsContainer">
+                        {allReviews}
                     </div>
                 </div>
             </div>

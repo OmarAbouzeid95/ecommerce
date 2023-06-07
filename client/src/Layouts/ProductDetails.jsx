@@ -25,7 +25,9 @@ function ProductDetails() {
     const [error, setError] = useState(false)
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const [review, setReview] = useState('')
-    const [details, setDetails] = useState({rating: 0, reviews: [], ratingCount: 0})
+    const [details, setDetails] = useState({rating: 0, reviews: [], ratingCount: 0, totalRating: 0})
+    const [showRating, setShowRating] = useState(false)
+    const [userRating, setUserRating] = useState(0)
     const key = useRef(0)
     const {setCount} = useContext(countContext)
     const { user, setUser } = useContext(loggedUser)
@@ -50,6 +52,13 @@ function ProductDetails() {
         return result
     }
 
+    function updateRating() {
+        const newRating = Math.floor(((details.totalRating + userRating) / (details.ratingCount + 1))).toFixed(1)
+        const result = {...details, rating: newRating, totalRating: (details.totalRating + userRating), ratingCount: (details.ratingCount + 1)}
+        setDetails(result)
+        updateProduct(`${process.env.REACT_APP_SERVER_URL}/updateProduct`, result, data.id)
+    }
+
     useEffect(() => {
         window.addEventListener('resize', () => {
             setWindowWidth(window.innerWidth)
@@ -60,7 +69,7 @@ function ProductDetails() {
         .then(product => {
             // found product
             if(product){
-                setDetails({reviews: product.reviews, rating: product.rating, ratingCount: product.ratingCount})
+                setDetails({reviews: product.reviews, rating: product.rating, ratingCount: product.ratingCount, totalRating: product.totalRating})
             }
         })
 
@@ -142,6 +151,21 @@ function ProductDetails() {
                         </div>
                     </div>
                     <div className="inputContainer">
+                        {!showRating && <button className="rate-btn" onClick={() => setShowRating(true)}>Rate</button>}
+                        {showRating && <div className="flex-col">
+                            <div className="ratingContainer animate">
+                                <img src={userRating >= 1 ? starFill : starHollow} alt="star icon" className="star-icon" onClick={() => setUserRating(1)}/>
+                                <img src={userRating >= 2 ? starFill : starHollow} alt="star icon" className="star-icon" onClick={() => setUserRating(2)}/>
+                                <img src={userRating >= 3 ? starFill : starHollow} alt="star icon" className="star-icon" onClick={() => setUserRating(3)}/>
+                                <img src={userRating >= 4 ? starFill : starHollow} alt="star icon" className="star-icon" onClick={() => setUserRating(4)}/>
+                                <img src={userRating >= 5 ? starFill : starHollow} alt="star icon" className="star-icon" onClick={() => setUserRating(5)}/>
+                            </div>
+                            <button className="submit-btn" onClick={() => {
+                                setShowRating(false)
+                                updateRating()
+                            }}>Submit</button>
+                        </div>
+                        }
                         <textarea className="reviewInput" placeholder="Write a review..." value={review} onChange={(e) => setReview(e.target.value)}></textarea>
                         <img src={send} alt="send icon" className="send-icon" onClick={() => {
                             // unshift last review

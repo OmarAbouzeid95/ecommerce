@@ -57,6 +57,12 @@ img {
   align-items: center;
 }
 
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .allProductsWrapper {
   display: flex;
   justify-content: center;
@@ -74,7 +80,7 @@ img {
   right: 10px;
 }
 
-.send-icon:hover, .del-icon:hover {
+.send-icon:hover, .del-icon:hover, .rate-btn:hover {
   cursor: pointer;
 }
 
@@ -676,13 +682,16 @@ img {
   margin-bottom: 1.5em;
 }
 
-.starsContainer {
+.starsContainer, .ratingContainer {
   display: flex;
   align-items: center;
 }
 
 .inputContainer {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .reviewInput {
@@ -709,6 +718,12 @@ img {
 .reviewWrapper {
   padding: 0.35em 0;
   border-bottom: 1px lightgray solid;
+}
+
+
+.ratingContainer img {
+  margin-right: 3px;
+  width: 25px;
 }
 
 
@@ -758,7 +773,7 @@ img {
 
 }
 
-.addToBagBtn, .checkoutBtn, .allProductsBtn, .formSubmitBtn, .ui-saveBtn {
+.addToBagBtn, .checkoutBtn, .allProductsBtn, .formSubmitBtn, .ui-saveBtn, .rate-btn, .submit-btn {
   background: var(--primaryColor);
   color: white;
   text-decoration: none;
@@ -1141,7 +1156,19 @@ select:last-child {
   background: darkgray;
 }
 
+/* rate btn */
 
+.rate-btn {
+  width: 50%;
+  margin-bottom: 1.5em;
+}
+
+.submit-btn {
+  margin: 0.5em auto;
+  width: 100%;
+}
+
+ 
 
 
 

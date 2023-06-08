@@ -1,6 +1,6 @@
 import './index.css'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
-import {countContext, currentLoc, loggedUser} from './context'
+import {countContext, currentLoc, loggedUser, previousLoc} from './context'
 import {useState} from 'react'
 
 // layouts
@@ -85,15 +85,18 @@ function App() {
   const [loc, setLoc] = useState('/')
   const [user, setUser] = useState(null)
   const [count, setCount] = useState(bagCount(user))
+  const [prevLoc, setPrevLoc] = useState('')
 
   return (
     <div className="App">
       <loggedUser.Provider value={{user, setUser}}>
         <currentLoc.Provider value={{loc, setLoc}}>
-          <countContext.Provider value={{count, setCount}}>
-            <RouterProvider router={router} />
-          </countContext.Provider>
-        </currentLoc.Provider>
+          <previousLoc.Provider value={{prevLoc, setPrevLoc}}>
+            <countContext.Provider value={{count, setCount}}>
+              <RouterProvider router={router} />
+            </countContext.Provider>
+          </previousLoc.Provider>
+          </currentLoc.Provider>
       </loggedUser.Provider>
     </div>
   );

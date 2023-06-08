@@ -34,6 +34,7 @@ function Root() {
     const wallPapers = [homeWallpaperFull, homeWallpaperLarge, homeWallpaperSmall, mensFull, mensLarge,
                         mensSmall, womensFull, womensLarge, womensSmall, kidsFull, kidsLarge, kidsSmall]
 
+
     useEffect(() => {
         
         // resize event listener
@@ -60,6 +61,7 @@ function Root() {
     const loc = useLocation()
     
     return ( 
+        
         <div className="home">
             <Header />
             {/* Conditional rendering of the canvas ads if you're on the homepage */}
@@ -126,6 +128,7 @@ function Root() {
             </div>
             <Footer />
         </div>
+        
     );
 }
 

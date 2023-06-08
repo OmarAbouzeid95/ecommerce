@@ -1,6 +1,6 @@
 import {useState, useContext} from 'react'
 import {Link, useLocation} from 'react-router-dom'
-import { loggedUser } from '../context'
+import { loggedUser, previousLoc } from '../context'
 import { userSignOperation, findUser } from '../scripts/crudFunctions'
 
 
@@ -18,8 +18,9 @@ function SignUp() {
                                                         passwordMsg: '',                                    
                                                     })           
     
-    const {setUser} = useContext(loggedUser)                          
-    const loc = useLocation()                                    
+    const {setUser} = useContext(loggedUser)  
+    const {prevLoc, setPrevLoc} = useContext(previousLoc)
+    const location = useLocation()                                    
     // password Regex                                                    
     const passwordRules = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/                                                    
     const isValidPassword = (str) => passwordRules.test(str)    
@@ -126,7 +127,12 @@ function SignUp() {
                                     // set user context
                                     setUser(user)
                                     // redirect user to homepage
-                                    loc.pathname = '/'
+                                    if(prevLoc !== '') {
+                                        location.pathname = prevLoc
+                                        setPrevLoc('')
+                                    }else{
+                                        location.pathname = '/'
+                                    }
                                 })
                                 .catch(error => {
                                     errorStatus.generalMsg = 'There was a problem signing up, please try again.'

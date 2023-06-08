@@ -1,7 +1,7 @@
 import {useState, useContext} from 'react'
 import { userSignOperation } from '../scripts/crudFunctions';
 import {Link, useLocation} from 'react-router-dom'
-import {loggedUser, countContext} from '../context'
+import {loggedUser, countContext, previousLoc} from '../context'
 
 
 function SignIn() {
@@ -14,8 +14,9 @@ function SignIn() {
                                                         passwordMsg: ''
                                                     })
     const {setUser} = useContext(loggedUser)    
-    const {setCount} = useContext(countContext)    
-    const loc = useLocation()                                                
+    const {setCount} = useContext(countContext)  
+    const {prevLoc, setPrevLoc} = useContext(previousLoc)
+    const location = useLocation()                                       
 
     // input border styles
     const normalStyle = {
@@ -80,9 +81,14 @@ function SignIn() {
                                 setCount(user.bagItems.length)
                                 /**
                                  * redirect user to homepage ('/')
-                                 * using loc.pathname to avoid losing the loggedUser data by using the redirect function
+                                 * using location.pathname to avoid losing the loggedUser data by using the redirect function
                                  */
-                                loc.pathname = '/'
+                                if(prevLoc !== '') {
+                                    location.pathname = prevLoc
+                                    setPrevLoc('')
+                                }else{
+                                    location.pathname = '/'
+                                }
                             }else{
                             // user not found
                             errorStatus.generalMsg = 'Incorrect email or password.'

@@ -1,6 +1,6 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useLocation } from "react-router-dom";
 import {useState, useEffect, useRef, useContext} from 'react'
-import {countContext, loggedUser} from "../context"
+import {countContext, loggedUser, previousLoc} from "../context"
 
 
 // add to bag function
@@ -31,7 +31,9 @@ function ProductDetails() {
     const key = useRef(0)
     const {setCount} = useContext(countContext)
     const { user, setUser } = useContext(loggedUser)
+    const { setPrevLoc } = useContext(previousLoc)
     const url = `${process.env.REACT_APP_SERVER_URL}/updateBag`
+    const location = useLocation()
 
 
     async function addToUserBag(){
@@ -161,20 +163,32 @@ function ProductDetails() {
                                 <img src={userRating >= 5 ? starFill : starHollow} alt="star icon" className="star-icon" onClick={() => setUserRating(5)}/>
                             </div>
                             <button className="submit-btn" onClick={() => {
-                                setShowRating(false)
-                                updateRating()
+                                // if user is not signed in redirect to signIn page
+                                if(!user){
+                                    setPrevLoc(location.pathname)
+                                    location.pathname = '/signIn'
+                                }else {
+                                    setShowRating(false)
+                                    updateRating()
+                                }
                             }}>Submit</button>
                         </div>
                         }
                         <textarea className="reviewInput" placeholder="Write a review..." value={review} onChange={(e) => setReview(e.target.value)}></textarea>
                         <img src={send} alt="send icon" className="send-icon" onClick={() => {
-                            // unshift last review
-                            const result = details.reviews
-                            console.log(result)
-                            result.unshift({name: user.firstName + ' ' + user.lastName, review: review, id: user.id})
-                            setDetails({...details, reviews: result})
-                            updateProduct(`${process.env.REACT_APP_SERVER_URL}/updateProduct`, {...details, reviews: result}, data.id)
-                            setReview('')
+                            // if user is not signed in redirect to signIn page
+                            if(!user){
+                                setPrevLoc(location.pathname)
+                                location.pathname = '/signIn'
+                            }else{
+                                // unshift last review
+                                const result = details.reviews
+                                console.log(result)
+                                result.unshift({name: user.firstName + ' ' + user.lastName, review: review, id: user.id})
+                                setDetails({...details, reviews: result})
+                                updateProduct(`${process.env.REACT_APP_SERVER_URL}/updateProduct`, {...details, reviews: result}, data.id)
+                                setReview('')
+                            }
                         }}/>
                     </div>
                     <div className="reviewsContainer">

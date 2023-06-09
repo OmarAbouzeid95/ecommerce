@@ -66,15 +66,19 @@ function loadSearchedKey(keyword){
 
     //transform keyword to lowercase
     keyword = (keyword !== 'all-products') ? keyword.toLowerCase() : ''
+    const keywordList = (keyword !== '') ? keyword.split(' ') : ['']
+    // check if keyword is more than one word
+    
     // traverse the whole db and checking if key is matching the keyword
     let result = []
-    for (const category in db) {
-        // filtering the category array if product name contains the keyword and concatinating to the result array
-        const filtered = db[category].filter(product => (product.name.toLowerCase().includes(keyword)))
-        result = result.concat(filtered)
-    }
-
-
+    keywordList.forEach(keyword => {
+        for (const category in db) {
+            // filtering the category array if product name contains the keyword and concatinating to the result array
+            const filtered = db[category].filter(product => (product.name.toLowerCase().includes(keyword)))
+            result = result.concat(filtered)
+        }
+    })
+    
     return {result, keyword}
 }
 

@@ -14,6 +14,7 @@ import ShopCategory from './Layouts/ShopCategory'
 import Search from './Layouts/Search'
 import SignIn from './Layouts/SignIn'
 import SignUp from './Layouts/SignUp'
+import Checkout from './Layouts/Checkout'
 
 
 // loader functions
@@ -76,6 +77,10 @@ function App() {
         {
           path: 'signUp',
           element: <SignUp />
+        },
+        {
+          path: 'checkout',
+          element: <Checkout />
         },
       ],
       errorElement: <ErrorPage />

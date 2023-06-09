@@ -4,6 +4,7 @@
 :root {
   --primaryColor: #111111;
   --red-color: #da3f3f;
+  --background-color: #f6f6f6;
 }
 
 * {
@@ -24,6 +25,7 @@ img {
 .App {
   height: 100vh;
   margin-top: 109px;
+  background-color: var(--background-color);
 }
 
 @media (max-width: 560px){
@@ -37,6 +39,7 @@ img {
   max-width: 1598px;
   margin: 0 auto;
   padding: 1.5em 1.5em;
+  background-color: var(--background-color);
 }
 
 
@@ -116,7 +119,7 @@ img {
 .errorPage {
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0, 0.73) url('./media/lost.jpeg');
+  background: rgba(0,0,0, 0.73) url('./media/undraw_lost.svg');
   background-blend-mode: darken;
   background-position: center center;
   background-size: cover;
@@ -429,19 +432,32 @@ img {
 
 /* contact us page */
 .contact {
-  position: relative;
-}
-
-.contactImage{
-  width: 70%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 800px;
   margin: 0 auto;
 }
 
-.contactInfo{
-  position: absolute;
-  width: 100%;
+.contactInfo {
+  margin-right: 0.5em;  
+}
+
+.contactImage {
+  width: 400px;
+}
+
+.contact-link {
   display: flex;
-  z-index: 2;
+}
+
+.contact-link a {
+  color: var(--primaryColor)
+}
+
+.contact-link img {
+  width: 20px;
+  margin-right: 10px;
 }
 
 /* canvas */
@@ -900,6 +916,10 @@ select:last-child {
   position: relative;
 }
 
+.wallpaper img {
+  margin-bottom: -10px;
+}
+
 .wallpaperContent {
   position: absolute;
   bottom: 1em;
@@ -1083,6 +1103,7 @@ select:last-child {
   margin-bottom: 0.25em;
   padding: 0.15em;
   text-indent: 5px;
+  background-color: transparent;
 }
 
 .formInputContainer input:focus {
@@ -1143,6 +1164,11 @@ select:last-child {
 
 .ui-input-container input {
   width: 275px;
+  background-color: transparent;
+  border: 0.75px solid black;
+  border-radius: 0.35em;
+  padding: 0.15em;
+  text-indent: 3px;
 }
 
 .ui-input-container input:focus {
@@ -1169,7 +1195,163 @@ select:last-child {
   width: 100%;
 }
 
+/* checkout layout */
+
+.modal {
+  width: fit-content;
+  height: fit-content;
+  background: #FFFFFF;
+  box-shadow: 0px 187px 75px rgba(0, 0, 0, 0.01), 0px 105px 63px rgba(0, 0, 0, 0.05), 0px 47px 47px rgba(0, 0, 0, 0.09), 0px 12px 26px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 26px;
+  max-width: 450px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.payment--options {
+  width: calc(100% - 40px);
+  display: grid;
+  grid-template-columns: 33% 34% 33%;
+  gap: 20px;
+  padding: 10px;
+}
+
+.payment--options div {
+  height: 55px;
+  background: #F2F2F2;
+  border-radius: 11px;
+  padding: 0;
+  border: 0;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.payment--options div img {
+  width: 50px;
+}
+
+.payment--options div:first-child img{
+  width: 25px;
+}
+
+.separator {
+  width: calc(100% - 20px);
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 10px;
+  color: #8B8E98;
+  margin: 0 10px;
+}
+
+.separator > p {
+  word-break: keep-all;
+  display: block;
+  text-align: center;
+  font-weight: 600;
+  font-size: 11px;
+  margin: auto;
+}
+
+.separator .line {
+  display: inline-block;
+  width: 100%;
+  height: 1px;
+  border: 0;
+  background-color: #e8e8e8;
+  margin: auto;
+}
+
+.credit-card-info--form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input_container {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+  gap: 15px;
+}
+
+.split input {
+  width: 100%;
+}
+
+.input_label {
+  font-size: 10px;
+  color: #8B8E98;
+  font-weight: 600;
+}
+
+.input_field {
+  width: auto;
+  height: 40px;
+  padding: 0 0 0 16px;
+  border-radius: 9px;
+  outline: none;
+  background-color: #F2F2F2;
+  border: 1px solid #e5e5e500;
+  transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+}
+
+.input_field:focus {
+  border: 1px solid transparent;
+  box-shadow: 0px 0px 0px 2px #242424;
+  background-color: transparent;
+}
+
+.purchase--btn {
+  height: 55px;
+  background: #F2F2F2;
+  border-radius: 11px;
+  border: 0;
+  outline: none;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  background: linear-gradient(180deg, #363636 0%, #1B1B1B 50%, #000000 100%);
+  box-shadow: 0px 0px 0px 0px #FFFFFF, 0px 0px 0px 0px #000000;
+  transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+}
+
+.purchase--btn:hover {
+  box-shadow: 0px 0px 0px 2px #FFFFFF, 0px 0px 0px 4px #0000003a;
+}
+
+/* Reset input number styles */
+.input_field::-webkit-outer-spin-button,
+.input_field::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* .input_field[type=number] {
+  -moz-appearance: textfield;
+} */
  
+.payment-logo {
+  object-fit: contain;
+}
+
+.checkout {
+  max-width: 500px;
+  margin: 1.5em auto;
+}
 
 
 

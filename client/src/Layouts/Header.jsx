@@ -91,7 +91,7 @@ function Header() {
         }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [windowWidth, navStatus, searchBar, user])
+    }, [windowWidth, navStatus, searchBar, user, count])
 
     return (
         <div className="headerWrapper">

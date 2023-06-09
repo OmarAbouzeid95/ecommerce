@@ -8,10 +8,12 @@ function Bag() {
     // state for products and total price
     const { user } = useContext(loggedUser)
     const { loc } = useContext(currentLoc)
-    const [products, setProducts] = useState(user ? user.bagItems : [])
+    const [products, setProducts] = useState(user ? user.bagItems : JSON.parse(localStorage.getItem('bagItems')) ? JSON.parse(localStorage.getItem('bagItems')) : [])
     const [deliveryFee, setDeliveryFee] = useState(4.99)
     const [total, setTotal] = useState(0)
     const {setCount} = useContext(countContext)
+
+    console.log(products)
 
 
     // function to update the products
@@ -60,7 +62,6 @@ function Bag() {
             products.forEach(product => {
                 count += product.quantity
             })
-
             setCount(count)
         }else{
             setTotal(0)

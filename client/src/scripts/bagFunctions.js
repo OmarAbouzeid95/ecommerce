@@ -62,7 +62,7 @@ async function updateBagQuantity(id, size, quantity, user, url) {
     if(!user){
         // updating localStorage
         localStorage.setItem('bagItems', JSON.stringify(result))
-        return null
+        return user
     }else{
         user = {...user, bagItems: result}
         const updatedUser = await updateBagItems(url, user)
@@ -85,7 +85,7 @@ async function removeFromBag(id, size, user, url) {
 
     if(!user){
         // setting the localStorage attribute to the array
-        localStorage.setItem('bagItems', JSON.stringify(bagItems))
+        localStorage.setItem('bagItems', JSON.stringify(result))
         return null
     }else{
         user = {...user, bagItems: result}

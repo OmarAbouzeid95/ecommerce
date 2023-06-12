@@ -2,9 +2,9 @@ import {Link} from 'react-router-dom'
 import Header from './Header'
 import Footer from './Footer'
 
-function ErrorPage() {
+function ErrorPage({outletHeight}) {
     return ( 
-        <div className="errorPage-wrapper">
+        <div className="errorPage-wrapper" style={{minHeight: outletHeight}}>
             <Header />
             <div className="errorPage">
                 <div>

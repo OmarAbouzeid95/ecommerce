@@ -101,7 +101,7 @@ function App() {
             element: <Checkout />
           },
         ],
-        errorElement: <ErrorPage />
+        errorElement: <ErrorPage outletHeight={outletHeight}/>
       }
     ])
 

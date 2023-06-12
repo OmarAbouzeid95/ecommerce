@@ -45,7 +45,7 @@ function SignIn({outletHeight}) {
                     {errorMessage.emailMsg !== '' && <p style={errorMsgStyle}>{errorMessage.emailMsg}</p>}
                 </div>
                 <div className="formInputContainer">
-                    <input type="text" placeholder="Password" required min="8" max="30" style={errorMessage.passwordMsg === '' ? normalStyle : errorStyle} onChange={(e) => setPassword(e.target.value)}/>
+                    <input type="password" placeholder="Password" style={errorMessage.passwordMsg === '' ? normalStyle : errorStyle} onChange={(e) => setPassword(e.target.value)}/>
                     {/* Conditional rendering of error password message */}
                     {errorMessage.passwordMsg !== '' && <p style={errorMsgStyle}>{errorMessage.passwordMsg}</p>}
                 </div>

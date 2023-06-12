@@ -2,6 +2,7 @@ import {useState, useContext} from 'react'
 import {Link, useLocation} from 'react-router-dom'
 import { loggedUser, previousLoc } from '../context'
 import { userSignOperation, findUser } from '../scripts/crudFunctions'
+import Loader from '../Components/Loader'
 
 
 function SignUp({outletHeight}) {
@@ -10,6 +11,7 @@ function SignUp({outletHeight}) {
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [showLoader, setShowLoader] = useState(false)
     const [errorMessage, setErrorMessage] = useState({
                                                         generalMsg: '',
                                                         firstNameMsg: '',
@@ -43,6 +45,7 @@ function SignUp({outletHeight}) {
 
     return (  
         <div className="signInContainer" style={{minHeight: outletHeight}}>
+            {showLoader && <Loader />}
             <form className="formContainer">
                 <h2 style={{textAlign:'center', paddingBottom: '1em'}}>Become a member</h2>
                 {errorMessage.generalMsg !== '' && <p style={errorMsgStyle}>{errorMessage.generalMsg}</p>}
@@ -62,7 +65,7 @@ function SignUp({outletHeight}) {
                     {errorMessage.emailMsg !== '' && <p style={errorMsgStyle}>{errorMessage.emailMsg}</p>}
                 </div>
                 <div className="formInputContainer">
-                    <input type="text" placeholder="Password" required min="8" max="30" style={errorMessage.passwordMsg === '' ? normalStyle : errorStyle} onChange={(e) => setPassword(e.target.value)}/>
+                    <input type="password" placeholder="Password" style={errorMessage.passwordMsg === '' ? normalStyle : errorStyle} onChange={(e) => setPassword(e.target.value)}/>
                     {/* Conditional rendering of error password message */}
                     {errorMessage.passwordMsg !== '' && <p style={errorMsgStyle}>{errorMessage.passwordMsg}</p>}
                 </div>
@@ -75,6 +78,8 @@ function SignUp({outletHeight}) {
                         passwordMsg: ''
                     }
                     e.preventDefault()
+                    // showLoader
+                    setShowLoader(true)
                     // validating email and password are not empty and valid
                     if(!email.includes('@') || !email.includes('.') || email.length < 10) {
                         errorStatus.emailMsg = 'Please enter a valid email address.'
@@ -136,15 +141,18 @@ function SignUp({outletHeight}) {
                                 })
                                 .catch(error => {
                                     errorStatus.generalMsg = 'There was a problem signing up, please try again.'
+                                    setShowLoader(false)
                                     setErrorMessage(errorStatus)
                                 })
                                     }
                                 })
                                 .catch(error => {
                                     errorStatus.generalMsg = 'There was a problem signing up, please try again.'
+                                    setShowLoader(false)
                                     setErrorMessage(errorStatus)
                                 })
                                 }else {
+                                    setShowLoader(false)
                                     setErrorMessage(errorStatus)
                                 }
 

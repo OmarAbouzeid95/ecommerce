@@ -41,7 +41,7 @@ function Checkout() {
                     </div>
                     </div>
                 </div>
-                    <button className="purchase--btn">Checkout</button>
+                    <button className="purchase--btn" onClick={(e) => e.preventDefault()}>Checkout</button>
                 </form>
             </div>
         </div>

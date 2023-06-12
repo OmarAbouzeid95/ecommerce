@@ -2,12 +2,14 @@ import {useState, useContext} from 'react'
 import { userSignOperation } from '../scripts/crudFunctions';
 import {Link, useLocation} from 'react-router-dom'
 import {loggedUser, countContext, previousLoc} from '../context'
+import Loader from '../Components/Loader'
 
 
 function SignIn({outletHeight}) {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [showLoader, setShowLoader] = useState(false)
     const [errorMessage, setErrorMessage] = useState({
                                                         generalMsg: '',
                                                         emailMsg: '',
@@ -33,6 +35,7 @@ function SignIn({outletHeight}) {
 
     return (  
         <div className="signInContainer" style={{minHeight: outletHeight}}>
+            {showLoader && <Loader />}
             <form className="formContainer">
                 <h2 style={{textAlign:'center', paddingBottom: '1em'}}>Your account to <span style={{textTransform: 'uppercase'}}>everything</span></h2>
                 {errorMessage.generalMsg !== '' && <p style={errorMsgStyle}>{errorMessage.generalMsg}</p>}
@@ -53,6 +56,8 @@ function SignIn({outletHeight}) {
                         passwordMsg: ''
                     }
                     e.preventDefault()
+                    // showLoader
+                    setShowLoader(true)
                     // validating email and password are not empty and valid
                     if(!email.includes('@') || !email.includes('.') || email.length < 10) {
                         errorStatus.emailMsg = 'Please enter a valid email address.'
@@ -94,13 +99,16 @@ function SignIn({outletHeight}) {
                             // user not found
                             errorStatus.generalMsg = 'Incorrect email or password.'
                             }
+                            setShowLoader(false)
                             setErrorMessage(errorStatus)
                         })
                         .catch(error => {
                             errorStatus.generalMsg = 'There was a problem signing in, please try again.'
+                            setShowLoader(false)
                             setErrorMessage(errorStatus)
                         })
                     }else {
+                        setShowLoader(false)
                         setErrorMessage(errorStatus)
                     }
 

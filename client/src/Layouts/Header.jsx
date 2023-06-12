@@ -2,6 +2,7 @@ import {NavLink, Link} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import shoppingBag from '../media/icons/shoppingBag.png'
 import searchIcon from '../media/icons/searchIcon.png'
+// import logo from '../media/logo.png'
 import {countContext, loggedUser} from '../context'
 import { useContext } from 'react'
 import {redirect} from '../scripts/loaderFunctions'
@@ -97,7 +98,7 @@ function Header() {
         <div className="headerWrapper">
             <div className="headerNav">
                 <div>
-                    <NavLink to="/" className="headerTitle">ecommerce</NavLink>
+                    <NavLink to="/" className="headerTitle"><h3>Style Hub</h3></NavLink>
                     {(windowWidth < 561) && <nav className={navStatus}>
                         <NavLink to={user ? 'profile' : 'signIn'} className="navLink" onClick={() => {
                                 toggleNavIcon()

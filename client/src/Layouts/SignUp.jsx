@@ -4,7 +4,7 @@ import { loggedUser, previousLoc } from '../context'
 import { userSignOperation, findUser } from '../scripts/crudFunctions'
 
 
-function SignUp() {
+function SignUp({outletHeight}) {
 
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
@@ -42,9 +42,9 @@ function SignUp() {
     const errorMsgStyle = {color: '#da3f3f', fontSize: '0.8rem', paddingLeft: '5px'}
 
     return (  
-        <div className="signInContainer">
+        <div className="signInContainer" style={{minHeight: outletHeight}}>
             <form className="formContainer">
-                <h4 style={{textAlign:'center'}}>Become a member</h4>
+                <h2 style={{textAlign:'center', paddingBottom: '1em'}}>Become a member</h2>
                 {errorMessage.generalMsg !== '' && <p style={errorMsgStyle}>{errorMessage.generalMsg}</p>}
                 <div className="formInputContainer">
                     <input type="text" placeholder="First name" required style={errorMessage.firstNameMsg === '' ? normalStyle : errorStyle} onChange={(e) => setFirstName(e.target.value)}/>

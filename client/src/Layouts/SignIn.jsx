@@ -4,7 +4,7 @@ import {Link, useLocation} from 'react-router-dom'
 import {loggedUser, countContext, previousLoc} from '../context'
 
 
-function SignIn() {
+function SignIn({outletHeight}) {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -16,7 +16,8 @@ function SignIn() {
     const {setUser} = useContext(loggedUser)    
     const {setCount} = useContext(countContext)  
     const {prevLoc, setPrevLoc} = useContext(previousLoc)
-    const location = useLocation()                                       
+    const location = useLocation()    
+
 
     // input border styles
     const normalStyle = {
@@ -31,9 +32,9 @@ function SignIn() {
     const errorMsgStyle = {color: '#da3f3f', fontSize: '0.8rem', paddingLeft: '5px'}
 
     return (  
-        <div className="signInContainer">
+        <div className="signInContainer" style={{minHeight: outletHeight}}>
             <form className="formContainer">
-                <h4 style={{textAlign:'center'}}>Your account to everything</h4>
+                <h2 style={{textAlign:'center', paddingBottom: '1em'}}>Your account to <span style={{textTransform: 'uppercase'}}>everything</span></h2>
                 {errorMessage.generalMsg !== '' && <p style={errorMsgStyle}>{errorMessage.generalMsg}</p>}
                 <div className="formInputContainer">
                     <input type="email" placeholder="Email address" required style={errorMessage.emailMsg === '' ? normalStyle : errorStyle} onChange={(e) => setEmail(e.target.value)}/>

@@ -1,15 +1,17 @@
 import { useLoaderData } from "react-router-dom";
 import ProductGrid from "../Components/ProductGrid";
 
-function Search() {
+function Search({outletHeight}) {
     
     const data = useLoaderData()
     return ( 
-        <div className="shopCategory"> 
+        <div className="shopSearch" style={{minHeight: outletHeight}}> 
+            <div>
                 <h2 style={{textAlign:'center', marginBottom: '0.5em'}}>{(data.keyword === '') ? 'All products' : ((data.result.length > 0) ? data.result.length : 'No') + ` result${(data.result.length === 1 ? '' : 's')} found for "${data.keyword}"`}</h2>
                 <ProductGrid list={data.result}/>
+            </div>
             </div>
     );
 }
 
-export default Search;
+export default Search

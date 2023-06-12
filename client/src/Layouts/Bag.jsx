@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import BagItem from '../Components/BagItem'
 import {countContext, currentLoc, loggedUser} from '../context';
 import {useState, useEffect, useContext} from 'react'
+import { redirect } from '../scripts/loaderFunctions';
 
 function Bag() {
 
@@ -12,9 +13,6 @@ function Bag() {
     const [deliveryFee, setDeliveryFee] = useState(4.99)
     const [total, setTotal] = useState(0)
     const {setCount} = useContext(countContext)
-
-    console.log(products)
-
 
     // function to update the products
     function updateQuantity(id, size, quantity) {
@@ -102,7 +100,9 @@ function Bag() {
                         <p>Total</p>
                         <p>${((total * 1.13) + deliveryFee).toFixed(2)}</p>
                     </div>
-                    <button className="checkoutBtn" disabled={(products.length > 0) ? false : true }>Checkout</button>
+                    <button className="checkoutBtn" disabled={(products.length > 0) ? false : true } onClick={() => {
+                        redirect('/checkout')
+                        }}>Checkout</button>
                 </div>
             </div>
         </div>

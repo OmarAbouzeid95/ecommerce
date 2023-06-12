@@ -23,16 +23,10 @@ img {
 
 /* App component */
 .App {
-  height: 100vh;
   margin-top: 109px;
   background-color: var(--background-color);
 }
 
-@media (max-width: 560px){
-  .App {
-    margin-top: 72px;
-  }
-}
 
 /* outlet */
 .outletWrapper{
@@ -378,7 +372,6 @@ img {
   justify-content: space-between;
   align-items: center;
   max-width: 560px;
-  margin: 0 auto;
 }
 
 #footerWrapper {
@@ -797,6 +790,7 @@ img {
   border: none;
   border-radius: 1.5em;
   margin-bottom: 3em;
+  text-align: center;
 }
 
 .addToBagBtn {
@@ -1082,8 +1076,16 @@ select:last-child {
 
 /* Sign in form */
 
+.signInContainer {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -1em;
+}
+
 .formContainer {
-  max-width: 250px;
+  width: 275px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -1351,6 +1353,17 @@ select:last-child {
 .checkout {
   max-width: 500px;
   margin: 1.5em auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Shop search */
+
+.shopSearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 

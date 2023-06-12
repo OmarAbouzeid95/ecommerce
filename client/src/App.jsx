@@ -1,7 +1,7 @@
 import './index.css'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import {countContext, currentLoc, loggedUser, previousLoc} from './context'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 // layouts
 import ErrorPage from './Layouts/ErrorPage'
@@ -23,74 +23,88 @@ import { bagCount } from '../src/scripts/bagFunctions'
 
 function App() {
 
-  // React router
-  const router = createBrowserRouter([
-    {
-      // homepage
-      path: '/',
-      element: <Root />,
-      children: [
-        {
-          path: 'contact',
-          element: <Contact />
-        },
-        {
-          path: 'bag',
-          element: <Bag />
-        },
-        {
-          path: 'profile',
-          element: <Profile />
-        },
-        {
-          path: 'product/details/:id',
-          loader: ({params}) => {
-            return loadProductDetails(params.id)
-          },
-          element: <ProductDetails />
-        },
-        {
-          path: 'shop/:category',
-          loader: ({params}) => {
-            return loadShopCategory(params.category)
-          },
-          element: <ShopCategory/>
-        },
-        {
-          path: 'search/:keyword',
-          loader: ({params}) => {
-            return loadSearchedKey(params.keyword)
-          },
-          element: <Search />
-        },
-        {
-          path: 'shop/collection/:category',
-          loader: ({params}) => {
-            return getCategory(params.category)
-          },
-          element: <ShopCategory/>
-        },
-        {
-          path: 'signIn',
-          element: <SignIn />
-        },
-        {
-          path: 'signUp',
-          element: <SignUp />
-        },
-        {
-          path: 'checkout',
-          element: <Checkout />
-        },
-      ],
-      errorElement: <ErrorPage />
-    }
-  ])
-
   const [loc, setLoc] = useState('/')
   const [user, setUser] = useState(null)
   const [count, setCount] = useState(bagCount(user))
   const [prevLoc, setPrevLoc] = useState('')
+  const [windowSize, setWindowSize] = useState({width: window.innerWidth, height: window.innerHeight})
+
+
+  useEffect(() => {
+
+    // resize event listener
+    window.addEventListener('resize', () => {
+      setWindowSize({width: window.innerWidth, height: window.innerHeight})
+  })
+
+  }, [])
+
+  const outletHeight = (windowSize.width > 560) ? (windowSize.height - (109 + 180))  : (windowSize.height - (72 + 321))
+
+    // React router
+    const router = createBrowserRouter([
+      {
+        // homepage
+        path: '/',
+        element: <Root outletHeight={outletHeight} />,
+        children: [
+          {
+            path: 'contact',
+            element: <Contact />
+          },
+          {
+            path: 'bag',
+            element: <Bag />
+          },
+          {
+            path: 'profile',
+            element: <Profile />
+          },
+          {
+            path: 'product/details/:id',
+            loader: ({params}) => {
+              return loadProductDetails(params.id)
+            },
+            element: <ProductDetails />
+          },
+          {
+            path: 'shop/:category',
+            loader: ({params}) => {
+              return loadShopCategory(params.category)
+            },
+            element: <ShopCategory />
+          },
+          {
+            path: 'search/:keyword',
+            loader: ({params}) => {
+              return loadSearchedKey(params.keyword)
+            },
+            element: <Search outletHeight={outletHeight}/>
+          },
+          {
+            path: 'shop/collection/:category',
+            loader: ({params}) => {
+              return getCategory(params.category)
+            },
+            element: <ShopCategory />
+          },
+          {
+            path: 'signIn',
+            element: <SignIn outletHeight={outletHeight}/>
+          },
+          {
+            path: 'signUp',
+            element: <SignUp outletHeight={outletHeight}/>
+          },
+          {
+            path: 'checkout',
+            element: <Checkout />
+          },
+        ],
+        errorElement: <ErrorPage />
+      }
+    ])
+
 
   return (
     <div className="App">

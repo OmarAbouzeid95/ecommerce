@@ -28,7 +28,7 @@ import summerAdSmall from '../media/wallpapers/summer_ad_small.webp'
 
 import ScrollToTop from '../Components/ScrollToTop'
 
-function Root({outletHeight}) {
+function Root() {
 
 
     const wallPapers = [homeWallpaperFull, homeWallpaperLarge, homeWallpaperSmall, mensFull, mensLarge,
@@ -106,7 +106,7 @@ function Root({outletHeight}) {
                 {(windowSize.width <= 720) && <img src={kidsSmall} alt="home wallpaper"/>}
             </div>}
 
-            <div className="outletWrapper"  style={{minHeight: outletHeight}}>
+            <div className="outletWrapper" >
                 {(loc.pathname === '/') && <ProductList list={summerWear} title='New Arrivals'/>}
                 {/* Conditional rendering for kids wallpaper */}
                 {(loc.pathname === '/') && <div className="wallpaper">

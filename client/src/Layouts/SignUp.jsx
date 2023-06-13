@@ -5,7 +5,7 @@ import { userSignOperation, findUser } from '../scripts/crudFunctions'
 import Loader from '../Components/Loader'
 
 
-function SignUp({outletHeight}) {
+function SignUp() {
 
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
@@ -44,7 +44,7 @@ function SignUp({outletHeight}) {
     const errorMsgStyle = {color: '#da3f3f', fontSize: '0.8rem', paddingLeft: '5px'}
 
     return (  
-        <div className="signInContainer" style={{minHeight: outletHeight}}>
+        <div className="signInContainer" >
             {showLoader && <Loader />}
             <form className="formContainer">
                 <h2 style={{textAlign:'center', paddingBottom: '1em'}}>Become a member</h2>

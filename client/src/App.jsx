@@ -1,7 +1,7 @@
 import './index.css'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import {countContext, currentLoc, loggedUser, previousLoc} from './context'
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 
 // layouts
 import ErrorPage from './Layouts/ErrorPage'
@@ -27,26 +27,13 @@ function App() {
   const [user, setUser] = useState(null)
   const [count, setCount] = useState(bagCount(user))
   const [prevLoc, setPrevLoc] = useState('')
-  const [windowSize, setWindowSize] = useState({width: window.innerWidth, height: window.innerHeight})
-
-
-  useEffect(() => {
-
-    // resize event listener
-    window.addEventListener('resize', () => {
-      setWindowSize({width: window.innerWidth, height: window.innerHeight})
-  })
-
-  }, [])
-
-  const outletHeight = (windowSize.width > 560) ? (windowSize.height - (109 + 180))  : (windowSize.height - (72 + 321))
 
     // React router
     const router = createBrowserRouter([
       {
         // homepage
         path: '/',
-        element: <Root outletHeight={outletHeight} />,
+        element: <Root />,
         children: [
           {
             path: 'contact',
@@ -79,7 +66,7 @@ function App() {
             loader: ({params}) => {
               return loadSearchedKey(params.keyword)
             },
-            element: <Search outletHeight={outletHeight}/>
+            element: <Search />
           },
           {
             path: 'shop/collection/:category',
@@ -90,18 +77,18 @@ function App() {
           },
           {
             path: 'signIn',
-            element: <SignIn outletHeight={outletHeight}/>
+            element: <SignIn />
           },
           {
             path: 'signUp',
-            element: <SignUp outletHeight={outletHeight}/>
+            element: <SignUp />
           },
           {
             path: 'checkout',
             element: <Checkout />
           },
         ],
-        errorElement: <ErrorPage outletHeight={outletHeight}/>
+        errorElement: <ErrorPage />
       }
     ])
 

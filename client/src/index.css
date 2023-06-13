@@ -36,6 +36,16 @@ img {
   background-color: var(--background-color);
 }
 
+.outletWrapper .errorPage, .signInContainer, .shopSearch {
+  min-height: 381px;
+}
+
+@media (max-width: 560px) {
+  .outletWrapper, .errorPage, .signInContainer, .shopSearch {
+    min-height: 451px;
+  }
+}
+
 
 /* base classes */
 .hidden {

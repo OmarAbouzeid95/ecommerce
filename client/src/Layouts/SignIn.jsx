@@ -5,7 +5,7 @@ import {loggedUser, countContext, previousLoc} from '../context'
 import Loader from '../Components/Loader'
 
 
-function SignIn({outletHeight}) {
+function SignIn() {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -34,7 +34,7 @@ function SignIn({outletHeight}) {
     const errorMsgStyle = {color: '#da3f3f', fontSize: '0.8rem', paddingLeft: '5px'}
 
     return (  
-        <div className="signInContainer" style={{minHeight: outletHeight}}>
+        <div className="signInContainer" >
             {showLoader && <Loader />}
             <form className="formContainer">
                 <h2 style={{textAlign:'center', paddingBottom: '1em'}}>Your account to <span style={{textTransform: 'uppercase'}}>everything</span></h2>

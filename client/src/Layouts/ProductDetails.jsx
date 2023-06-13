@@ -56,7 +56,12 @@ function ProductDetails() {
     }
 
     function updateRating() {
-        const newRating = Math.floor(((parseFloat(details.totalRating) + userRating) / (parseInt(details.ratingCount) + 1))).toFixed(1)
+        const newRating = Math.floor(((details.totalRating + userRating) / (details.ratingCount + 1))).toFixed(1)
+        console.log({
+            totalRating: details.totalRating,
+            ratingCount: details.ratingCount,
+            newRating: newRating
+        })
         const result = {...details, rating: newRating, totalRating: (details.totalRating + userRating), ratingCount: (details.ratingCount + 1)}
         setDetails(result)
         updateProduct(`${process.env.REACT_APP_SERVER_URL}/updateProduct`, result, data.id)
@@ -72,7 +77,7 @@ function ProductDetails() {
         .then(product => {
             // found product
             if(product){
-                setDetails({reviews: product.reviews, rating: product.rating, ratingCount: product.ratingCount, totalRating: product.totalRating})
+                setDetails({reviews: product.reviews, rating: parseFloat(product.rating), ratingCount: parseInt(product.ratingCount), totalRating: parseFloat(product.totalRating)})
             }
         })
 

@@ -182,13 +182,16 @@ function ProductDetails() {
                                 setPrevLoc(location.pathname)
                                 navigate('/signIn')
                             }else{
-                                // unshift last review
-                                const result = details.reviews
-                                console.log(result)
-                                result.unshift({name: user.firstName + ' ' + user.lastName, review: review, id: user.id})
-                                setDetails({...details, reviews: result})
-                                updateProduct(`${process.env.REACT_APP_SERVER_URL}/updateProduct`, {...details, reviews: result}, data.id)
-                                setReview('')
+                                // validate that the review is not an empty string or spaces
+                                if(review.trim(' ') !== ''){
+                                    // unshift last review
+                                    const result = details.reviews
+                                    console.log(result)
+                                    result.unshift({name: user.firstName + ' ' + user.lastName, review: review, id: user.id})
+                                    setDetails({...details, reviews: result})
+                                    updateProduct(`${process.env.REACT_APP_SERVER_URL}/updateProduct`, {...details, reviews: result}, data.id)
+                                    setReview('')
+                                }
                             }
                         }}/>
                     </div>

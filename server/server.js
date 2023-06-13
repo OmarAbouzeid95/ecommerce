@@ -113,7 +113,7 @@ app.patch('/updateProduct', (req ,res) => {
   .then(product => {
     // found product
     if(product) {
-      products.updateOne({id: id}, {$set: {rating: info.rating, reviews: info.reviews, ratingCount: info.ratingCount}})
+      products.updateOne({id: id}, {$set: {rating: info.rating, reviews: info.reviews, ratingCount: info.ratingCount, totalRating: info.totalRating}})
       .then(() => {
         res.status(200).json({result: 'success'})
       })
@@ -122,7 +122,7 @@ app.patch('/updateProduct', (req ,res) => {
       })
     } else {
       // no product found
-      products.insertOne({id: id, rating: info.rating, reviews: info.reviews, ratingCount: info.ratingCount})
+      products.insertOne({id: id, rating: info.rating, reviews: info.reviews, ratingCount: info.ratingCount, totalRating: info.totalRating})
       .then(() => {
         res.status(200).json({result: 'success'})
       })

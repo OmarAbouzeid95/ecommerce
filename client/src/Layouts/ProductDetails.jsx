@@ -35,6 +35,7 @@ function ProductDetails() {
     const url = `${process.env.REACT_APP_SERVER_URL}/updateBag`
     const location = useLocation()
     const navigate = useNavigate()
+    console.log(details)
 
 
     async function addToUserBag(){
@@ -57,12 +58,8 @@ function ProductDetails() {
 
     function updateRating() {
         const newRating = Math.floor(((details.totalRating + userRating) / (details.ratingCount + 1))).toFixed(1)
-        console.log({
-            totalRating: details.totalRating,
-            ratingCount: details.ratingCount,
-            newRating: newRating
-        })
-        const result = {...details, rating: newRating, totalRating: (details.totalRating + userRating), ratingCount: (details.ratingCount + 1)}
+        const result = {...details, rating: parseFloat(newRating), totalRating: parseFloat(details.totalRating + userRating), ratingCount: parseInt(details.ratingCount + 1)}
+        console.log({result: result})
         setDetails(result)
         updateProduct(`${process.env.REACT_APP_SERVER_URL}/updateProduct`, result, data.id)
     }
@@ -191,7 +188,6 @@ function ProductDetails() {
                                 if(review.trim(' ') !== ''){
                                     // unshift last review
                                     const result = details.reviews
-                                    console.log(result)
                                     result.unshift({name: user.firstName + ' ' + user.lastName, review: review, id: user.id})
                                     setDetails({...details, reviews: result})
                                     updateProduct(`${process.env.REACT_APP_SERVER_URL}/updateProduct`, {...details, reviews: result}, data.id)

@@ -56,7 +56,7 @@ function ProductDetails() {
     }
 
     function updateRating() {
-        const newRating = Math.floor(((details.totalRating + userRating) / (details.ratingCount + 1))).toFixed(1)
+        const newRating = Math.floor(((parseFloat(details.totalRating) + userRating) / (parseInt(details.ratingCount) + 1))).toFixed(1)
         const result = {...details, rating: newRating, totalRating: (details.totalRating + userRating), ratingCount: (details.ratingCount + 1)}
         setDetails(result)
         updateProduct(`${process.env.REACT_APP_SERVER_URL}/updateProduct`, result, data.id)

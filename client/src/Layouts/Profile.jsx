@@ -1,6 +1,6 @@
 
 import { useContext, useState } from 'react'
-import { useLocation, Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { loggedUser, countContext } from '../context'
 
 // importing functions
@@ -23,7 +23,7 @@ function Profile() {
                                                         emailMsg: '',
                                                         passwordMsg: '',                                    
                                                     })
-    const loc = useLocation()
+    const navigate = useNavigate()
 
     // styles
     const selected = {
@@ -142,7 +142,7 @@ function Profile() {
                 <button style={(active === 'account') ? selected : null} className="profile-option-btn" onClick={() => setActive('account')}>Account</button>
                 <button style={(active === 'orders') ? selected : null} className="profile-option-btn" onClick={() => setActive('orders')}>Orders</button>
                 <button style={(active === 'signOut') ? selected : null} className="profile-option-btn" onClick={() => {
-                    loc.pathname = '/signIn'
+                    navigate('/signIn')
                     setUser(null)
                     setCount(bagCount(null))
                 }}>Sign out</button>

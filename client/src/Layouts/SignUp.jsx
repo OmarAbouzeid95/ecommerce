@@ -1,5 +1,5 @@
 import {useState, useContext} from 'react'
-import {Link, useLocation} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { loggedUser, previousLoc } from '../context'
 import { userSignOperation, findUser } from '../scripts/crudFunctions'
 import Loader from '../Components/Loader'
@@ -22,7 +22,7 @@ function SignUp() {
     
     const {setUser} = useContext(loggedUser)  
     const {prevLoc, setPrevLoc} = useContext(previousLoc)
-    const location = useLocation()                                    
+    const navigate = useNavigate()                                  
     // password Regex                                                    
     const passwordRules = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/                                                    
     const isValidPassword = (str) => passwordRules.test(str)    
@@ -133,10 +133,10 @@ function SignUp() {
                                     setUser(user)
                                     // redirect user to homepage
                                     if(prevLoc !== '') {
-                                        location.pathname = prevLoc
+                                        navigate(prevLoc)
                                         setPrevLoc('')
                                     }else{
-                                        location.pathname = '/'
+                                        navigate('/')
                                     }
                                 })
                                 .catch(error => {

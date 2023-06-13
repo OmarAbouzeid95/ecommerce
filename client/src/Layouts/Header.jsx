@@ -1,11 +1,10 @@
-import {NavLink, Link} from 'react-router-dom'
+import {NavLink, Link, useNavigate} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import shoppingBag from '../media/icons/shoppingBag.png'
 import searchIcon from '../media/icons/searchIcon.png'
-// import logo from '../media/logo.png'
 import {countContext, loggedUser} from '../context'
 import { useContext } from 'react'
-import {redirect} from '../scripts/loaderFunctions'
+
 
 
 function Header() {
@@ -17,6 +16,7 @@ function Header() {
     const [searchBar, setSearchBar] = useState('')
     const {count} = useContext(countContext)
     const {user} = useContext(loggedUser)
+    const navigate = useNavigate()
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     function toggleNav() {
@@ -44,11 +44,11 @@ function Header() {
             // adding navIcon when screen is < 561
             setNavContent(  <div className="navIcons">
                                 <div className="searchContainer">
-                                    <img key={searchBar} src={searchIcon} alt="search icon" className="searchIcon navIcon" onClick={() => redirect(`/search/${searchBar}`)}/>
+                                    <img key={searchBar} src={searchIcon} alt="search icon" className="searchIcon navIcon" onClick={() => navigate(`/search/${searchBar}`)}/>
                                     <input type="text" placeholder="Search store..." className="searchInput" onChange={(e) => setSearchBar(e.target.value)}
                                                                                                               onKeyDown={(e) => {
                                                                                                                 if(e.key === 'Enter')
-                                                                                                                    redirect(`/search/${searchBar}`)
+                                                                                                                    navigate(`/search/${searchBar}`)
                                                                                                              }}/>
                                 </div>
                                 <div className="bagIconContainer">
@@ -72,11 +72,11 @@ function Header() {
             // Navlinks if screen > 561
             setNavContent(  <nav className="navbar">
                                 <div className="searchContainer">
-                                <img key={searchBar} src={searchIcon} alt="search icon" className="searchIcon navIcon" onClick={() => redirect(`/search/${searchBar}`)}/>
+                                <img key={searchBar} src={searchIcon} alt="search icon" className="searchIcon navIcon" onClick={() => navigate(`/search/${searchBar}`)}/>
                                     <input type="text" placeholder="Search store..." className="searchInput" onChange={(e) => setSearchBar(e.target.value)}
                                                                                                              onKeyDown={(e) => {
                                                                                                                 if(e.key === 'Enter')
-                                                                                                                    redirect(`/search/${searchBar}`)
+                                                                                                                    navigate(`/search/${searchBar}`)
                                                                                                              }}/>
                                 </div>
                                 <div className="bagIconContainer">

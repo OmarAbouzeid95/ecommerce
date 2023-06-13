@@ -1,4 +1,4 @@
-import { useLoaderData, useLocation } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import {useState, useEffect, useRef, useContext} from 'react'
 import {countContext, loggedUser, previousLoc} from "../context"
 
@@ -34,6 +34,7 @@ function ProductDetails() {
     const { setPrevLoc } = useContext(previousLoc)
     const url = `${process.env.REACT_APP_SERVER_URL}/updateBag`
     const location = useLocation()
+    const navigate = useNavigate()
 
 
     async function addToUserBag(){
@@ -166,7 +167,7 @@ function ProductDetails() {
                                 // if user is not signed in redirect to signIn page
                                 if(!user){
                                     setPrevLoc(location.pathname)
-                                    location.pathname = '/signIn'
+                                    navigate('/signIn')
                                 }else {
                                     setShowRating(false)
                                     updateRating()
@@ -179,7 +180,7 @@ function ProductDetails() {
                             // if user is not signed in redirect to signIn page
                             if(!user){
                                 setPrevLoc(location.pathname)
-                                location.pathname = '/signIn'
+                                navigate('/signIn')
                             }else{
                                 // unshift last review
                                 const result = details.reviews

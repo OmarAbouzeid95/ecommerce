@@ -82,11 +82,6 @@ function loadSearchedKey(keyword){
     return {result, keyword}
 }
 
-// function to redirect the user
-function redirect(loc) {
-
-    window.location.href = loc
-}
 
 
-export {loadProductDetails, loadShopCategory, loadSearchedKey, redirect, getCategory}
+export {loadProductDetails, loadShopCategory, loadSearchedKey, getCategory}

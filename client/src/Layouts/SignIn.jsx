@@ -1,6 +1,6 @@
 import {useState, useContext} from 'react'
 import { userSignOperation } from '../scripts/crudFunctions';
-import {Link, useLocation} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {loggedUser, countContext, previousLoc} from '../context'
 import Loader from '../Components/Loader'
 
@@ -18,7 +18,7 @@ function SignIn() {
     const {setUser} = useContext(loggedUser)    
     const {setCount} = useContext(countContext)  
     const {prevLoc, setPrevLoc} = useContext(previousLoc)
-    const location = useLocation()    
+    const navigate = useNavigate() 
 
 
     // input border styles
@@ -90,10 +90,10 @@ function SignIn() {
                                  * using location.pathname to avoid losing the loggedUser data by using the redirect function
                                  */
                                 if(prevLoc !== '') {
-                                    location.pathname = prevLoc
+                                    navigate(prevLoc)
                                     setPrevLoc('')
                                 }else{
-                                    location.pathname = '/'
+                                    navigate('/')
                                 }
                             }else{
                             // user not found

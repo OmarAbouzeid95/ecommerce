@@ -33,13 +33,13 @@ function Root() {
 
     const wallPapers = [homeWallpaperFull, homeWallpaperLarge, homeWallpaperSmall, mensFull, mensLarge,
                         mensSmall, womensFull, womensLarge, womensSmall, kidsFull, kidsLarge, kidsSmall]
-    const [windowSize, setWindowSize] = useState({width: window.innerWidth, height: window.innerHeight})
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
     useEffect(() => {
 
         // resize event listener
         window.addEventListener('resize', () => {
-            setWindowSize({width: window.innerWidth, height: window.innerHeight})
+            setWindowWidth(window.innerWidth)
         })
         
         // preloading wallpapers
@@ -74,36 +74,36 @@ function Root() {
                     <Link to='shop/men' className="wallpaperContentBtn">Shop Men's</Link>
                     <Link to='shop/women' className="wallpaperContentBtn">Shop Women's</Link>
                 </div>
-                {(windowSize.width > 768) && <img src={homeWallpaperFull} alt="home wallpaper"/>}
-                {(windowSize.width > 595 && windowSize.width <= 768) && <img src={homeWallpaperLarge} alt="home wallpaper"/>}
-                {(windowSize.width <= 595) && <img src={homeWallpaperSmall} alt="home wallpaper"/>}
+                {(windowWidth > 768) && <img src={homeWallpaperFull} alt="home wallpaper"/>}
+                {(windowWidth > 595 && windowWidth <= 768) && <img src={homeWallpaperLarge} alt="home wallpaper"/>}
+                {(windowWidth <= 595) && <img src={homeWallpaperSmall} alt="home wallpaper"/>}
             </div>}
             {/* Conditional rendering for men's wallpaper */}
             {(loc.pathname === '/shop/men') && <div className="wallpaper">
                 <div className="wallpaperContent">
                     <h1 className="wallpaperContentTitle">SHOP<span style={{display: 'block'}}>Men</span></h1>
                 </div>
-                {(windowSize.width > 1220) && <img src={mensFull} alt="home wallpaper"/>}
-                {(windowSize.width > 720 && windowSize.width <= 1220) && <img src={mensLarge} alt="home wallpaper"/>}
-                {(windowSize.width <= 720) && <img src={mensSmall} alt="home wallpaper"/>}
+                {(windowWidth > 1220) && <img src={mensFull} alt="home wallpaper"/>}
+                {(windowWidth > 720 && windowWidth <= 1220) && <img src={mensLarge} alt="home wallpaper"/>}
+                {(windowWidth <= 720) && <img src={mensSmall} alt="home wallpaper"/>}
             </div>}
             {/* Conditional rendering for women's wallpaper */}
             {(loc.pathname === '/shop/women') && <div className="wallpaper">
                 <div className="wallpaperContent">
                     <h1 className="wallpaperContentTitle">SHOP<span style={{display: 'block'}}>Women</span></h1>
                 </div>
-                {(windowSize.width > 1220) && <img src={womensFull} alt="home wallpaper"/>}
-                {(windowSize.width > 720 && windowSize.width <= 1220) && <img src={womensLarge} alt="home wallpaper"/>}
-                {(windowSize.width <= 720) && <img src={womensSmall} alt="home wallpaper"/>}
+                {(windowWidth > 1220) && <img src={womensFull} alt="home wallpaper"/>}
+                {(windowWidth > 720 && windowWidth <= 1220) && <img src={womensLarge} alt="home wallpaper"/>}
+                {(windowWidth <= 720) && <img src={womensSmall} alt="home wallpaper"/>}
             </div>}
             {/* Conditional rendering for kids wallpaper */}
             {(loc.pathname === '/shop/kids') && <div className="wallpaper">
                 <div className="wallpaperContent">
                     <h1 className="wallpaperContentTitle">SHOP<span style={{display: 'block'}}>Kids</span></h1>
                 </div>
-                {(windowSize.width > 1220) && <img src={kidsFull} alt="home wallpaper"/>}
-                {(windowSize.width > 720 && windowSize.width <= 1220) && <img src={kidsLarge} alt="home wallpaper"/>}
-                {(windowSize.width <= 720) && <img src={kidsSmall} alt="home wallpaper"/>}
+                {(windowWidth > 1220) && <img src={kidsFull} alt="home wallpaper"/>}
+                {(windowWidth > 720 && windowWidth <= 1220) && <img src={kidsLarge} alt="home wallpaper"/>}
+                {(windowWidth <= 720) && <img src={kidsSmall} alt="home wallpaper"/>}
             </div>}
 
             <div className="outletWrapper" >
@@ -114,9 +114,9 @@ function Root() {
                     <h1 className="wallpaperContentTitle" style={wpStyle}>Checkout the summer collection</h1>
                     <Link to='shop/collection/summerWear' className="wallpaperContentBtn">Shop Collection</Link>
                 </div>
-                {(windowSize.width > 768) && <img src={summerAdFull} alt="home wallpaper"/>}
-                {(windowSize.width > 720 && windowSize.width <= 768) && <img src={summerAdLarge} alt="home wallpaper"/>}
-                {(windowSize.width <= 720) && <img src={summerAdSmall} alt="home wallpaper"/>}
+                {(windowWidth > 768) && <img src={summerAdFull} alt="home wallpaper"/>}
+                {(windowWidth > 720 && windowWidth <= 768) && <img src={summerAdLarge} alt="home wallpaper"/>}
+                {(windowWidth <= 720) && <img src={summerAdSmall} alt="home wallpaper"/>}
             </div>}
             {(loc.pathname === '/') && <ProductList list={trending} title='Trending'/>}
             <div className="allProductsWrapper">

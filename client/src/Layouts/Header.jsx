@@ -14,6 +14,7 @@ function Header() {
     const [navStatus, setNavStatus] = useState('hideNav')
     const [navContent, setNavContent] = useState('')
     const [searchBar, setSearchBar] = useState('')
+    const [showSearchBar, setShowSearchBar] = useState(false)
     const {count} = useContext(countContext)
     const {user} = useContext(loggedUser)
     const navigate = useNavigate()
@@ -43,14 +44,7 @@ function Header() {
         if(windowWidth < 561){
             // adding navIcon when screen is < 561
             setNavContent(  <div className="navIcons">
-                                <div className="searchContainer">
-                                    <img key={searchBar} src={searchIcon} alt="search icon" className="searchIcon navIcon" onClick={() => navigate(`/search/${searchBar}`)}/>
-                                    <input type="text" placeholder="Search store..." className="searchInput" onChange={(e) => setSearchBar(e.target.value)}
-                                                                                                              onKeyDown={(e) => {
-                                                                                                                if(e.key === 'Enter')
-                                                                                                                    navigate(`/search/${searchBar}`)
-                                                                                                             }}/>
-                                </div>
+                                <img key={searchBar} src={searchIcon} alt="search icon" className="navIcon" onClick={() => setShowSearchBar(prevState => !prevState)}/>
                                 <div className="bagIconContainer">
                                     {(count > 0) && <span className="bagItemCount">{count}</span>}
                                     <NavLink to='/bag' onClick={() => {
@@ -72,9 +66,9 @@ function Header() {
             // Navlinks if screen > 561
             setNavContent(  <nav className="navbar">
                                 <div className="searchContainer">
-                                <img key={searchBar} src={searchIcon} alt="search icon" className="searchIcon navIcon" onClick={() => navigate(`/search/${searchBar}`)}/>
+                                    <img key={searchBar} src={searchIcon} alt="search icon" className="searchIcon navIcon" onClick={() => navigate(`/search/${searchBar}`)}/>
                                     <input type="text" placeholder="Search store..." className="searchInput" onChange={(e) => setSearchBar(e.target.value)}
-                                                                                                             onKeyDown={(e) => {
+                                                                                                              onKeyDown={(e) => {
                                                                                                                 if(e.key === 'Enter')
                                                                                                                     navigate(`/search/${searchBar}`)
                                                                                                              }}/>
@@ -124,6 +118,14 @@ function Header() {
                 </div>
                 {navContent}
             </div>
+            {showSearchBar && <div className="searchContainer animate" style= {{width: '100%', margin: '-1em auto 1em auto'}}>
+                                <img key={searchBar} src={searchIcon} alt="search icon" className="searchIcon navIcon " onClick={() => navigate(`/search/${searchBar}`)}/>
+                                    <input type="text" placeholder="Search store..." className="searchInput" style= {{width: '100%'}} onChange={(e) => setSearchBar(e.target.value)}
+                                                                                                             onKeyDown={(e) => {
+                                                                                                                if(e.key === 'Enter')
+                                                                                                                    navigate(`/search/${searchBar}`)
+                                                                                                             }}/>
+                                </div>}
             {(windowWidth > 560) && <div className="productsList">
                 <Link to='shop/men' className="navLink navCategory">men</Link>
                 <Link to='shop/women' className="navLink navCategory">women</Link>

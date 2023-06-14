@@ -73,7 +73,7 @@ function ProductGrid({list, title}) {
                         <option value="descending">Price: High-Low</option>
                     </select>
                     {/* category selection is not available in the search page (except for all products page)*/}
-                    {(loc.pathname.includes('/shop/men') || loc.pathname.includes('/shop/men')) && <select name="category" id="filterCategory" style={{width: '92px'}}
+                    {(loc.pathname.includes('/shop/men') || loc.pathname.includes('/shop/women')) && <select name="category" id="filterCategory" style={{width: '92px'}}
                         onChange={(e) => {
                             // filtering category and checking if sorting filter is applied
                             let result = [...filterCategory(list, e.target.value)]

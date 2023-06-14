@@ -4,6 +4,7 @@ const cors = require('cors')
 const { MongoClient, ObjectId } = require('mongodb')
 require('dotenv').config()
 const app = express()
+const path = require('path')
 const PORT = process.env.PORT || 3300
 
 // parsing incoming requests and puts json data in req.body
@@ -12,6 +13,9 @@ app.use(express.json())
 app.use(cors({
     origin: process.env.FRONTEND_URL
 }))
+
+// Serve static files from the build directory
+app.use(express.static(path.join(__dirname, 'build')))
 
 // db connection
 const uri = process.env.MONGODB_URI
@@ -32,14 +36,14 @@ async function run() {
 
 // sign in
 app.post('/signIn', (req,res) => {
-    const {email, password} = req.body
-    users.findOne({email: email, password: password})
-    .then(user => {
-        res.status(200).json(user)
-    })
-    .catch(error => {
-        res.status(500).json({error: error})
-    })
+  const {email, password} = req.body
+  users.findOne({email: email, password: password})
+  .then(user => {
+    res.status(200).json(user)
+  })
+  .catch(error => {
+    res.status(500).json({error: error})
+  })
 })
 
 // sign up
@@ -134,6 +138,11 @@ app.patch('/updateProduct', (req ,res) => {
   .catch(error => {
     res.status(500).json({error: error})
   })
+})
+
+// Catch-all route handler
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
 run().then(app.listen(PORT, () => console.log(`listening to port ${PORT}`)))

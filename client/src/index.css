@@ -465,6 +465,16 @@ img {
   margin: 0 auto;
 }
 
+@media (max-width: 560px) {
+  .contact {
+    flex-direction: column-reverse;
+  }
+
+  .contactInfo {
+    margin-top: 0.5em;
+  }
+}
+
 .contactInfo {
   margin-right: 0.5em;  
 }
@@ -621,6 +631,19 @@ img {
 @media (max-width: 480px){
   .productListContainer .productContainer {
     max-width: 180px;
+  }
+}
+
+@media (max-width: 420px){
+  .productListContainer .productContainer {
+    max-width: 170px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 395px){
+  .productListContainer .productContainer {
+    max-width: 160px;
   }
 }
 
@@ -867,6 +890,7 @@ select {
   border-radius: 3em;
   padding: 0.15em;
   margin-right: 1em;
+  color: black;
 }
 
 select:last-child {

@@ -2,6 +2,7 @@ import {NavLink, Link, useNavigate} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import shoppingBag from '../media/icons/shoppingBag.png'
 import searchIcon from '../media/icons/searchIcon.png'
+import closeIcon from '../media/icons/close.svg'
 import {countContext, loggedUser} from '../context'
 import { useContext } from 'react'
 
@@ -44,7 +45,7 @@ function Header() {
         if(windowWidth < 561){
             // adding navIcon when screen is < 561
             setNavContent(  <div className="navIcons">
-                                <img key={searchBar} src={searchIcon} alt="search icon" className="navIcon" onClick={() => setShowSearchBar(prevState => !prevState)}/>
+                                <img key={searchBar} src={showSearchBar ? closeIcon : searchIcon} alt="search icon" className="navIcon" onClick={() => setShowSearchBar(prevState => !prevState)}/>
                                 <div className="bagIconContainer">
                                     {(count > 0) && <span className="bagItemCount">{count}</span>}
                                     <NavLink to='/bag' onClick={() => {
@@ -53,7 +54,7 @@ function Header() {
                                         toggleNav()
                                     }}}><img src={shoppingBag} alt="shopping bag icon" className="shoppingIcon navIcon"/></NavLink>
                                 </div>
-                                <div className="hamburgerIcon navIcon" onClick={() => toggleNav()}>
+                                <div className="hamburgerIcon navIcon" style={{marginLeft: '13px'}} onClick={() => toggleNav()}>
                                     <input type="checkbox" id="checkbox"></input>
                                     <label htmlFor="checkbox" className="toggle">
                                         <div className="bars" id="bar1"></div>
@@ -86,7 +87,7 @@ function Header() {
         }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [windowWidth, navStatus, searchBar, user, count])
+    }, [windowWidth, navStatus, searchBar, user, count, showSearchBar])
 
     return (
         <div className="headerWrapper">

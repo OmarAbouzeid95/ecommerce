@@ -35,7 +35,6 @@ function ProductDetails() {
     const url = `${process.env.REACT_APP_SERVER_URL}/updateBag`
     const location = useLocation()
     const navigate = useNavigate()
-    console.log(details)
 
 
     async function addToUserBag(){
@@ -57,7 +56,7 @@ function ProductDetails() {
     }
 
     function updateRating() {
-        const newRating = Math.floor(((details.totalRating + userRating) / (details.ratingCount + 1))).toFixed(1)
+        const newRating = ((details.totalRating + userRating) / (details.ratingCount + 1)).toFixed(1)
         const result = {...details, rating: parseFloat(newRating), totalRating: parseFloat(details.totalRating + userRating), ratingCount: parseInt(details.ratingCount + 1)}
         console.log({result: result})
         setDetails(result)

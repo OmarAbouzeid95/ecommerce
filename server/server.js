@@ -14,9 +14,6 @@ app.use(cors({
     origin: process.env.FRONTEND_URL
 }))
 
-// Serve static files from the build directory
-app.use(express.static(path.join(__dirname, 'build')))
-
 // db connection
 const uri = process.env.MONGODB_URI
 const client = new MongoClient(uri)
@@ -140,9 +137,12 @@ app.patch('/updateProduct', (req ,res) => {
   })
 })
 
+// Serve static files from the build directory
+app.use(express.static(path.join(__dirname, 'client')))
+
 // Catch-all route handler
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'))
+  res.sendFile(path.join(__dirname, 'client', 'index.html'))
 })
 
 run().then(app.listen(PORT, () => console.log(`listening to port ${PORT}`)))

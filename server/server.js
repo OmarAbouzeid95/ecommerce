@@ -138,6 +138,7 @@ app.patch('/updateProduct', (req ,res) => {
 })
 
 const clientPath = path.resolve(__dirname, '..', 'client', 'public')
+console.log(clientPath)
 
 // Serve static files from the build directory
 app.use(express.static(clientPath))

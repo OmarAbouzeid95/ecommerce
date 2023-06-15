@@ -99,7 +99,7 @@ function App() {
         <currentLoc.Provider value={{loc, setLoc}}>
           <previousLoc.Provider value={{prevLoc, setPrevLoc}}>
             <countContext.Provider value={{count, setCount}}>
-              <RouterProvider router={router} />
+              <RouterProvider router={router} basename="/ecommerce" />
             </countContext.Provider>
           </previousLoc.Provider>
           </currentLoc.Provider>

@@ -138,11 +138,11 @@ app.patch('/updateProduct', (req ,res) => {
 })
 
 // Serve static files from the build directory
-app.use(express.static(path.join(__dirname, 'client')))
+app.use(express.static('../client'))
 
 // Catch-all route handler
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'index.html'))
+  res.sendFile('../client/public/index.html')
 })
 
 run().then(app.listen(PORT, () => console.log(`listening to port ${PORT}`)))

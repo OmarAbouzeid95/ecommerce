@@ -144,7 +144,8 @@ console.log(clientPath)
 app.use(express.static(clientPath))
 
 // Catch-all route handler
-app.get('/*', (req, res) => {
+app.get('*', (req, res) => {
+  console.log('in catch-all')
   res.sendFile(path.join(clientPath, 'index.html'))
 })
 

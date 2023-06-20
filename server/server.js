@@ -141,10 +141,10 @@ const clientPath = path.resolve(__dirname, '..', 'client', 'build')
 console.log(clientPath)
 
 // Serve static files from the build directory
-app.use(express.static(clientPath))
+app.use('*', express.static(clientPath))
 
 // Catch-all route handler
-app.get('*', (req, res) => {
+app.use((req, res) => {
   console.log('in catch-all')
   res.sendFile(path.join(clientPath, 'index.html'))
 })

@@ -42,12 +42,12 @@ img {
   background-color: var(--background-color);
 }
 
-.outletWrapper .errorPage, .signInContainer, .shopSearch {
+.outletWrapper .errorPage, .signInContainer, .shopSearch, .loaderWrapper {
   min-height: 381px;
 }
 
 @media (max-width: 560px) {
-  .outletWrapper, .errorPage, .signInContainer, .shopSearch {
+  .outletWrapper, .errorPage, .signInContainer, .shopSearch, .loaderWrapper {
     min-height: 451px;
   }
 }
@@ -1435,7 +1435,6 @@ select:last-child {
 
   position: absolute;
   top: 0;
-  bottom: 0;
   right: 0;
   left: 0;
   background-color:rgba(0,0,0, 0.7);

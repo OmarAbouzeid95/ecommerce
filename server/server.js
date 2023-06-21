@@ -6,9 +6,12 @@ require('dotenv').config()
 const app = express()
 const path = require('path')
 const PORT = process.env.PORT || 3300
+const clientPath = path.resolve(__dirname, '..', 'client', 'build')
 
 // parsing incoming requests and puts json data in req.body
 app.use(express.json())
+// Serve static files from the build directory
+app.use(express.static(clientPath))
 // configuring cors to allow requests from the front-end URL
 app.use(cors({
     origin: process.env.FRONTEND_URL
@@ -137,14 +140,8 @@ app.patch('/updateProduct', (req ,res) => {
   })
 })
 
-const clientPath = path.resolve(__dirname, '..', 'client', 'build')
-console.log(clientPath)
-
-// Serve static files from the build directory
-app.use('*', express.static(clientPath))
-
 // Catch-all route handler
-app.use((req, res) => {
+app.get('*', (req, res) => {
   console.log('in catch-all')
   res.sendFile(path.join(clientPath, 'index.html'))
 })

@@ -20,15 +20,15 @@ function Footer() {
                         <h4>Help</h4>
                         <NavLink to='stores'>FAQs</NavLink>
                         <NavLink to='about'>Return policy</NavLink>
-                        <NavLink to='contact'>Shipping</NavLink>
+                        <NavLink to='shipping'>Shipping</NavLink>
                         <NavLink to='blog'>Payment options</NavLink>
                     </div>
                     <div className="socialLinks">
                         <h4>Follow us</h4>
                         <NavLink to='https://www.facebook.com' target="_blank"><img src={facebook} alt="facebook icon" id="fbIcon" className="footerIcon"/></NavLink>
-                        <NavLink to='https://www.instagram.com' target="_blank"><img src={instagram} alt="instagram icon" className="footerIcon"/></NavLink>
+                        <NavLink to='https://www.instagram.com/omaradharn/' target="_blank"><img src={instagram} alt="instagram icon" className="footerIcon"/></NavLink>
                         <NavLink to='https://www.twitter.com' target="_blank"><img src={twitter} alt="twitter icon" className="footerIcon"/></NavLink>
-                        <NavLink to='https://www.github.com' target="_blank"><img src={github} alt="github icon" className="footerIcon"/></NavLink>
+                        <NavLink to='https://github.com/OmarAbouzeid95/ecommerce' target="_blank"><img src={github} alt="github icon" className="footerIcon"/></NavLink>
                     </div>
                 </div>
                 <p>&copy; 2023 ecommerce. All rights reserved</p>

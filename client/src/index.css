@@ -42,7 +42,7 @@ img {
   background-color: var(--background-color);
 }
 
-.signInContainer, .shopSearch, .bagItemsContainer, .contactUs-wrapper, .checkout {
+.signInContainer, .shopSearch, .bagItemsContainer, .contactUs-wrapper, .checkout, .profile-wrapper {
   min-height: 65vh;
 }
 

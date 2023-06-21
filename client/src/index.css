@@ -42,16 +42,9 @@ img {
   background-color: var(--background-color);
 }
 
-.outletWrapper .errorPage, .signInContainer, .shopSearch, .loaderWrapper {
-  min-height: 381px;
+.signInContainer, .shopSearch {
+  min-height: 65vh;
 }
-
-@media (max-width: 560px) {
-  .outletWrapper, .errorPage, .signInContainer, .shopSearch, .loaderWrapper {
-    min-height: 451px;
-  }
-}
-
 
 /* base classes */
 .hidden {
@@ -131,7 +124,7 @@ img {
 
 .errorPage {
   width: 100%;
-  min-height: 381px;
+  min-height: 65vh;
   background: rgba(0,0,0, 0.73) url('./media/undraw_lost.svg');
   background-blend-mode: darken;
   background-position: center center;
@@ -1236,6 +1229,12 @@ select:last-child {
   outline: none;
 }
 
+@media (max-width: 400px) {
+  .ui-input-container input {
+    width: 200px;
+  }
+}
+
 .ui-saveBtn {
   margin: 1em auto;
 }
@@ -1432,10 +1431,11 @@ select:last-child {
 /* loader */
 
 .loaderWrapper {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
+  bottom: 0;
   background-color:rgba(0,0,0, 0.7);
   display: flex;
   justify-content: center;

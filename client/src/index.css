@@ -42,7 +42,7 @@ img {
   background-color: var(--background-color);
 }
 
-.signInContainer, .shopSearch {
+.signInContainer, .shopSearch, .bagItemsContainer, .contactUs-wrapper, .checkout {
   min-height: 65vh;
 }
 
@@ -124,7 +124,7 @@ img {
 
 .errorPage {
   width: 100%;
-  min-height: 65vh;
+  min-height: 70vh;
   background: rgba(0,0,0, 0.73) url('./media/undraw_lost.svg');
   background-blend-mode: darken;
   background-position: center center;
@@ -450,6 +450,12 @@ img {
 }
 
 /* contact us page */
+.contactUs-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .contact {
   display: flex;
   justify-content: space-around;
@@ -458,7 +464,7 @@ img {
   margin: 0 auto;
 }
 
-@media (max-width: 560px) {
+@media (max-width: 710px) {
   .contact {
     flex-direction: column-reverse;
   }

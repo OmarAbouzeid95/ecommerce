@@ -102,7 +102,7 @@ function Bag() {
                     </div>
                     <button className="checkoutBtn" disabled={(products.length > 0) ? false : true } onClick={() => {
                         navigate('/checkout')
-                        }}>Checkout</button>
+                    }}>Checkout</button>
                 </div>
             </div>
         </div>

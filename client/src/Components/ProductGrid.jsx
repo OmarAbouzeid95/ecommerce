@@ -20,6 +20,8 @@ function ProductGrid({list, title}) {
     const initialRender = useRef(true)
     const loc = useLocation()
     let allProducts = products.map(product => <Product props={product} key={product.id} />)
+    console.log('**** ProductGrid list ****')
+    console.log(list)
 
     /**
      * preloading all main images and first img of the array (the one shown when component is hovered)

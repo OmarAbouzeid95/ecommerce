@@ -699,6 +699,7 @@ img {
   border-radius: 0.25em;
   margin: 0 0.5em;
   color: black;
+  background-color: transparent;
 }
 
 .sizeBox:hover {
@@ -890,6 +891,7 @@ select {
   padding: 0.15em;
   margin-right: 1em;
   color: black;
+  background-color: transparent;
 }
 
 select:last-child {

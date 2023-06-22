@@ -11,49 +11,18 @@ function ProductGrid({list, title}) {
 
     // state to keep track of the products in case of applying filters on the main list
     const [products, setProducts] = useState(list)
-    // const [allProducts, setAllProducts] = useState(list.map(product => {
-    //     return (
-    //         <Product props={product} key={product.id}/>
-    //     )
-    // }))
     const [sortFilter, setSortFilter] = useState(false)
     const initialRender = useRef(true)
     const loc = useLocation()
     let allProducts = products.map(product => <Product props={product} key={product.id} />)
     console.log('**** ProductGrid list ****')
     console.log(list)
-
-    /**
-     * preloading all main images and first img of the array (the one shown when component is hovered)
-     */
-    // useEffect(() => {
-    //     list.forEach(product => {
-    //       const mainImg = new Image()
-    //       mainImg.src = product.img
-    //       const hoveredImg = new Image()
-    //       hoveredImg.src = product.imgArray[0]
-    //     })
-    //   })
     
       // updating the products when the list changes
     useEffect(() => {
         setProducts(list)
     }, [list])
     
-    // updating products
-    // useEffect(() => {
-    //     // skip filtering on initial render
-        // if(!initialRender.current){
-        //     setAllProducts(products.map(product => {
-        //         return (
-        //             <Product props={product} key={product.id}/>
-        //         )
-        //     }))
-        // }else{
-        //     initialRender.current = false
-        // }
-        
-    // }, [products])
 
     if(!initialRender.current){
         allProducts = products.map(product => <Product props={product} key={product.id} />)

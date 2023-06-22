@@ -1,15 +1,9 @@
 import { useLoaderData } from "react-router-dom";
-// import { useState, useEffect } from "react";
 import ProductGrid from "../Components/ProductGrid";
 
 function Search() {
     
     const data = useLoaderData()
-    // const [products, setProducts] = useState(data.result)
-
-    // useEffect(() => {
-    //     setProducts(data.result)
-    // }, [data])
 
     return ( 
         <div className="shopSearch" > 

@@ -26,14 +26,14 @@ function ProductGrid({list, title}) {
     /**
      * preloading all main images and first img of the array (the one shown when component is hovered)
      */
-    useEffect(() => {
-        list.forEach(product => {
-          const mainImg = new Image()
-          mainImg.src = product.img
-          const hoveredImg = new Image()
-          hoveredImg.src = product.imgArray[0]
-        })
-      })
+    // useEffect(() => {
+    //     list.forEach(product => {
+    //       const mainImg = new Image()
+    //       mainImg.src = product.img
+    //       const hoveredImg = new Image()
+    //       hoveredImg.src = product.imgArray[0]
+    //     })
+    //   })
     
       // updating the products when the list changes
     useEffect(() => {

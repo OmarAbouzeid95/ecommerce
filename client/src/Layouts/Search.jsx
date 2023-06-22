@@ -4,6 +4,7 @@ import ProductGrid from "../Components/ProductGrid";
 function Search() {
     
     const data = useLoaderData()
+    console.log(data)
     return ( 
         <div className="shopSearch" > 
             <div>

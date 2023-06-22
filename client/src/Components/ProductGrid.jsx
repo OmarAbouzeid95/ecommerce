@@ -35,6 +35,11 @@ function ProductGrid({list, title}) {
         })
       })
     
+      // updating the products when the list changes
+    useEffect(() => {
+        setProducts(list)
+    }, [list])
+    
     // updating products
     // useEffect(() => {
     //     // skip filtering on initial render

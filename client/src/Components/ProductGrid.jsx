@@ -11,15 +11,15 @@ function ProductGrid({list, title}) {
 
     // state to keep track of the products in case of applying filters on the main list
     const [products, setProducts] = useState(list)
-    const [allProducts, setAllProducts] = useState(list.map(product => {
-        return (
-            <Product props={product} key={product.id}/>
-        )
-    }))
+    // const [allProducts, setAllProducts] = useState(list.map(product => {
+    //     return (
+    //         <Product props={product} key={product.id}/>
+    //     )
+    // }))
     const [sortFilter, setSortFilter] = useState(false)
     const initialRender = useRef(true)
     const loc = useLocation()
-
+    let allProducts = products.map(product => <Product props={product} key={product.id} />)
 
     /**
      * preloading all main images and first img of the array (the one shown when component is hovered)
@@ -34,19 +34,25 @@ function ProductGrid({list, title}) {
       })
     
     // updating products
-    useEffect(() => {
-        // skip filtering on initial render
-        if(!initialRender.current){
-            setAllProducts(products.map(product => {
-                return (
-                    <Product props={product} key={product.id}/>
-                )
-            }))
-        }else{
-            initialRender.current = false
-        }
+    // useEffect(() => {
+    //     // skip filtering on initial render
+        // if(!initialRender.current){
+        //     setAllProducts(products.map(product => {
+        //         return (
+        //             <Product props={product} key={product.id}/>
+        //         )
+        //     }))
+        // }else{
+        //     initialRender.current = false
+        // }
         
-    }, [products])
+    // }, [products])
+
+    if(!initialRender.current){
+        allProducts = products.map(product => <Product props={product} key={product.id} />)
+    }else{
+        initialRender.current = false
+    }
     
 
     return ( 

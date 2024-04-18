@@ -1,18 +1,18 @@
+import { TailSpin } from "react-loader-spinner";
 
-
-function Loader() {
-    return ( 
-        <div className="loaderWrapper">
-            <div className="wrapper">
-                <div className="circle"></div>
-                <div className="circle"></div>
-                <div className="circle"></div>
-                <div className="shadow"></div>
-                <div className="shadow"></div>
-                <div className="shadow"></div>
-            </div>
-        </div>
-     );
+function Loader({ size, color }) {
+  return (
+    <TailSpin
+      visible={true}
+      height={size}
+      width={size}
+      color={color}
+      ariaLabel="tail-spin-loading"
+      radius="1"
+      wrapperStyle={{}}
+      wrapperClass=""
+    />
+  );
 }
 
 export default Loader;

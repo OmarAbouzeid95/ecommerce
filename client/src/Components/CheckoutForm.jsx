@@ -7,9 +7,13 @@ import {
 
 import Loader from "./Loader";
 import { useState, useContext } from "react";
+import { loggedUser, countContext } from "../context";
+import { clearBag } from "../scripts/bagFunctions";
 
 const CheckoutForm = () => {
   const [loading, setLoading] = useState(false);
+  const { user } = useContext(loggedUser);
+  const { setCount } = useContext(countContext);
   const stripe = useStripe();
   const elements = useElements();
 
@@ -27,8 +31,8 @@ const CheckoutForm = () => {
       console.log("Something went wrong", result.error);
     } else {
       console.log("successful payment response:  ", result);
-      // clear localStorage
-      localStorage.setItem("bagItems", JSON.stringify([]));
+      clearBag(`${process.env.REACT_APP_SERVER_URL}/updateBag`, user);
+      setCount(0);
     }
 
     setLoading(false);

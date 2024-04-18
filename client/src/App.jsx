@@ -32,6 +32,8 @@ import {
   getCategory,
 } from "./scripts/loaderFunctions";
 import { bagCount } from "../src/scripts/bagFunctions";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 
@@ -127,6 +129,7 @@ function App() {
           <previousLoc.Provider value={{ prevLoc, setPrevLoc }}>
             <countContext.Provider value={{ count, setCount }}>
               <stripeContext.Provider value={{ clientSecret, setClientSecret }}>
+                <ToastContainer />
                 <RouterProvider router={router} basename="/ecommerce" />
               </stripeContext.Provider>
             </countContext.Provider>

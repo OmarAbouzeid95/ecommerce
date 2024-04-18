@@ -9,6 +9,8 @@ import Loader from "./Loader";
 import { useState, useContext } from "react";
 import { loggedUser, countContext } from "../context";
 import { clearBag } from "../scripts/bagFunctions";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = () => {
   const [loading, setLoading] = useState(false);
@@ -16,26 +18,38 @@ const CheckoutForm = () => {
   const { setCount } = useContext(countContext);
   const stripe = useStripe();
   const elements = useElements();
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     setLoading(true);
-    const result = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        return_url: "http://localhost:3000",
-      },
-      redirect: "if_required",
-    });
+    // const result = await stripe.confirmPayment({
+    //   elements,
+    //   confirmParams: {
+    //     return_url: "http://localhost:3000",
+    //   },
+    //   redirect: "if_required",
+    // });
 
-    if (result.error) {
-      console.log("Something went wrong", result.error);
-    } else {
-      console.log("successful payment response:  ", result);
+    // if (result.error) {
+    //   console.log("Something went wrong", result.error);
+    // } else {
+    //   console.log("successful payment response:  ", result);
+    //   clearBag(`${process.env.REACT_APP_SERVER_URL}/updateBag`, user);
+    //   setCount(0);
+    // }
+
+    setTimeout(() => {
+      // clear bag
       clearBag(`${process.env.REACT_APP_SERVER_URL}/updateBag`, user);
       setCount(0);
-    }
 
-    setLoading(false);
+      // show toast
+      toast.success("Your order has been placed");
+
+      navigate("/orders");
+
+      setLoading(false);
+    }, 1500);
   };
 
   return (

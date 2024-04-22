@@ -5,6 +5,7 @@ import { loggedUser, countContext } from "../context";
 // importing functions
 import { findUser, updateUserData } from "../scripts/crudFunctions";
 import { bagCount } from "../scripts/bagFunctions";
+import Orders from "./Orders";
 
 function Profile() {
   const { user, setUser } = useContext(loggedUser);
@@ -39,18 +40,18 @@ function Profile() {
     paddingLeft: "5px",
   };
 
-  // user orders
-  const allOrders =
-    user?.orders?.length > 0 ? (
-      user.orders.map((order) => {
-        return <div className="order-container">{order}</div>;
-      })
-    ) : (
-      <p>
-        You don't have any orders, jump back in and{" "}
-        <Link to="/">start shopping</Link>
-      </p>
-    );
+  // // user orders
+  // const allOrders =
+  //   user?.orders?.length > 0 ? (
+  //     user.orders.map((order) => {
+  //       return <div className="order-container">{order}</div>;
+  //     })
+  //   ) : (
+  //     <p>
+  //       You don't have any orders, jump back in and{" "}
+  //       <Link to="/">start shopping</Link>
+  //     </p>
+  //   );
 
   // password Regex
   const passwordRules =
@@ -282,8 +283,7 @@ function Profile() {
         )}
         {active === "orders" && (
           <div className="user-orders">
-            <h3>Orders</h3>
-            {allOrders}
+            <Orders />
           </div>
         )}
       </div>

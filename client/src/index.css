@@ -1026,10 +1026,15 @@ select:last-child {
 }
 
 /* bag component */
-.bagProductContainer {
+.bagProductContainer,
+.orderProductContainer {
   display: flex;
   padding: 1.5em 0;
   border-bottom: 0.75px solid lightgray;
+}
+
+.orderProductContainer {
+  border: none;
 }
 
 .bagProductImg {

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../Layouts/Header";
+import Footer from "../Layouts/Footer";
 
 function ErrorBoundary() {
   return (

@@ -23,6 +23,7 @@ import Search from "./Layouts/Search";
 import SignIn from "./Layouts/SignIn";
 import SignUp from "./Layouts/SignUp";
 import Checkout from "./Layouts/Checkout";
+import Orders from "./Layouts/Orders";
 import ErrorBoundary from "./Components/ErrorBoundary";
 
 // loader functions
@@ -62,65 +63,76 @@ function App() {
   // React router
   const router = createBrowserRouter([
     {
-      // homepage
-      path: "/",
-      element: <Root />,
+      errorElement: <ErrorPage />,
       children: [
         {
-          path: "contact",
-          element: <Contact />,
-        },
-        {
-          path: "bag",
-          element: <Bag />,
-        },
-        {
-          path: "profile",
-          element: <Profile />,
-        },
-        {
-          path: "product/details/:id",
-          loader: ({ params }) => {
-            return loadProductDetails(params.id);
-          },
-          element: <ProductDetails />,
-        },
-        {
-          path: "shop/:category",
-          loader: ({ params }) => {
-            return loadShopCategory(params.category);
-          },
-          element: <ShopCategory />,
-        },
-        {
-          path: "search/:keyword",
-          loader: ({ params }) => {
-            return loadSearchedKey(params.keyword);
-          },
-          element: <Search />,
-        },
-        {
-          path: "shop/collection/:category",
-          loader: ({ params }) => {
-            return getCategory(params.category);
-          },
-          element: <ShopCategory />,
-        },
-        {
-          path: "signIn",
-          element: <SignIn />,
-        },
-        {
-          path: "signUp",
-          element: <SignUp />,
-        },
-        {
-          path: "checkout",
-          element: <Checkout />,
+          // homepage
+          path: "/",
+          element: <Root />,
+          children: [
+            {
+              path: "contact",
+              element: <Contact />,
+            },
+            {
+              path: "bag",
+              element: <Bag />,
+            },
+            {
+              path: "profile",
+              element: <Profile />,
+            },
+            {
+              path: "product/details/:id",
+              loader: ({ params }) => {
+                return loadProductDetails(params.id);
+              },
+              element: <ProductDetails />,
+            },
+            {
+              path: "shop/:category",
+              loader: ({ params }) => {
+                return loadShopCategory(params.category);
+              },
+              element: <ShopCategory />,
+            },
+            {
+              path: "search/:keyword",
+              loader: ({ params }) => {
+                return loadSearchedKey(params.keyword);
+              },
+              element: <Search />,
+            },
+            {
+              path: "shop/collection/:category",
+              loader: ({ params }) => {
+                return getCategory(params.category);
+              },
+              element: <ShopCategory />,
+            },
+            {
+              path: "signIn",
+              element: <SignIn />,
+            },
+            {
+              path: "signUp",
+              element: <SignUp />,
+            },
+            {
+              path: "checkout",
+              element: <Checkout />,
+            },
+            {
+              path: "orders",
+              element: <Orders />,
+            },
+            // {
+            //   path: "*",
+            //   element: <ErrorPage />,
+            // },
+          ],
         },
       ],
-      errorElement: <ErrorPage />,
-      ErrorBoundary: <ErrorBoundary />,
     },
   ]);
 

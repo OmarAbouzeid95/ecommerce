@@ -23,6 +23,7 @@ import Search from "./Layouts/Search";
 import SignIn from "./Layouts/SignIn";
 import SignUp from "./Layouts/SignUp";
 import Checkout from "./Layouts/Checkout";
+import ErrorBoundary from "./Components/ErrorBoundary";
 
 // loader functions
 import {
@@ -119,6 +120,7 @@ function App() {
         },
       ],
       errorElement: <ErrorPage />,
+      ErrorBoundary: <ErrorBoundary />,
     },
   ]);
 

@@ -715,7 +715,7 @@ img {
 
 .productSizes {
   max-width: 200px;
-  margin: 0 auto 1em auto;
+  margin: 1.25em auto;
   display: flex;
 }
 
@@ -849,7 +849,7 @@ img {
 
   .mainProductImg,
   .productDetailsImgArr {
-    max-width: 400px;
+    max-width: 360px;
     margin-bottom: 1em;
   }
 
@@ -907,7 +907,7 @@ img {
 /* filters */
 
 .filtersContainer {
-  margin: 0 1em;
+  margin: 0 2em;
 }
 
 .productGridFilters {

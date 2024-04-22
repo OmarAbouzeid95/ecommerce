@@ -71,7 +71,6 @@ function ProductDetails() {
       totalRating: parseFloat(details.totalRating + userRating),
       ratingCount: parseInt(details.ratingCount + 1),
     };
-    console.log({ result: result });
     setDetails(result);
     updateProduct(
       `${process.env.REACT_APP_SERVER_URL}/updateProduct`,

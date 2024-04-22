@@ -9,8 +9,6 @@ const Orders = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const { user } = useContext(loggedUser);
 
-  console.log("orders: ", orders);
-
   useEffect(() => {
     getOrders(user)
       .then((orders) => setOrders(orders))

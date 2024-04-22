@@ -50,10 +50,6 @@ const CheckoutForm = () => {
       setTimeout(async () => {
         // updating user orders
         if (user) {
-          console.log("in updateUserData: ", {
-            ...user,
-            orders: user.bagItems,
-          });
           const updatedUser = await updateBagItems(
             `${process.env.REACT_APP_SERVER_URL}/updateBag`,
             {
@@ -63,7 +59,6 @@ const CheckoutForm = () => {
             }
           );
           setUser(updatedUser);
-          console.log("updatedUser: ", updatedUser);
         } else {
           localStorage.setItem("orders", localStorage.getItem("bagItems"));
           localStorage.setItem("bagItems", JSON.stringify([]));

@@ -65,7 +65,6 @@ async function updateProduct(url, info, id) {
 
 async function getOrders(user) {
   if (user) {
-    console.log("getOrders: ", user);
     try {
       const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/getOrders`, {
         method: "POST",

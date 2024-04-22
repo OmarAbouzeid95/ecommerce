@@ -34,6 +34,20 @@ async function run() {
 // stripe setup
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 
+const keepAlive = () => {
+  users
+    .findOne({ email: "omar@example.com" })
+    .then((user) => {
+      const today = new Date();
+      const currentTime =
+        today.getDate() + "/" + today.getHours() + "/" + today.getMinutes();
+      console.log("fetched user for keepAlive at ", currentTime);
+    })
+    .catch((error) => {
+      console.log("Error in keepAlive: ", error);
+    });
+};
+
 // sign in
 app.post("/signIn", (req, res) => {
   const { email, password } = req.body;
@@ -80,10 +94,13 @@ app.get("/user/:email", (req, res) => {
 
 // updating bagItems
 app.patch("/updateBag", (req, res) => {
-  const { email, bagItems } = req.body;
+  const { email, bagItems, orders } = req.body;
   const user = req.body;
   users
-    .updateOne({ email: email }, { $set: { bagItems: bagItems } })
+    .updateOne(
+      { email: email },
+      { $set: { bagItems: bagItems, orders: orders ?? [] } }
+    )
     .then((result) => {
       res.status(200).json(user);
     })
@@ -180,6 +197,18 @@ app.patch("/updateProduct", (req, res) => {
     });
 });
 
+app.post("/getOrders", async (req, res) => {
+  const { email } = req.body;
+  users
+    .findOne({ email })
+    .then((user) => {
+      res.status(200).json({ orders: user.orders });
+    })
+    .catch((error) => {
+      res.status(500).json(error);
+    });
+});
+
 app.get("/create-intent", async (_, res) => {
   try {
     const paymentIntent = await stripe.paymentIntents.create({
@@ -195,4 +224,9 @@ app.get("/create-intent", async (_, res) => {
   }
 });
 
-run().then(app.listen(PORT, () => console.log(`listening to port ${PORT}`)));
+run().then(
+  app.listen(PORT, () => {
+    console.log(`listening to port ${PORT}`);
+    setInterval(keepAlive, 1800000);
+  })
+);

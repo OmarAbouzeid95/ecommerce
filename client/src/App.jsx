@@ -88,7 +88,7 @@ function App() {
           />
           <Route
             path="search/:keyword"
-            element={<ShopCategory />}
+            element={<Search />}
             loader={({ params }) => loadSearchedKey(params.keyword)}
           />
           <Route

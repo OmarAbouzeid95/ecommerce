@@ -1,5 +1,10 @@
 import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  createRoutesFromElements,
+  Route,
+} from "react-router-dom";
 import {
   countContext,
   currentLoc,
@@ -46,95 +51,128 @@ function App() {
   const [prevLoc, setPrevLoc] = useState("");
   const [clientSecret, setClientSecret] = useState();
 
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER_URL}/create-intent`)
-      .then((response) => response.json())
-      .then((data) => {
-        {
-          console.log("response: ", data);
-          setClientSecret(data.clientSecret);
-        }
-      })
-      .catch((error) =>
-        console.log("Error getting stripe client secret: ", error.message)
-      );
-  }, []);
+  // useEffect(() => {
+  //   fetch(`${process.env.REACT_APP_SERVER_URL}/create-intent`)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       {
+  //         console.log("response: ", data);
+  //         setClientSecret(data.clientSecret);
+  //       }
+  //     })
+  //     .catch((error) =>
+  //       console.log("Error getting stripe client secret: ", error.message)
+  //     );
+  // }, []);
+
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+        <Route path="/" element={<Root />} errorElement={<ErrorBoundary />}>
+          <Route path="contact" element={<Contact />} />
+          <Route path="bag" element={<Bag />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="signin" element={<SignIn />} />
+          <Route path="signup" element={<SignUp />} />
+          <Route path="checkout" element={<Checkout />} />
+          <Route path="orders" element={<Orders />} />
+          <Route
+            path="product/details/:id"
+            element={<ProductDetails />}
+            loader={({ params }) => loadProductDetails(params.id)}
+          />
+          <Route
+            path="shop/:category"
+            element={<ShopCategory />}
+            loader={({ params }) => loadShopCategory(params.category)}
+          />
+          <Route
+            path="search/:keyword"
+            element={<ShopCategory />}
+            loader={({ params }) => loadSearchedKey(params.keyword)}
+          />
+          <Route
+            path="shop/collection/:category"
+            element={<ShopCategory />}
+            loader={({ params }) => getCategory(params.category)}
+          />
+        </Route>
+        <Route path="*" element={<ErrorPage />} />
+      </>
+    )
+  );
 
   // React router
-  const router = createBrowserRouter([
-    {
-      errorElement: <ErrorPage />,
-      children: [
-        {
-          // homepage
-          path: "/",
-          element: <Root />,
-          children: [
-            {
-              path: "contact",
-              element: <Contact />,
-            },
-            {
-              path: "bag",
-              element: <Bag />,
-            },
-            {
-              path: "profile",
-              element: <Profile />,
-            },
-            {
-              path: "product/details/:id",
-              loader: ({ params }) => {
-                return loadProductDetails(params.id);
-              },
-              element: <ProductDetails />,
-            },
-            {
-              path: "shop/:category",
-              loader: ({ params }) => {
-                return loadShopCategory(params.category);
-              },
-              element: <ShopCategory />,
-            },
-            {
-              path: "search/:keyword",
-              loader: ({ params }) => {
-                return loadSearchedKey(params.keyword);
-              },
-              element: <Search />,
-            },
-            {
-              path: "shop/collection/:category",
-              loader: ({ params }) => {
-                return getCategory(params.category);
-              },
-              element: <ShopCategory />,
-            },
-            {
-              path: "signIn",
-              element: <SignIn />,
-            },
-            {
-              path: "signUp",
-              element: <SignUp />,
-            },
-            {
-              path: "checkout",
-              element: <Checkout />,
-            },
-            {
-              path: "orders",
-              element: <Orders />,
-            },
-            // {
-            //   path: "*",
-            //   element: <ErrorPage />,
-            // },
-          ],
-        },
-      ],
-    },
-  ]);
+  // const router = createBrowserRouter([
+  //   {
+  //     // homepage
+  //     path: "/",
+  //     element: <Root />,
+  //     errorElement: <ErrorPage />,
+  //     children: [
+  //       {
+  //         path: "contact",
+  //         element: <Contact />,
+  //       },
+  //       {
+  //         path: "bag",
+  //         element: <Bag />,
+  //       },
+  //       {
+  //         path: "profile",
+  //         element: <Profile />,
+  //       },
+  //       {
+  //         path: "product/details/:id",
+  //         loader: ({ params }) => {
+  //           return loadProductDetails(params.id);
+  //         },
+  //         element: <ProductDetails />,
+  //       },
+  //       {
+  //         path: "shop/:category",
+  //         loader: ({ params }) => {
+  //           return loadShopCategory(params.category);
+  //         },
+  //         element: <ShopCategory />,
+  //       },
+  //       {
+  //         path: "search/:keyword",
+  //         loader: ({ params }) => {
+  //           return loadSearchedKey(params.keyword);
+  //         },
+  //         element: <Search />,
+  //       },
+  //       {
+  //         path: "shop/collection/:category",
+  //         loader: ({ params }) => {
+  //           return getCategory(params.category);
+  //         },
+  //         element: <ShopCategory />,
+  //       },
+  //       {
+  //         path: "signIn",
+  //         element: <SignIn />,
+  //       },
+  //       {
+  //         path: "signUp",
+  //         element: <SignUp />,
+  //       },
+  //       {
+  //         path: "checkout",
+  //         element: <Checkout />,
+  //       },
+  //       {
+  //         path: "orders",
+  //         element: <Orders />,
+  //       },
+  //       // {
+  //       //   path: "*",
+  //       //   element: <ErrorPage />,
+  //       // },
+  //     ],
+  //   },
+  // ]);
 
   return (
     <div className="App">

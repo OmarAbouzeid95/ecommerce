@@ -6,7 +6,7 @@ function ErrorBoundary() {
   return (
     <div className="errorPage-wrapper">
       <Header />
-      <div className="errorPage">
+      <div className="errorBoundary">
         <div>
           <h1>Oops!</h1>
           <p>We apologise, Something went wrong from our end.</p>

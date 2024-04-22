@@ -132,6 +132,7 @@ img {
 .errorBoundary {
   width: 100%;
   min-height: 70vh;
+  background: rgba(0, 0, 0, 0.73) url("./media/undraw_lost.svg");
   background-blend-mode: darken;
   background-position: center center;
   background-size: cover;
@@ -143,13 +144,21 @@ img {
   text-align: center;
 }
 
-.errorPage {
+/* .errorPage {
   background: rgba(0, 0, 0, 0.73) url("./media/undraw_lost.svg");
+  background-blend-mode: darken;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: none;
 }
 
 .errorBoundary {
   background: rgba(0, 0, 0, 0.73) url("./media/punctuation-rant-social.jpeg");
-}
+  background-blend-mode: darken;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: none;
+} */
 
 .errorPage div,
 .errorBoundary div {

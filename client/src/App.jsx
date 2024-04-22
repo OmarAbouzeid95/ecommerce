@@ -51,19 +51,19 @@ function App() {
   const [prevLoc, setPrevLoc] = useState("");
   const [clientSecret, setClientSecret] = useState();
 
-  // useEffect(() => {
-  //   fetch(`${process.env.REACT_APP_SERVER_URL}/create-intent`)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       {
-  //         console.log("response: ", data);
-  //         setClientSecret(data.clientSecret);
-  //       }
-  //     })
-  //     .catch((error) =>
-  //       console.log("Error getting stripe client secret: ", error.message)
-  //     );
-  // }, []);
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_SERVER_URL}/create-intent`)
+      .then((response) => response.json())
+      .then((data) => {
+        {
+          console.log("response: ", data);
+          setClientSecret(data.clientSecret);
+        }
+      })
+      .catch((error) =>
+        console.log("Error getting stripe client secret: ", error.message)
+      );
+  }, []);
 
   const router = createBrowserRouter(
     createRoutesFromElements(

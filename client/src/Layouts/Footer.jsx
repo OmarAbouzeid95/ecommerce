@@ -43,9 +43,7 @@ function Footer() {
             <NavLink to="https://www.twitter.com" target="_blank">
               <img src={twitter} alt="twitter icon" className="footerIcon" />
             </NavLink>
-            <NavLink
-              to="https://github.com/OmarAbouzeid95/ecommerce"
-              target="_blank">
+            <NavLink to="https://github.com/OmarAbouzeid95" target="_blank">
               <img src={github} alt="github icon" className="footerIcon" />
             </NavLink>
           </div>
